@@ -40,7 +40,8 @@ interface Concept {
   id: string;
   title: string;
   description: string;
-  difficulty: string;
+  metaphor: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
   estimatedTime: string;
   framework?: string;
   createdAt: string;
@@ -72,24 +73,41 @@ const AdminDashboard: React.FC = () => {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('adminToken');
+      console.log('🔍 Fetching admin data...');
       
       const [conceptsRes, frameworksRes] = await Promise.all([
         fetch('/api/admin/concepts', {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { 
+            Authorization: `Bearer ${token}`,
+            'X-Requested-With': 'XMLHttpRequest'
+          }
         }),
         fetch('/api/admin/frameworks', {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { 
+            Authorization: `Bearer ${token}`,
+            'X-Requested-With': 'XMLHttpRequest'
+          }
         })
       ]);
+
+      console.log('📊 Concepts response:', conceptsRes.status);
+      console.log('📊 Frameworks response:', frameworksRes.status);
 
       if (conceptsRes.ok && frameworksRes.ok) {
         const conceptsData = await conceptsRes.json();
         const frameworksData = await frameworksRes.json();
         
-        setConcepts(conceptsData.concepts);
-        setFrameworks(frameworksData.frameworks);
+        console.log('📈 Concepts count:', conceptsData.concepts?.length);
+        console.log('📈 Frameworks count:', frameworksData.frameworks?.length);
+        
+        setConcepts(conceptsData.concepts || []);
+        setFrameworks(frameworksData.frameworks || []);
+      } else {
+        console.error('❌ API responses not ok:', { conceptsRes: conceptsRes.status, frameworksRes: frameworksRes.status });
+        message.error('Failed to fetch data');
       }
     } catch (error) {
+      console.error('❌ Error fetching data:', error);
       message.error('Failed to fetch data');
     } finally {
       setLoading(false);

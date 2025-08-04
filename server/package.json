@@ -9,7 +9,8 @@
     "seed": "ts-node scripts/seedDatabase.ts",
     "test:db": "ts-node scripts/testConnection.ts",
     "setup:atlas": "ts-node scripts/setupAtlas.ts",
-    "create:admin": "ts-node scripts/createAdmin.ts"
+    "create:admin": "ts-node scripts/createAdmin.ts",
+    "create:secure-admin": "ts-node scripts/createSecureAdmin.ts"
   },
   "author": {
     "name": "Ramanjaneya",
@@ -20,7 +21,9 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^4.18.2",
+    "express-rate-limit": "^8.0.1",
     "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.17.0"
   },

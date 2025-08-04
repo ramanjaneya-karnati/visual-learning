@@ -1,10 +1,12 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
+import { generateSalt, hashPassword, verifyPassword } from '../utils/passwordSecurity';
 
 export interface IAdmin extends Document {
   username: string;
   email: string;
   password: string;
+  salt?: string;
   role: 'admin' | 'super-admin';
   isActive: boolean;
   lastLogin?: Date;
@@ -31,6 +33,10 @@ const AdminSchema: Schema = new Schema({
     required: true,
     minlength: 6
   },
+  salt: {
+    type: String,
+    required: false
+  },
   role: { 
     type: String, 
     enum: ['admin', 'super-admin'], 
@@ -52,8 +58,13 @@ AdminSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
   
   try {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password as string, salt);
+    // Generate a secure salt and hash the password
+    const salt = generateSalt();
+    const hashedPassword = hashPassword(this.password as string, salt);
+    
+    // Store both the hash and salt
+    this.password = hashedPassword;
+    this.salt = salt;
     next();
   } catch (error) {
     next(error as Error);
@@ -62,7 +73,11 @@ AdminSchema.pre('save', async function(next) {
 
 // Compare password method
 AdminSchema.methods.comparePassword = async function(candidatePassword: string): Promise<boolean> {
-  return bcrypt.compare(candidatePassword, this.password);
+  try {
+    return verifyPassword(candidatePassword, this.salt, this.password);
+  } catch (error) {
+    return false;
+  }
 };
 
 export default mongoose.model<IAdmin>('Admin', AdminSchema); 

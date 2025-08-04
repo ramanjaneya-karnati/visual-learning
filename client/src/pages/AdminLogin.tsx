@@ -20,19 +20,30 @@ const AdminLogin: React.FC = () => {
     setError('');
 
     try {
+      // Create a secure request with proper headers
       const response = await fetch('/api/admin/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest', // Prevents CSRF
         },
-        body: JSON.stringify(values),
+        credentials: 'include', // Include cookies for session management
+        body: JSON.stringify({
+          username: values.username,
+          password: values.password // Server will handle hashing
+        }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
+        // Store token securely
         localStorage.setItem('adminToken', data.token);
         localStorage.setItem('adminUser', JSON.stringify(data.admin));
+        
+        // Clear password from memory
+        values.password = '';
+        
         navigate('/admin/dashboard');
       } else {
         setError(data.error || 'Login failed');
@@ -82,6 +93,7 @@ const AdminLogin: React.FC = () => {
           onFinish={onFinish}
           layout="vertical"
           size="large"
+          autoComplete="off"
         >
           <Form.Item
             name="username"
@@ -91,6 +103,7 @@ const AdminLogin: React.FC = () => {
               prefix={<UserOutlined />}
               placeholder="Username"
               style={{ borderRadius: '8px' }}
+              autoComplete="username"
             />
           </Form.Item>
 
@@ -102,6 +115,7 @@ const AdminLogin: React.FC = () => {
               prefix={<LockOutlined />}
               placeholder="Password"
               style={{ borderRadius: '8px' }}
+              autoComplete="current-password"
             />
           </Form.Item>
 
