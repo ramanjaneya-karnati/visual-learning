@@ -1,8 +1,10 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Admin from '../models/Admin';
 import Concept from '../models/Concept';
 import Framework from '../models/Framework';
 import { auth, generateToken } from '../middleware/auth';
+import aiService from '../services/aiService';
 
 const router = express.Router();
 
@@ -92,16 +94,38 @@ router.post('/concepts', auth, async (req, res) => {
 // Update concept
 router.put('/concepts/:id', auth, async (req, res) => {
   try {
+    const { framework, ...conceptData } = req.body;
+    
+    // Update the concept
     const concept = await Concept.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      conceptData,
       { new: true, runValidators: true }
     );
+    
     if (!concept) {
       return res.status(404).json({ error: 'Concept not found' });
     }
+
+    // If framework is provided, update the framework relationship
+    if (framework) {
+      // Remove concept from all frameworks first
+      await Framework.updateMany(
+        { concepts: concept._id },
+        { $pull: { concepts: concept._id } }
+      );
+
+      // Add concept to the specified framework
+      const targetFramework = await Framework.findOne({ id: framework });
+      if (targetFramework) {
+        targetFramework.concepts.push(concept._id as mongoose.Types.ObjectId);
+        await targetFramework.save();
+      }
+    }
+
     res.json({ concept });
   } catch (error) {
+    console.error('Error updating concept:', error);
     res.status(400).json({ error: 'Failed to update concept' });
   }
 });
@@ -143,4 +167,95 @@ router.post('/setup', async (req, res) => {
   }
 });
 
-export default router; 
+        // AI-powered concept generation
+        router.post('/generate-concept', auth, async (req, res) => {
+          try {
+            const { concept, framework } = req.body;
+            
+            if (!concept || !framework) {
+              return res.status(400).json({ error: 'Concept and framework are required' });
+            }
+            
+            console.log(`🤖 Generating concept: ${concept} for ${framework}`);
+            
+            const conceptData = await aiService.generateConceptData(concept, framework);
+            
+            res.json({ 
+              success: true, 
+              conceptData,
+              message: 'Concept generated successfully'
+            });
+          } catch (error) {
+            console.error('Error generating concept:', error);
+            res.status(500).json({ error: 'Failed to generate concept' });
+          }
+        });
+        
+        // Get popular concepts for a framework
+        router.get('/popular-concepts/:framework', auth, async (req, res) => {
+          try {
+            const { framework } = req.params;
+            
+            const popularConcepts = await aiService.searchPopularConcepts(framework);
+            
+            res.json({ 
+              success: true, 
+              concepts: popularConcepts,
+              framework
+            });
+          } catch (error) {
+            console.error('Error fetching popular concepts:', error);
+            res.status(500).json({ error: 'Failed to fetch popular concepts' });
+          }
+        });
+        
+        // Auto-create concept with AI generation
+        router.post('/auto-create-concept', auth, async (req, res) => {
+          try {
+            const { concept, framework } = req.body;
+            
+            if (!concept || !framework) {
+              return res.status(400).json({ error: 'Concept and framework are required' });
+            }
+            
+            console.log(`🚀 Auto-creating concept: ${concept} for ${framework}`);
+            
+            // Generate concept data using AI
+            const conceptData = await aiService.generateConceptData(concept, framework);
+            
+            // Create concept ID
+            const conceptId = concept.toLowerCase().replace(/\s+/g, '-');
+            
+            // Create new concept
+            const newConcept = new Concept({
+              id: conceptId,
+              title: conceptData.title,
+              description: conceptData.description,
+              metaphor: conceptData.metaphor,
+              difficulty: conceptData.difficulty,
+              estimatedTime: conceptData.estimatedTime,
+              story: conceptData.story,
+              framework: framework.toLowerCase()
+            });
+            
+            await newConcept.save();
+            
+            // Add concept to framework
+            const frameworkDoc = await Framework.findOne({ id: framework.toLowerCase() });
+            if (frameworkDoc) {
+              frameworkDoc.concepts.push(newConcept._id as any);
+              await frameworkDoc.save();
+            }
+            
+            res.json({ 
+              success: true, 
+              concept: newConcept,
+              message: 'Concept created successfully with AI-generated content'
+            });
+          } catch (error) {
+            console.error('Error auto-creating concept:', error);
+            res.status(500).json({ error: 'Failed to create concept' });
+          }
+        });
+        
+        export default router; 

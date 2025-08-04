@@ -26,11 +26,13 @@ import {
   UserOutlined,
   SettingOutlined,
   EyeOutlined,
-  MoreOutlined
+  MoreOutlined,
+  RobotOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import ConceptForm from '../components/admin/ConceptForm';
 import ConceptView from '../components/admin/ConceptView';
+import AIConceptGenerator from '../components/admin/AIConceptGenerator';
 
 const { Header, Sider, Content } = Layout;
 const { Title, Text } = Typography;
@@ -61,6 +63,7 @@ const AdminDashboard: React.FC = () => {
   const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isViewVisible, setIsViewVisible] = useState(false);
+  const [isAIGeneratorVisible, setIsAIGeneratorVisible] = useState(false);
   const [editingConcept, setEditingConcept] = useState<Concept | null>(null);
   const navigate = useNavigate();
 
@@ -320,22 +323,30 @@ const AdminDashboard: React.FC = () => {
             </Col>
           </Row>
 
-          <Card
-            title="Concepts Management"
-            extra={
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                onClick={() => {
-                  setEditingConcept(null);
-                  setIsFormVisible(true);
-                }}
-              >
-                Add Concept
-              </Button>
-            }
-            style={{ marginTop: '24px' }}
-          >
+                            <Card
+                    title="Concepts Management"
+                    extra={
+                      <Space>
+                        <Button
+                          icon={<RobotOutlined />}
+                          onClick={() => setIsAIGeneratorVisible(true)}
+                        >
+                          AI Generator
+                        </Button>
+                        <Button
+                          type="primary"
+                          icon={<PlusOutlined />}
+                          onClick={() => {
+                            setEditingConcept(null);
+                            setIsFormVisible(true);
+                          }}
+                        >
+                          Add Concept
+                        </Button>
+                      </Space>
+                    }
+                    style={{ marginTop: '24px' }}
+                  >
             <Table
               columns={columns}
               dataSource={concepts}
@@ -366,16 +377,25 @@ const AdminDashboard: React.FC = () => {
         }}
       />
 
-      <ConceptView
-        visible={isViewVisible}
-        concept={selectedConcept}
-        onCancel={() => {
-          setIsViewVisible(false);
-          setSelectedConcept(null);
-        }}
-      />
-    </Layout>
-  );
-};
+                    <ConceptView
+                visible={isViewVisible}
+                concept={selectedConcept}
+                onCancel={() => {
+                  setIsViewVisible(false);
+                  setSelectedConcept(null);
+                }}
+              />
+
+              <AIConceptGenerator
+                visible={isAIGeneratorVisible}
+                onCancel={() => setIsAIGeneratorVisible(false)}
+                onSuccess={() => {
+                  setIsAIGeneratorVisible(false);
+                  fetchData();
+                }}
+              />
+            </Layout>
+          );
+        };
 
 export default AdminDashboard;

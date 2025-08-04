@@ -57,6 +57,7 @@ const ConceptForm: React.FC<ConceptFormProps> = ({
 
   useEffect(() => {
     if (visible && concept) {
+      console.log('🔧 Setting form values for concept:', concept);
       form.setFieldsValue({
         ...concept,
         story: concept.story || {
@@ -79,6 +80,8 @@ const ConceptForm: React.FC<ConceptFormProps> = ({
   const handleSubmit = async (values: any) => {
     setLoading(true);
     try {
+      console.log('🚀 Submitting concept with values:', values);
+      
       const token = localStorage.getItem('adminToken');
       const url = concept?._id 
         ? `/api/admin/concepts/${concept._id}`
@@ -86,22 +89,31 @@ const ConceptForm: React.FC<ConceptFormProps> = ({
       
       const method = concept?._id ? 'PUT' : 'POST';
       
+      console.log('📡 Making request to:', url, 'with method:', method);
+      
       const response = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          'X-Requested-With': 'XMLHttpRequest'
         },
         body: JSON.stringify(values)
       });
 
+      console.log('📊 Response status:', response.status);
+
       if (response.ok) {
+        const result = await response.json();
+        console.log('✅ Success response:', result);
         onSuccess();
       } else {
         const error = await response.json();
+        console.error('❌ Error response:', error);
         message.error(error.error || 'Failed to save concept');
       }
     } catch (error) {
+      console.error('❌ Network error:', error);
       message.error('Network error');
     } finally {
       setLoading(false);
