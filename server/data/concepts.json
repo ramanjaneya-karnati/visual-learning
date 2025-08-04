@@ -7,14 +7,66 @@
         {
           "id": "lazy-loading",
           "title": "Lazy Loading",
-          "description": "Load components only when needed to improve performance.",
-          "metaphor": "Imagine a menu that only gets printed when a customer asks for a dish – less printing, less waste!"
+          "description": "Load components only when needed to improve performance and reduce initial bundle size.",
+          "metaphor": "Imagine a menu that only gets printed when a customer asks for a dish – less printing, less waste!",
+          "difficulty": "intermediate",
+          "estimatedTime": "15 min"
         },
         {
           "id": "server-components",
           "title": "React Server Components",
-          "description": "Render components on the server to reduce client bundle size.",
-          "metaphor": "Like pre-cooking meals in the kitchen and handing them ready-made to the waiter!"
+          "description": "Render components on the server to reduce client bundle size and improve performance.",
+          "metaphor": "Like pre-cooking meals in the kitchen and handing them ready-made to the waiter!",
+          "difficulty": "advanced",
+          "estimatedTime": "25 min"
+        },
+        {
+          "id": "hooks",
+          "title": "React Hooks",
+          "description": "Use state and other React features in functional components without classes.",
+          "metaphor": "Think of hooks like kitchen utensils – each has a specific purpose and makes cooking easier!",
+          "difficulty": "beginner",
+          "estimatedTime": "20 min"
+        },
+        {
+          "id": "context-api",
+          "title": "Context API",
+          "description": "Share data between components without prop drilling.",
+          "metaphor": "Like a family recipe book that everyone in the kitchen can access without asking each other!",
+          "difficulty": "intermediate",
+          "estimatedTime": "18 min"
+        },
+        {
+          "id": "virtual-dom",
+          "title": "Virtual DOM",
+          "description": "React's efficient way of updating the browser DOM by comparing virtual representations.",
+          "metaphor": "Like a chef who plans all changes before touching the actual kitchen – saves time and reduces mess!",
+          "difficulty": "intermediate",
+          "estimatedTime": "22 min"
+        },
+        {
+          "id": "fiber-architecture",
+          "title": "React Fiber",
+          "description": "React's new reconciliation algorithm that enables better performance and concurrent features.",
+          "metaphor": "Like upgrading from a single-lane road to a multi-lane highway with smart traffic management!",
+          "difficulty": "advanced",
+          "estimatedTime": "30 min"
+        },
+        {
+          "id": "suspense",
+          "title": "React Suspense",
+          "description": "Handle loading states and data fetching in a declarative way.",
+          "metaphor": "Like having a smart waiter who knows exactly when to bring your food and when to keep you entertained!",
+          "difficulty": "intermediate",
+          "estimatedTime": "20 min"
+        },
+        {
+          "id": "concurrent-features",
+          "title": "Concurrent Features",
+          "description": "React's new features for better user experience with non-blocking updates.",
+          "metaphor": "Like a restaurant that can handle multiple orders simultaneously without any customer feeling ignored!",
+          "difficulty": "advanced",
+          "estimatedTime": "35 min"
         }
       ]
     },
@@ -25,8 +77,56 @@
         {
           "id": "dependency-injection",
           "title": "Dependency Injection",
-          "description": "Efficiently manage dependencies across the app.",
-          "metaphor": "Like a recipe box that the chef pulls out whenever a new order comes in."
+          "description": "Efficiently manage dependencies across the app with Angular's DI system.",
+          "metaphor": "Like a recipe box that the chef pulls out whenever a new order comes in.",
+          "difficulty": "intermediate",
+          "estimatedTime": "25 min"
+        },
+        {
+          "id": "change-detection",
+          "title": "Change Detection",
+          "description": "Angular's mechanism for tracking and updating component state changes.",
+          "metaphor": "Like a security camera system that monitors every corner and alerts when something changes!",
+          "difficulty": "advanced",
+          "estimatedTime": "30 min"
+        },
+        {
+          "id": "decorators",
+          "title": "Decorators",
+          "description": "Add metadata and behavior to classes and properties in Angular.",
+          "metaphor": "Like adding special stickers to your ingredients that tell the kitchen how to handle them!",
+          "difficulty": "intermediate",
+          "estimatedTime": "20 min"
+        }
+      ]
+    },
+    {
+      "id": "advanced",
+      "name": "Advanced Patterns",
+      "concepts": [
+        {
+          "id": "design-patterns",
+          "title": "Design Patterns",
+          "description": "Reusable solutions to common programming problems.",
+          "metaphor": "Like cooking techniques that work across different cuisines and recipes!",
+          "difficulty": "advanced",
+          "estimatedTime": "45 min"
+        },
+        {
+          "id": "state-management",
+          "title": "State Management",
+          "description": "Manage application state in a predictable and scalable way.",
+          "metaphor": "Like a restaurant manager who keeps track of all tables, orders, and kitchen status!",
+          "difficulty": "intermediate",
+          "estimatedTime": "30 min"
+        },
+        {
+          "id": "performance-optimization",
+          "title": "Performance Optimization",
+          "description": "Techniques to make your applications faster and more efficient.",
+          "metaphor": "Like optimizing a kitchen layout to minimize steps and maximize efficiency!",
+          "difficulty": "advanced",
+          "estimatedTime": "40 min"
         }
       ]
     }
