@@ -1,0 +1,34 @@
+{
+  "frameworks": [
+    {
+      "id": "react",
+      "name": "React",
+      "concepts": [
+        {
+          "id": "lazy-loading",
+          "title": "Lazy Loading",
+          "description": "Load components only when needed to improve performance.",
+          "metaphor": "Imagine a menu that only gets printed when a customer asks for a dish – less printing, less waste!"
+        },
+        {
+          "id": "server-components",
+          "title": "React Server Components",
+          "description": "Render components on the server to reduce client bundle size.",
+          "metaphor": "Like pre-cooking meals in the kitchen and handing them ready-made to the waiter!"
+        }
+      ]
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "concepts": [
+        {
+          "id": "dependency-injection",
+          "title": "Dependency Injection",
+          "description": "Efficiently manage dependencies across the app.",
+          "metaphor": "Like a recipe box that the chef pulls out whenever a new order comes in."
+        }
+      ]
+    }
+  ]
+}

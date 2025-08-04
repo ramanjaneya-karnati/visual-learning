@@ -1,0 +1,35 @@
+{
+  "name": "visual-learning",
+  "version": "1.0.0",
+  "description": "Learn Programming Concepts the Fun Way",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && npm run start",
+    "client:dev": "cd client && npm run dev",
+    "server:build": "cd server && npm run build",
+    "client:build": "cd client && npm run build",
+    "build": "npm run server:build && npm run client:build",
+    "start": "concurrently \"npm run server:start\" \"npm run client:start\"",
+    "server:start": "cd server && npm start",
+    "client:start": "cd client && npm start",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "setup": "npm run install:all"
+  },
+  "keywords": [
+    "programming",
+    "learning",
+    "visual",
+    "concepts",
+    "education"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
+} 
