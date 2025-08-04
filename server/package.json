@@ -7,6 +7,10 @@
     "build": "tsc",
     "dev": "ts-node-dev index.ts"
   },
+  "author": {
+    "name": "Ramanjaneya",
+    "email": "karnati.anjan@gmail.com"
+  },
   "dependencies": {
     "express": "^4.18.2"
   },

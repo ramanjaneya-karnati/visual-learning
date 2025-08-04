@@ -23,7 +23,10 @@
     "concepts",
     "education"
   ],
-  "author": "",
+  "author": {
+    "name": "Ramanjaneya",
+    "email": "karnati.anjan@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.2"
