@@ -57,6 +57,85 @@ router.get('/frameworks', auth, async (req, res) => {
   }
 });
 
+// Get single framework
+router.get('/frameworks/:id', auth, async (req, res) => {
+  try {
+    const framework = await Framework.findOne({ id: req.params.id }).populate('concepts');
+    if (!framework) {
+      return res.status(404).json({ error: 'Framework not found' });
+    }
+    res.json({ framework });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch framework' });
+  }
+});
+
+// Create new framework
+router.post('/frameworks', auth, async (req, res) => {
+  try {
+    const { id, name } = req.body;
+    
+    // Check if framework with same ID already exists
+    const existingFramework = await Framework.findOne({ id });
+    if (existingFramework) {
+      return res.status(400).json({ error: 'Framework with this ID already exists' });
+    }
+
+    const framework = new Framework({ id, name, concepts: [] });
+    await framework.save();
+    res.status(201).json({ framework });
+  } catch (error) {
+    console.error('Error creating framework:', error);
+    res.status(400).json({ error: 'Failed to create framework' });
+  }
+});
+
+// Update framework
+router.put('/frameworks/:id', auth, async (req, res) => {
+  try {
+    const { name } = req.body;
+    
+    const framework = await Framework.findOneAndUpdate(
+      { id: req.params.id },
+      { name },
+      { new: true, runValidators: true }
+    );
+    
+    if (!framework) {
+      return res.status(404).json({ error: 'Framework not found' });
+    }
+    
+    res.json({ framework });
+  } catch (error) {
+    console.error('Error updating framework:', error);
+    res.status(400).json({ error: 'Failed to update framework' });
+  }
+});
+
+// Delete framework (only if it has no concepts)
+router.delete('/frameworks/:id', auth, async (req, res) => {
+  try {
+    const framework = await Framework.findOne({ id: req.params.id }).populate('concepts');
+    
+    if (!framework) {
+      return res.status(404).json({ error: 'Framework not found' });
+    }
+
+    // Check if framework has concepts
+    if (framework.concepts && framework.concepts.length > 0) {
+      return res.status(400).json({ 
+        error: 'Cannot delete framework with existing concepts. Please move or delete all concepts first.' 
+      });
+    }
+
+    await Framework.findByIdAndDelete(framework._id);
+    res.json({ message: 'Framework deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting framework:', error);
+    res.status(500).json({ error: 'Failed to delete framework' });
+  }
+});
+
 // Get all concepts
 router.get('/concepts', auth, async (req, res) => {
   try {

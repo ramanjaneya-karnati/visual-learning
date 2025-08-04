@@ -54,6 +54,8 @@ const ConceptForm: React.FC<ConceptFormProps> = ({
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [showStory, setShowStory] = useState(false);
+  const [frameworks, setFrameworks] = useState<Array<{ value: string; label: string }>>([]);
+  const [loadingFrameworks, setLoadingFrameworks] = useState(false);
 
   useEffect(() => {
     if (visible && concept) {
@@ -75,7 +77,40 @@ const ConceptForm: React.FC<ConceptFormProps> = ({
       form.resetFields();
       setShowStory(false);
     }
+    
+    // Fetch frameworks when form becomes visible
+    if (visible) {
+      fetchFrameworks();
+    }
   }, [visible, concept, form]);
+
+  const fetchFrameworks = async () => {
+    try {
+      setLoadingFrameworks(true);
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/frameworks', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const frameworkOptions = data.frameworks.map((framework: any) => ({
+          value: framework.id,
+          label: framework.name
+        }));
+        setFrameworks(frameworkOptions);
+      } else {
+        console.error('Failed to fetch frameworks');
+      }
+    } catch (error) {
+      console.error('Error fetching frameworks:', error);
+    } finally {
+      setLoadingFrameworks(false);
+    }
+  };
 
   const handleSubmit = async (values: any) => {
     setLoading(true);
@@ -207,10 +242,16 @@ const ConceptForm: React.FC<ConceptFormProps> = ({
               name="framework"
               label="Framework"
             >
-              <Select placeholder="Select framework">
-                <Option value="react">React</Option>
-                <Option value="angular">Angular</Option>
-                <Option value="advanced">Advanced Patterns</Option>
+              <Select 
+                placeholder={loadingFrameworks ? "Loading frameworks..." : "Select framework"}
+                loading={loadingFrameworks}
+                disabled={loadingFrameworks}
+              >
+                {frameworks.map(fw => (
+                  <Option key={fw.value} value={fw.value}>
+                    {fw.label}
+                  </Option>
+                ))}
               </Select>
             </Form.Item>
           </Col>

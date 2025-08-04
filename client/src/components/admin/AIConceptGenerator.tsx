@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Modal,
   Form,
@@ -62,15 +62,43 @@ const AIConceptGenerator: React.FC<AIConceptGeneratorProps> = ({
   const [generatedConcept, setGeneratedConcept] = useState<GeneratedConcept | null>(null);
   const [popularConcepts, setPopularConcepts] = useState<string[]>([]);
   const [selectedFramework, setSelectedFramework] = useState<string>('');
+  const [frameworks, setFrameworks] = useState<Array<{ value: string; label: string }>>([]);
+  const [loadingFrameworks, setLoadingFrameworks] = useState(false);
 
-  const frameworks = [
-    { value: 'next.js', label: 'Next.js' },
-    { value: 'react', label: 'React' },
-    { value: 'angular', label: 'Angular' },
-    { value: 'vue', label: 'Vue.js' },
-    { value: 'typescript', label: 'TypeScript' },
-    { value: 'node.js', label: 'Node.js' }
-  ];
+  // Fetch frameworks from database
+  useEffect(() => {
+    if (visible) {
+      fetchFrameworks();
+    }
+  }, [visible]);
+
+  const fetchFrameworks = async () => {
+    try {
+      setLoadingFrameworks(true);
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/frameworks', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const frameworkOptions = data.frameworks.map((framework: any) => ({
+          value: framework.id,
+          label: framework.name
+        }));
+        setFrameworks(frameworkOptions);
+      } else {
+        console.error('Failed to fetch frameworks');
+      }
+    } catch (error) {
+      console.error('Error fetching frameworks:', error);
+    } finally {
+      setLoadingFrameworks(false);
+    }
+  };
 
   const handleFrameworkChange = async (framework: string) => {
     setSelectedFramework(framework);
@@ -198,9 +226,11 @@ const AIConceptGenerator: React.FC<AIConceptGeneratorProps> = ({
                 rules={[{ required: true, message: 'Please select a framework' }]}
               >
                 <Select
-                  placeholder="Select framework"
+                  placeholder={loadingFrameworks ? "Loading frameworks..." : "Select framework"}
                   onChange={handleFrameworkChange}
                   showSearch
+                  loading={loadingFrameworks}
+                  disabled={loadingFrameworks}
                 >
                   {frameworks.map(fw => (
                     <Option key={fw.value} value={fw.value}>

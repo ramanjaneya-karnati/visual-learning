@@ -29,10 +29,11 @@ import {
   MoreOutlined,
   RobotOutlined
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import ConceptForm from '../components/admin/ConceptForm';
 import ConceptView from '../components/admin/ConceptView';
 import AIConceptGenerator from '../components/admin/AIConceptGenerator';
+import FrameworkForm from '../components/admin/FrameworkForm';
 
 const { Header, Sider, Content } = Layout;
 const { Title, Text } = Typography;
@@ -65,6 +66,8 @@ const AdminDashboard: React.FC = () => {
   const [isViewVisible, setIsViewVisible] = useState(false);
   const [isAIGeneratorVisible, setIsAIGeneratorVisible] = useState(false);
   const [editingConcept, setEditingConcept] = useState<Concept | null>(null);
+  const [isFrameworkFormVisible, setIsFrameworkFormVisible] = useState(false);
+  const [editingFramework, setEditingFramework] = useState<Framework | null>(null);
   const navigate = useNavigate();
 
   const adminUser = JSON.parse(localStorage.getItem('adminUser') || '{}');
@@ -151,6 +154,20 @@ const AdminDashboard: React.FC = () => {
     });
   };
 
+  const handleFrameworkEdit = (framework: Framework) => {
+    setEditingFramework(framework);
+    setIsFrameworkFormVisible(true);
+  };
+
+  const handleFrameworkAdd = () => {
+    setEditingFramework(null);
+    setIsFrameworkFormVisible(true);
+  };
+
+  const handleFrameworkSuccess = () => {
+    fetchData();
+  };
+
   const columns = [
     {
       title: 'Title',
@@ -221,7 +238,12 @@ const AdminDashboard: React.FC = () => {
     {
       key: 'dashboard',
       icon: <DashboardOutlined />,
-      label: 'Dashboard'
+      label: <Link to="/admin/dashboard" style={{ color: 'inherit' }}>Dashboard</Link>
+    },
+    {
+      key: 'frameworks',
+      icon: <BookOutlined />,
+      label: <Link to="/admin/frameworks" style={{ color: 'inherit' }}>Frameworks</Link>
     },
     {
       key: 'concepts',
@@ -359,6 +381,68 @@ const AdminDashboard: React.FC = () => {
               }}
             />
           </Card>
+
+          <Card
+            title="Frameworks Management"
+            extra={
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={handleFrameworkAdd}
+              >
+                Add Framework
+              </Button>
+            }
+            style={{ marginTop: '24px' }}
+          >
+            <Row gutter={[16, 16]}>
+              {frameworks.map((framework) => (
+                <Col xs={24} sm={12} md={8} lg={6} key={framework._id}>
+                  <Card
+                    hoverable
+                    size="small"
+                    actions={[
+                      <Button
+                        type="text"
+                        icon={<EditOutlined />}
+                        onClick={() => handleFrameworkEdit(framework)}
+                      >
+                        Edit
+                      </Button>
+                    ]}
+                  >
+                    <Card.Meta
+                      title={
+                        <Space>
+                          <Text strong>{framework.name}</Text>
+                          <Tag color="blue">{framework.concepts.length} concepts</Tag>
+                        </Space>
+                      }
+                      description={
+                        <div>
+                          <Text type="secondary">ID: {framework.id}</Text>
+                          <div style={{ marginTop: 8 }}>
+                            {framework.concepts.length > 0 ? (
+                              framework.concepts.slice(0, 3).map((concept: any) => (
+                                <Tag key={concept._id} style={{ marginBottom: 4 }}>
+                                  {concept.title}
+                                </Tag>
+                              ))
+                            ) : (
+                              <Text type="secondary">No concepts yet</Text>
+                            )}
+                            {framework.concepts.length > 3 && (
+                              <Text type="secondary">+{framework.concepts.length - 3} more</Text>
+                            )}
+                          </div>
+                        </div>
+                      }
+                    />
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Card>
         </Content>
       </Layout>
 
@@ -377,25 +461,35 @@ const AdminDashboard: React.FC = () => {
         }}
       />
 
-                    <ConceptView
-                visible={isViewVisible}
-                concept={selectedConcept}
-                onCancel={() => {
-                  setIsViewVisible(false);
-                  setSelectedConcept(null);
-                }}
-              />
+                          <ConceptView
+        visible={isViewVisible}
+        concept={selectedConcept}
+        onCancel={() => {
+          setIsViewVisible(false);
+          setSelectedConcept(null);
+        }}
+      />
 
-              <AIConceptGenerator
-                visible={isAIGeneratorVisible}
-                onCancel={() => setIsAIGeneratorVisible(false)}
-                onSuccess={() => {
-                  setIsAIGeneratorVisible(false);
-                  fetchData();
-                }}
-              />
-            </Layout>
-          );
-        };
+      <AIConceptGenerator
+        visible={isAIGeneratorVisible}
+        onCancel={() => setIsAIGeneratorVisible(false)}
+        onSuccess={() => {
+          setIsAIGeneratorVisible(false);
+          fetchData();
+        }}
+      />
+
+      <FrameworkForm
+        visible={isFrameworkFormVisible}
+        framework={editingFramework}
+        onCancel={() => {
+          setIsFrameworkFormVisible(false);
+          setEditingFramework(null);
+        }}
+        onSuccess={handleFrameworkSuccess}
+      />
+    </Layout>
+  );
+};
 
 export default AdminDashboard;

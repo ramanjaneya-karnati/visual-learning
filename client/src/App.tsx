@@ -6,6 +6,7 @@ import ConceptsPage from './pages/ConceptsPage';
 import ConceptDetailPage from './pages/ConceptDetailPage';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import FrameworksPage from './pages/admin/FrameworksPage';
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph } = Typography;
@@ -127,6 +128,7 @@ function App() {
         <Route path="/concept/:frameworkId/:conceptId" element={<ConceptDetailPage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/frameworks" element={<FrameworksPage />} />
       </Routes>
     </Router>
   );
