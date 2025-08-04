@@ -28,6 +28,7 @@ import {
   ExperimentOutlined
 } from '@ant-design/icons';
 import CodeBlock from '../components/CodeBlock';
+import InteractiveStory from '../components/InteractiveStory';
 
 const { Header, Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -605,21 +606,27 @@ console.log('Learning made easy!');`,
       icon: <BulbOutlined />,
       content: (
         <Card>
-          <Title level={3}>💡 Think of it like this...</Title>
-          <div style={{ 
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
-            padding: '24px', 
-            borderRadius: '12px',
-            color: 'white',
-            marginBottom: '16px'
-          }}>
-            <Paragraph style={{ fontSize: '18px', color: 'white', margin: 0 }}>
-              {concept?.metaphor}
-            </Paragraph>
-          </div>
-          <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
-            This metaphor helps you understand the concept in familiar terms, making it easier to remember and apply.
-          </Paragraph>
+          <Title level={3}>💡 Interactive Story</Title>
+          {concept?.story ? (
+            <InteractiveStory story={concept.story} />
+          ) : (
+            <>
+              <div style={{ 
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
+                padding: '24px', 
+                borderRadius: '12px',
+                color: 'white',
+                marginBottom: '16px'
+              }}>
+                <Paragraph style={{ fontSize: '18px', color: 'white', margin: 0 }}>
+                  {concept?.metaphor}
+                </Paragraph>
+              </div>
+              <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
+                This metaphor helps you understand the concept in familiar terms, making it easier to remember and apply.
+              </Paragraph>
+            </>
+          )}
         </Card>
       )
     },

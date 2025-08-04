@@ -10,7 +10,26 @@
           "description": "Load components only when needed to improve performance and reduce initial bundle size.",
           "metaphor": "Imagine a menu that only gets printed when a customer asks for a dish – less printing, less waste!",
           "difficulty": "intermediate",
-          "estimatedTime": "15 min"
+          "estimatedTime": "15 min",
+          "story": {
+            "title": "The Smart Restaurant Menu",
+            "scene": "You're running a popular restaurant with a huge menu. Every customer gets a complete menu with 100+ dishes, but they only order 2-3 items.",
+            "problem": "Printing full menus for everyone is expensive and wasteful. Most customers only look at a few dishes anyway.",
+            "solution": "Create a smart menu system that only shows dishes when customers ask for them.",
+            "characters": {
+              "restaurant": "Your React App",
+              "menu": "Component Bundle",
+              "customer": "User",
+              "waiter": "React Router",
+              "kitchen": "Server"
+            },
+            "mapping": {
+              "lazy": "On-demand menu printing",
+              "suspense": "Loading indicator",
+              "bundle": "Menu sections"
+            },
+            "realWorld": "Loading components only when users navigate to them"
+          }
         },
         {
           "id": "server-components",
@@ -18,7 +37,25 @@
           "description": "Render components on the server to reduce client bundle size and improve performance.",
           "metaphor": "Like pre-cooking meals in the kitchen and handing them ready-made to the waiter!",
           "difficulty": "advanced",
-          "estimatedTime": "25 min"
+          "estimatedTime": "25 min",
+          "story": {
+            "title": "The Pre-Cooked Kitchen",
+            "scene": "Your restaurant has a busy kitchen where some dishes take time to prepare. Customers wait while food cooks.",
+            "problem": "Customers wait too long for complex dishes. Kitchen gets overwhelmed with multiple orders.",
+            "solution": "Pre-cook popular dishes and have them ready to serve immediately.",
+            "characters": {
+              "kitchen": "Server",
+              "waiter": "Client",
+              "pre-cooked": "Server Components",
+              "fresh-cooked": "Client Components"
+            },
+            "mapping": {
+              "server": "Kitchen preparation",
+              "client": "Waiter service",
+              "streaming": "Continuous food delivery"
+            },
+            "realWorld": "Rendering components on server for faster initial load"
+          }
         },
         {
           "id": "hooks",
@@ -26,7 +63,25 @@
           "description": "Use state and other React features in functional components without classes.",
           "metaphor": "Think of hooks like kitchen utensils – each has a specific purpose and makes cooking easier!",
           "difficulty": "beginner",
-          "estimatedTime": "20 min"
+          "estimatedTime": "20 min",
+          "story": {
+            "title": "The Chef's Toolbox",
+            "scene": "A chef has a toolbox with different utensils. Each tool has a specific job and makes cooking more efficient.",
+            "problem": "Chefs used to carry heavy equipment (classes) for every task, even simple ones.",
+            "solution": "Create lightweight, specialized tools (hooks) for specific tasks.",
+            "characters": {
+              "chef": "Functional Component",
+              "toolbox": "React Hooks",
+              "utensils": "Individual Hooks",
+              "recipe": "Component Logic"
+            },
+            "mapping": {
+              "useState": "Ingredient storage",
+              "useEffect": "Cooking timer",
+              "useContext": "Kitchen announcements"
+            },
+            "realWorld": "Managing state and side effects in functional components"
+          }
         },
         {
           "id": "context-api",
@@ -34,7 +89,25 @@
           "description": "Share data between components without prop drilling.",
           "metaphor": "Like a family recipe book that everyone in the kitchen can access without asking each other!",
           "difficulty": "intermediate",
-          "estimatedTime": "18 min"
+          "estimatedTime": "18 min",
+            "story": {
+            "title": "The Family Recipe Book",
+            "scene": "A family restaurant where everyone needs access to the same recipes, but asking each other is inefficient.",
+            "problem": "Chefs keep asking each other for the same recipes, creating chaos and delays.",
+            "solution": "Create a central recipe book that everyone can access directly.",
+            "characters": {
+              "recipe-book": "Context",
+              "chefs": "Components",
+              "recipes": "Shared Data",
+              "kitchen": "Component Tree"
+            },
+            "mapping": {
+              "provider": "Recipe book placement",
+              "consumer": "Chef accessing recipes",
+              "value": "Recipe content"
+            },
+            "realWorld": "Sharing data across component tree without prop drilling"
+          }
         },
         {
           "id": "virtual-dom",
@@ -42,7 +115,25 @@
           "description": "React's efficient way of updating the browser DOM by comparing virtual representations.",
           "metaphor": "Like a chef who plans all changes before touching the actual kitchen – saves time and reduces mess!",
           "difficulty": "intermediate",
-          "estimatedTime": "22 min"
+          "estimatedTime": "22 min",
+          "story": {
+            "title": "The Smart Kitchen Planner",
+            "scene": "A chef manages a busy kitchen with many orders. Making changes directly is chaotic and inefficient.",
+            "problem": "Chef makes changes directly in the kitchen, causing confusion and wasted ingredients.",
+            "solution": "Plan all changes on paper first, then implement only the necessary changes.",
+            "characters": {
+              "chef": "React",
+              "kitchen": "Real DOM",
+              "planning-paper": "Virtual DOM",
+              "orders": "State Changes"
+            },
+            "mapping": {
+              "diffing": "Comparing plans",
+              "reconciliation": "Implementing changes",
+              "batching": "Grouping updates"
+            },
+            "realWorld": "Efficient DOM updates by comparing virtual representations"
+          }
         },
         {
           "id": "fiber-architecture",
@@ -50,7 +141,25 @@
           "description": "React's new reconciliation algorithm that enables better performance and concurrent features.",
           "metaphor": "Like upgrading from a single-lane road to a multi-lane highway with smart traffic management!",
           "difficulty": "advanced",
-          "estimatedTime": "30 min"
+          "estimatedTime": "30 min",
+          "story": {
+            "title": "The Smart Highway System",
+            "scene": "A city has a single-lane road causing traffic jams. Emergency vehicles can't get through.",
+            "problem": "All traffic moves at the same speed, blocking important vehicles and causing delays.",
+            "solution": "Build a multi-lane highway with smart traffic management and priority lanes.",
+            "characters": {
+              "highway": "React Fiber",
+              "lanes": "Priority Levels",
+              "traffic-manager": "Scheduler",
+              "emergency-vehicles": "High Priority Updates"
+            },
+            "mapping": {
+              "fiber": "Road infrastructure",
+              "scheduler": "Traffic management",
+              "priorities": "Lane assignments"
+            },
+            "realWorld": "Concurrent rendering with priority-based updates"
+          }
         },
         {
           "id": "suspense",
@@ -58,7 +167,25 @@
           "description": "Handle loading states and data fetching in a declarative way.",
           "metaphor": "Like having a smart waiter who knows exactly when to bring your food and when to keep you entertained!",
           "difficulty": "intermediate",
-          "estimatedTime": "20 min"
+          "estimatedTime": "20 min",
+          "story": {
+            "title": "The Smart Waiter",
+            "scene": "A restaurant where customers wait for their food without knowing what's happening in the kitchen.",
+            "problem": "Customers get frustrated waiting without knowing if their order is being prepared.",
+            "solution": "Hire a smart waiter who keeps customers informed and entertained while food is being prepared.",
+            "characters": {
+              "waiter": "Suspense",
+              "customer": "User",
+              "kitchen": "Data Fetching",
+              "entertainment": "Loading UI"
+            },
+            "mapping": {
+              "fallback": "Entertainment while waiting",
+              "boundary": "Waiter's attention area",
+              "loading": "Kitchen preparation time"
+            },
+            "realWorld": "Declarative loading states for better user experience"
+          }
         },
         {
           "id": "concurrent-features",
@@ -66,7 +193,25 @@
           "description": "React's new features for better user experience with non-blocking updates.",
           "metaphor": "Like a restaurant that can handle multiple orders simultaneously without any customer feeling ignored!",
           "difficulty": "advanced",
-          "estimatedTime": "35 min"
+          "estimatedTime": "35 min",
+          "story": {
+            "title": "The Multi-Tasking Restaurant",
+            "scene": "A busy restaurant where multiple customers have different needs - some want quick service, others want a leisurely meal.",
+            "problem": "Restaurant serves customers one at a time, making some wait too long while others feel rushed.",
+            "solution": "Implement smart scheduling that serves everyone appropriately without blocking any customer.",
+            "characters": {
+              "restaurant": "React App",
+              "customers": "User Interactions",
+              "kitchen": "Rendering Process",
+              "manager": "Scheduler"
+            },
+            "mapping": {
+              "concurrent": "Multi-tasking kitchen",
+              "interruptible": "Pause and resume",
+              "prioritization": "Smart scheduling"
+            },
+            "realWorld": "Non-blocking user interface with priority-based updates"
+          }
         }
       ]
     },
@@ -80,7 +225,27 @@
           "description": "Efficiently manage dependencies across the app with Angular's DI system.",
           "metaphor": "Like a recipe box that the chef pulls out whenever a new order comes in.",
           "difficulty": "intermediate",
-          "estimatedTime": "25 min"
+          "estimatedTime": "25 min",
+          "story": {
+            "title": "The Smart Recipe Box",
+            "scene": "A master chef's kitchen where every ingredient and tool has its designated place in a well-organized recipe box.",
+            "problem": "Chefs waste time searching for ingredients and tools, and sometimes use the wrong ones for recipes.",
+            "solution": "Create a smart recipe box that automatically provides the right ingredients and tools when needed.",
+            "characters": {
+              "recipe-box": "Angular DI Container",
+              "chef": "Component",
+              "ingredients": "Services",
+              "tools": "Dependencies",
+              "kitchen": "Application"
+            },
+            "mapping": {
+              "injector": "Recipe box mechanism",
+              "provider": "Ingredient registration",
+              "token": "Ingredient labels",
+              "singleton": "Shared ingredients"
+            },
+            "realWorld": "Automatic dependency management and service injection"
+          }
         },
         {
           "id": "change-detection",
@@ -88,15 +253,55 @@
           "description": "Angular's mechanism for tracking and updating component state changes.",
           "metaphor": "Like a security camera system that monitors every corner and alerts when something changes!",
           "difficulty": "advanced",
-          "estimatedTime": "30 min"
+          "estimatedTime": "30 min",
+          "story": {
+            "title": "The Smart Security System",
+            "scene": "A high-security building with cameras monitoring every area, but the system is getting overwhelmed with too many alerts.",
+            "problem": "Security cameras trigger alerts for every movement, creating noise and missing important events.",
+            "solution": "Implement smart monitoring that only alerts when significant changes occur.",
+            "characters": {
+              "security-system": "Change Detection",
+              "cameras": "Watchers",
+              "alerts": "Change Events",
+              "monitoring-room": "Zone.js",
+              "security-guard": "Change Detector"
+            },
+            "mapping": {
+              "onPush": "Smart camera zones",
+              "zone.js": "Monitoring system",
+              "detection": "Alert mechanism",
+              "cycles": "Monitoring rounds"
+            },
+            "realWorld": "Efficient state change tracking and UI updates"
+          }
         },
         {
           "id": "decorators",
           "title": "Decorators",
           "description": "Add metadata and behavior to classes and properties in Angular.",
-          "metaphor": "Like adding special stickers to your ingredients that tell the kitchen how to handle them!",
+          "metaphor": "Like adding special stickers to your ingredients that tell the kitchen how to handle them.",
           "difficulty": "intermediate",
-          "estimatedTime": "20 min"
+          "estimatedTime": "20 min",
+          "story": {
+            "title": "The Smart Ingredient Labels",
+            "scene": "A kitchen where ingredients need special handling instructions, but chefs keep forgetting the rules.",
+            "problem": "Chefs use ingredients incorrectly because they forget the special handling requirements.",
+            "solution": "Create smart labels that automatically tell the kitchen how to handle each ingredient.",
+            "characters": {
+              "labels": "Decorators",
+              "ingredients": "Classes/Properties",
+              "kitchen": "Angular Framework",
+              "instructions": "Metadata",
+              "chef": "Developer"
+            },
+            "mapping": {
+              "@Component": "Ingredient type label",
+              "@Injectable": "Service label",
+              "@Input": "Receiving label",
+              "@Output": "Sending label"
+            },
+            "realWorld": "Adding metadata and behavior to classes and properties"
+          }
         }
       ]
     },
@@ -110,7 +315,27 @@
           "description": "Reusable solutions to common programming problems.",
           "metaphor": "Like cooking techniques that work across different cuisines and recipes!",
           "difficulty": "advanced",
-          "estimatedTime": "45 min"
+          "estimatedTime": "45 min",
+          "story": {
+            "title": "The Master Chef's Techniques",
+            "scene": "A culinary school where master chefs teach fundamental cooking techniques that work across all cuisines.",
+            "problem": "New chefs struggle with common cooking challenges and reinvent solutions that already exist.",
+            "solution": "Learn proven cooking techniques that can be adapted to any cuisine or dish.",
+            "characters": {
+              "master-chef": "Senior Developer",
+              "cooking-techniques": "Design Patterns",
+              "cuisines": "Different Projects",
+              "recipes": "Implementation",
+              "kitchen": "Codebase"
+            },
+            "mapping": {
+              "singleton": "One master recipe",
+              "factory": "Recipe creation method",
+              "observer": "Kitchen announcement system",
+              "strategy": "Cooking method selection"
+            },
+            "realWorld": "Reusable solutions for common programming challenges"
+          }
         },
         {
           "id": "state-management",
@@ -118,7 +343,27 @@
           "description": "Manage application state in a predictable and scalable way.",
           "metaphor": "Like a restaurant manager who keeps track of all tables, orders, and kitchen status!",
           "difficulty": "intermediate",
-          "estimatedTime": "30 min"
+          "estimatedTime": "30 min",
+          "story": {
+            "title": "The Restaurant Manager",
+            "scene": "A busy restaurant where the manager needs to track everything - table status, orders, kitchen capacity, and customer preferences.",
+            "problem": "Information is scattered across different staff members, leading to confusion and poor service.",
+            "solution": "Create a central management system that tracks everything in one place.",
+            "characters": {
+              "manager": "State Manager",
+              "restaurant": "Application",
+              "tables": "Components",
+              "orders": "Actions",
+              "status-board": "State Store"
+            },
+            "mapping": {
+              "store": "Central status board",
+              "actions": "Manager instructions",
+              "reducers": "Status updates",
+              "selectors": "Information queries"
+            },
+            "realWorld": "Centralized and predictable state management"
+          }
         },
         {
           "id": "performance-optimization",
@@ -126,7 +371,27 @@
           "description": "Techniques to make your applications faster and more efficient.",
           "metaphor": "Like optimizing a kitchen layout to minimize steps and maximize efficiency!",
           "difficulty": "advanced",
-          "estimatedTime": "40 min"
+          "estimatedTime": "40 min",
+          "story": {
+            "title": "The Optimized Kitchen Layout",
+            "scene": "A restaurant kitchen where chefs spend too much time walking between stations and waiting for equipment.",
+            "problem": "Kitchen operations are slow because of poor layout and inefficient processes.",
+            "solution": "Redesign the kitchen layout and optimize processes for maximum efficiency.",
+            "characters": {
+              "kitchen-layout": "Application Architecture",
+              "chefs": "Components",
+              "equipment": "Resources",
+              "workflow": "Processes",
+              "efficiency": "Performance"
+            },
+            "mapping": {
+              "memoization": "Pre-prepared ingredients",
+              "lazy-loading": "On-demand equipment",
+              "caching": "Ingredient storage",
+              "bundling": "Equipment grouping"
+            },
+            "realWorld": "Techniques to improve application speed and efficiency"
+          }
         }
       ]
     }

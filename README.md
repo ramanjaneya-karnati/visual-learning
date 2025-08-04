@@ -14,6 +14,7 @@ A visual learning platform that helps developers understand programming concepts
 
 - Node.js (v16 or higher)
 - npm or yarn
+- MongoDB Atlas account (free tier)
 
 ### Installation
 
@@ -22,6 +23,22 @@ A visual learning platform that helps developers understand programming concepts
    ```bash
    npm run setup
    ```
+
+### Database Setup
+
+This application uses MongoDB Atlas for data storage. Follow these steps:
+
+1. **Set up MongoDB Atlas:**
+   ```bash
+   cd server
+   npm run setup:atlas
+   ```
+   Follow the instructions to create your MongoDB Atlas account and cluster.
+
+2. **Configure your connection:**
+   - Update `server/.env` with your MongoDB Atlas connection string
+   - Test the connection: `npm run test:db`
+   - Seed the database: `npm run seed`
 
 ### Development
 
@@ -64,6 +81,7 @@ npm start
 
 ## Technologies Used
 
-- **Frontend**: React, TypeScript, Vite
-- **Backend**: Express.js, TypeScript
+- **Frontend**: React, TypeScript, Vite, Ant Design
+- **Backend**: Express.js, TypeScript, MongoDB Atlas
+- **Database**: MongoDB with Mongoose ODM
 - **Development**: Concurrently for running both servers
