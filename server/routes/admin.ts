@@ -336,5 +336,108 @@ router.post('/setup', async (req, res) => {
             res.status(500).json({ error: 'Failed to create concept' });
           }
         });
+
+        // Add concept to framework
+        router.post('/frameworks/:frameworkId/concepts', auth, async (req, res) => {
+          try {
+            const { frameworkId } = req.params;
+            const { conceptId } = req.body;
+            
+            if (!conceptId) {
+              return res.status(400).json({ error: 'Concept ID is required' });
+            }
+            
+            // Find the framework
+            const framework = await Framework.findOne({ id: frameworkId });
+            if (!framework) {
+              return res.status(404).json({ error: 'Framework not found' });
+            }
+            
+            // Find the concept by id (not _id)
+            const concept = await Concept.findOne({ id: conceptId });
+            if (!concept) {
+              return res.status(404).json({ error: 'Concept not found' });
+            }
+            
+            // Check if concept is already in framework
+            const conceptObjectId = concept._id as mongoose.Types.ObjectId;
+            if (framework.concepts.some(id => id.toString() === conceptObjectId.toString())) {
+              return res.status(400).json({ error: 'Concept is already in this framework' });
+            }
+            
+            // Add concept to framework
+            framework.concepts.push(conceptObjectId);
+            await framework.save();
+            
+            res.json({ 
+              success: true, 
+              message: 'Concept added to framework successfully',
+              framework
+            });
+          } catch (error) {
+            console.error('Error adding concept to framework:', error);
+            res.status(500).json({ error: 'Failed to add concept to framework' });
+          }
+        });
+
+        // Remove concept from framework
+        router.delete('/frameworks/:frameworkId/concepts/:conceptId', auth, async (req, res) => {
+          try {
+            const { frameworkId, conceptId } = req.params;
+            
+            // Find the framework
+            const framework = await Framework.findOne({ id: frameworkId });
+            if (!framework) {
+              return res.status(404).json({ error: 'Framework not found' });
+            }
+            
+            // Check if concept is in framework
+            const conceptObjectId = new mongoose.Types.ObjectId(conceptId);
+            if (!framework.concepts.some(id => id.toString() === conceptId)) {
+              return res.status(400).json({ error: 'Concept is not in this framework' });
+            }
+            
+            // Remove concept from framework
+            framework.concepts = framework.concepts.filter(
+              (id: mongoose.Types.ObjectId) => id.toString() !== conceptId
+            );
+            await framework.save();
+            
+            res.json({ 
+              success: true, 
+              message: 'Concept removed from framework successfully',
+              framework
+            });
+          } catch (error) {
+            console.error('Error removing concept from framework:', error);
+            res.status(500).json({ error: 'Failed to remove concept from framework' });
+          }
+        });
+
+        // Enhanced popular concepts search with custom search
+        router.post('/popular-concepts/:framework', auth, async (req, res) => {
+          try {
+            const { framework } = req.params;
+            const { search } = req.body;
+            
+            let popularConcepts;
+            if (search) {
+              // Use AI to search for concepts based on custom search term
+              popularConcepts = await aiService.searchPopularConcepts(framework, search);
+            } else {
+              // Get default popular concepts
+              popularConcepts = await aiService.searchPopularConcepts(framework);
+            }
+            
+            res.json({ 
+              success: true, 
+              concepts: popularConcepts,
+              framework
+            });
+          } catch (error) {
+            console.error('Error fetching popular concepts:', error);
+            res.status(500).json({ error: 'Failed to fetch popular concepts' });
+          }
+        });
         
         export default router; 

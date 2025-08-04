@@ -397,14 +397,66 @@ class AIService {
     return timeEstimates[difficulty as keyof typeof timeEstimates] || '20 min';
   }
 
-  public async searchPopularConcepts(framework: string): Promise<string[]> {
+  public async searchPopularConcepts(framework: string, search?: string): Promise<string[]> {
     try {
-      const prompt = `
-        List the most popular and trending concepts/features in ${framework} framework.
-        Focus on the latest features, important concepts, and commonly used patterns.
-        Return only a JSON array of concept names, no additional text.
-        Example: ["Concept 1", "Concept 2", "Concept 3"]
-      `;
+      // Import Concept model here to avoid circular dependency
+      const Concept = require('../models/Concept').default;
+      
+      let prompt: string;
+      let searchResults: string[] = [];
+      
+      if (search) {
+        // Search in existing concepts first
+        const existingConcepts = await Concept.find({
+          $or: [
+            { title: { $regex: search, $options: 'i' } },
+            { description: { $regex: search, $options: 'i' } },
+            { id: { $regex: search, $options: 'i' } }
+          ]
+        }).limit(10);
+        
+        searchResults = existingConcepts.map((concept: any) => concept.id);
+        
+        // If we found existing concepts, return them
+        if (searchResults.length > 0) {
+          return searchResults;
+        }
+        
+        // If no existing concepts found, search more broadly
+        const broaderSearch = await Concept.find({
+          $or: [
+            { title: { $regex: search.split(' ')[0], $options: 'i' } },
+            { description: { $regex: search.split(' ')[0], $options: 'i' } }
+          ]
+        }).limit(5);
+        
+        if (broaderSearch.length > 0) {
+          return broaderSearch.map((concept: any) => concept.id);
+        }
+        
+        // If no existing concepts found, use AI to suggest new ones
+        prompt = `
+          Search for concepts related to "${search}" in ${framework} framework.
+          Focus on concepts that match the search term and are relevant to ${framework}.
+          Return only a JSON array of concept names, no additional text.
+          Example: ["Concept 1", "Concept 2", "Concept 3"]
+        `;
+      } else {
+        // Get existing concepts for this framework
+        const existingConcepts = await Concept.find().limit(10);
+        searchResults = existingConcepts.map((concept: any) => concept.id);
+        
+        if (searchResults.length > 0) {
+          return searchResults;
+        }
+        
+        prompt = `
+          List the most popular and trending concepts/features in ${framework} framework.
+          Focus on the latest features, important concepts, and commonly used patterns.
+          Return only a JSON array of concept names, no additional text.
+          Example: ["Concept 1", "Concept 2", "Concept 3"]
+        `;
+      }
 
       let aiResponse: string;
       

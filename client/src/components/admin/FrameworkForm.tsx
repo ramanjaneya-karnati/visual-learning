@@ -11,17 +11,26 @@ import {
   Row,
   Col,
   Statistic,
-  Tag
+  Tag,
+  Select,
+  Divider,
+  List,
+  Popconfirm,
+  Tooltip
 } from 'antd';
 import { 
   PlusOutlined, 
   EditOutlined, 
   DeleteOutlined,
   BookOutlined,
-  ExclamationCircleOutlined
+  ExclamationCircleOutlined,
+  SearchOutlined,
+  CloseOutlined,
+  RobotOutlined
 } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
+const { Option } = Select;
 
 interface Framework {
   _id?: string;
@@ -47,14 +56,164 @@ const FrameworkForm: React.FC<FrameworkFormProps> = ({
 }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [availableConcepts, setAvailableConcepts] = useState<any[]>([]);
+  const [loadingConcepts, setLoadingConcepts] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const [selectedConcept, setSelectedConcept] = useState<string>('');
+  const [aiSearchResults, setAiSearchResults] = useState<string[]>([]);
+  const [loadingAiSearch, setLoadingAiSearch] = useState(false);
 
   useEffect(() => {
     if (visible && framework) {
       form.setFieldsValue(framework);
+      fetchAvailableConcepts();
     } else if (visible) {
       form.resetFields();
     }
   }, [visible, framework, form]);
+
+  const fetchAvailableConcepts = async () => {
+    try {
+      setLoadingConcepts(true);
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch('/api/admin/concepts', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Filter out concepts that are already in this framework
+        const frameworkConceptIds = framework?.concepts?.map((c: any) => c._id) || [];
+        const available = data.concepts.filter((concept: any) => 
+          !frameworkConceptIds.includes(concept._id)
+        );
+        setAvailableConcepts(available);
+      }
+    } catch (error) {
+      console.error('Error fetching concepts:', error);
+    } finally {
+      setLoadingConcepts(false);
+    }
+  };
+
+  const handleAiSearch = async () => {
+    if (!searchText.trim() || !framework) return;
+
+    try {
+      setLoadingAiSearch(true);
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch(`/api/admin/popular-concepts/${framework.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({ search: searchText })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setAiSearchResults(data.concepts || []);
+      }
+    } catch (error) {
+      console.error('Error searching concepts:', error);
+    } finally {
+      setLoadingAiSearch(false);
+    }
+  };
+
+  const handleAddConcept = async (conceptId: string, conceptTitle?: string) => {
+    if (!framework) return;
+
+    // Show confirmation dialog
+    Modal.confirm({
+      title: 'Add Concept to Framework',
+      content: (
+        <div>
+          <p>Are you sure you want to add <strong>{conceptTitle || conceptId}</strong> to <strong>{framework.name}</strong>?</p>
+          <p>This will make the concept available in the learning interface for this framework.</p>
+        </div>
+      ),
+      okText: 'Add Concept',
+      cancelText: 'Cancel',
+      onOk: async () => {
+        try {
+          const token = localStorage.getItem('adminToken');
+          const response = await fetch(`/api/admin/frameworks/${framework.id}/concepts`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({ conceptId })
+          });
+
+          if (response.ok) {
+            message.success(`Concept "${conceptTitle || conceptId}" added to ${framework.name} successfully!`);
+            // Refresh the framework data
+            onSuccess();
+            // Refresh available concepts
+            fetchAvailableConcepts();
+          } else {
+            const error = await response.json();
+            message.error(error.error || 'Failed to add concept to framework');
+          }
+        } catch (error) {
+          console.error('Error adding concept:', error);
+          message.error('Network error');
+        }
+      }
+    });
+  };
+
+  const handleRemoveConcept = async (conceptId: string, conceptTitle?: string) => {
+    if (!framework) return;
+
+    // Show confirmation dialog
+    Modal.confirm({
+      title: 'Remove Concept from Framework',
+      content: (
+        <div>
+          <p>Are you sure you want to remove <strong>{conceptTitle || conceptId}</strong> from <strong>{framework.name}</strong>?</p>
+          <p>This will remove the concept from this framework but won't delete the concept itself.</p>
+        </div>
+      ),
+      okText: 'Remove Concept',
+      cancelText: 'Cancel',
+      okType: 'danger',
+      onOk: async () => {
+        try {
+          const token = localStorage.getItem('adminToken');
+          const response = await fetch(`/api/admin/frameworks/${framework.id}/concepts/${conceptId}`, {
+            method: 'DELETE',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          });
+
+          if (response.ok) {
+            message.success(`Concept "${conceptTitle || conceptId}" removed from ${framework.name} successfully!`);
+            // Refresh the framework data
+            onSuccess();
+            // Refresh available concepts
+            fetchAvailableConcepts();
+          } else {
+            const error = await response.json();
+            message.error(error.error || 'Failed to remove concept from framework');
+          }
+        } catch (error) {
+          console.error('Error removing concept:', error);
+          message.error('Network error');
+        }
+      }
+    });
+  };
 
   const handleSubmit = async (values: any) => {
     setLoading(true);
@@ -178,38 +337,146 @@ const FrameworkForm: React.FC<FrameworkFormProps> = ({
           </Col>
         </Row>
 
-        {framework && framework.concepts && (
-          <Card 
-            title="Framework Statistics" 
-            size="small" 
-            style={{ marginBottom: 16 }}
-          >
-            <Row gutter={16}>
-              <Col span={8}>
-                <Statistic
-                  title="Total Concepts"
-                  value={framework.concepts.length}
-                  prefix={<BookOutlined />}
+        {framework && (
+          <>
+            <Card 
+              title="Framework Statistics" 
+              size="small" 
+              style={{ marginBottom: 16 }}
+            >
+              <Row gutter={16}>
+                <Col span={8}>
+                  <Statistic
+                    title="Total Concepts"
+                    value={framework.concepts?.length || 0}
+                    prefix={<BookOutlined />}
+                  />
+                </Col>
+                <Col span={16}>
+                  <div>
+                    <Text strong>Concepts:</Text>
+                    <div style={{ marginTop: 8 }}>
+                      {framework.concepts && framework.concepts.length > 0 ? (
+                        framework.concepts.map((concept: any) => (
+                          <Tag key={concept._id} color="blue" style={{ marginBottom: 4 }}>
+                            {concept.title}
+                          </Tag>
+                        ))
+                      ) : (
+                        <Text type="secondary">No concepts yet</Text>
+                      )}
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </Card>
+
+            <Divider>Concept Management</Divider>
+
+            {/* AI-Powered Concept Search */}
+            <Card 
+              title={
+                <Space>
+                  <RobotOutlined />
+                  <Text>AI-Powered Concept Search</Text>
+                </Space>
+              }
+              size="small" 
+              style={{ marginBottom: 16 }}
+            >
+              <Space.Compact style={{ width: '100%', marginBottom: 12 }}>
+                <Input
+                  placeholder="Search for concepts to add..."
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+                  onPressEnter={handleAiSearch}
                 />
-              </Col>
-              <Col span={16}>
-                <div>
-                  <Text strong>Concepts:</Text>
+                <Button 
+                  type="primary" 
+                  icon={<SearchOutlined />}
+                  loading={loadingAiSearch}
+                  onClick={handleAiSearch}
+                >
+                  AI Search
+                </Button>
+              </Space.Compact>
+
+              {aiSearchResults.length > 0 && (
+                <div style={{ marginBottom: 16 }}>
+                  <Text strong>AI Suggestions:</Text>
                   <div style={{ marginTop: 8 }}>
-                    {framework.concepts.length > 0 ? (
-                      framework.concepts.map((concept: any) => (
-                        <Tag key={concept._id} color="blue" style={{ marginBottom: 4 }}>
-                          {concept.title}
-                        </Tag>
-                      ))
-                    ) : (
-                      <Text type="secondary">No concepts yet</Text>
-                    )}
+                    {aiSearchResults.map((concept, index) => (
+                      <Tag 
+                        key={index} 
+                        color="green" 
+                        style={{ marginBottom: 4, cursor: 'pointer' }}
+                        onClick={() => handleAddConcept(concept, concept)}
+                      >
+                        {concept} <PlusOutlined />
+                      </Tag>
+                    ))}
                   </div>
                 </div>
-              </Col>
-            </Row>
-          </Card>
+              )}
+
+              {/* Available Concepts */}
+              <div>
+                <Text strong>Available Concepts:</Text>
+                <div style={{ marginTop: 8 }}>
+                  {loadingConcepts ? (
+                    <Text type="secondary">Loading concepts...</Text>
+                  ) : availableConcepts.length > 0 ? (
+                    availableConcepts.map((concept: any) => (
+                      <Tag 
+                        key={concept._id} 
+                        color="orange" 
+                        style={{ marginBottom: 4, cursor: 'pointer' }}
+                        onClick={() => handleAddConcept(concept._id, concept.title)}
+                      >
+                        {concept.title} <PlusOutlined />
+                      </Tag>
+                    ))
+                  ) : (
+                    <Text type="secondary">No available concepts to add</Text>
+                  )}
+                </div>
+              </div>
+            </Card>
+
+            {/* Current Framework Concepts */}
+            {framework.concepts && framework.concepts.length > 0 && (
+              <Card 
+                title="Current Framework Concepts" 
+                size="small" 
+                style={{ marginBottom: 16 }}
+              >
+                <List
+                  size="small"
+                  dataSource={framework.concepts}
+                  renderItem={(concept: any) => (
+                    <List.Item
+                      actions={[
+                        <Button 
+                          type="text" 
+                          danger 
+                          size="small" 
+                          icon={<CloseOutlined />}
+                          onClick={() => handleRemoveConcept(concept._id, concept.title)}
+                        >
+                          Remove
+                        </Button>
+                      ]}
+                    >
+                      <List.Item.Meta
+                        title={concept.title}
+                        description={concept.description}
+                      />
+                    </List.Item>
+                  )}
+                />
+              </Card>
+            )}
+          </>
         )}
 
         {framework && framework.concepts && framework.concepts.length > 0 && (
