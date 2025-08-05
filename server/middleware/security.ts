@@ -49,13 +49,15 @@ export const csrfProtection = (req: Request, res: Response, next: NextFunction) 
   
   // Check origin header
   const origin = req.headers.origin;
-  const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'];
+  const allowedOrigins = process.env.NODE_ENV === 'production' 
+    ? ['https://learnify-kkmcuspm7-anji.vercel.app']
+    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'];
   
   if (origin && !allowedOrigins.includes(origin)) {
     return res.status(403).json({ error: 'Invalid origin' });
   }
   
-  next();
+  return next();
 };
 
 // Input sanitization middleware

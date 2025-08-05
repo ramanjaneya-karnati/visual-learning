@@ -42,6 +42,7 @@ interface Concept {
   metaphor: string;
   difficulty?: 'beginner' | 'intermediate' | 'advanced';
   estimatedTime?: string;
+  story?: any;
   content?: {
     overview: string;
     metaphor: string;

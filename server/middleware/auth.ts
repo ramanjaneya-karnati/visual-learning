@@ -24,9 +24,9 @@ export const auth = async (req: AuthRequest, res: Response, next: NextFunction) 
     }
 
     req.admin = admin;
-    next();
+    return next();
   } catch (error) {
-    res.status(401).json({ error: 'Invalid token.' });
+    return res.status(401).json({ error: 'Invalid token.' });
   }
 };
 

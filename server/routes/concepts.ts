@@ -26,10 +26,10 @@ router.get('/concepts', async (req, res) => {
       }))
     };
 
-    res.json(transformedData);
+    return res.json(transformedData);
   } catch (error) {
     console.error('Error fetching concepts:', error);
-    res.status(500).json({ error: 'Failed to load concepts from database' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -40,7 +40,7 @@ router.get('/concepts/:frameworkId', async (req, res) => {
     const framework = await Framework.findOne({ id: frameworkId }).populate('concepts');
     
     if (!framework) {
-      return res.status(404).json({ error: 'Framework not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
 
     const concepts = framework.concepts.map((concept: any) => ({
@@ -53,10 +53,10 @@ router.get('/concepts/:frameworkId', async (req, res) => {
       story: concept.story || null
     }));
 
-    res.json({ concepts });
+    return res.json({ concepts });
   } catch (error) {
     console.error('Error fetching concepts by framework:', error);
-    res.status(500).json({ error: 'Failed to load concepts' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -67,10 +67,10 @@ router.get('/concepts/:frameworkId/:conceptId', async (req, res) => {
     const concept = await Concept.findOne({ id: conceptId });
     
     if (!concept) {
-      return res.status(404).json({ error: 'Concept not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
 
-    res.json({
+    return res.json({
       id: concept.id,
       title: concept.title,
       description: concept.description,
@@ -81,7 +81,7 @@ router.get('/concepts/:frameworkId/:conceptId', async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching concept:', error);
-    res.status(500).json({ error: 'Failed to load concept' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 

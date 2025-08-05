@@ -15,12 +15,12 @@ router.post('/login', async (req, res) => {
 
     const admin = await Admin.findOne({ username, isActive: true });
     if (!admin) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ error: 'Unauthorized' });
     }
 
     const isMatch = await admin.comparePassword(password);
     if (!isMatch) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ error: 'Unauthorized' });
     }
 
     // Update last login
@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
     await admin.save();
 
     const token = generateToken(admin._id as string);
-    res.json({
+    return res.json({
       token,
       admin: {
         id: admin._id,
@@ -38,22 +38,22 @@ router.post('/login', async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
 // Get admin profile
 router.get('/profile', auth, async (req: any, res) => {
-  res.json({ admin: req.admin });
+  return res.json({ admin: req.admin });
 });
 
 // Get all frameworks with concepts (for admin dashboard)
 router.get('/frameworks', auth, async (req, res) => {
   try {
     const frameworks = await Framework.find().populate('concepts');
-    res.json({ frameworks });
+    return res.json({ frameworks });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch frameworks' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -62,11 +62,11 @@ router.get('/frameworks/:id', auth, async (req, res) => {
   try {
     const framework = await Framework.findOne({ id: req.params.id }).populate('concepts');
     if (!framework) {
-      return res.status(404).json({ error: 'Framework not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
-    res.json({ framework });
+    return res.json({ framework });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch framework' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -78,15 +78,15 @@ router.post('/frameworks', auth, async (req, res) => {
     // Check if framework with same ID already exists
     const existingFramework = await Framework.findOne({ id });
     if (existingFramework) {
-      return res.status(400).json({ error: 'Framework with this ID already exists' });
+      return res.status(400).json({ error: 'Bad request' });
     }
 
     const framework = new Framework({ id, name, concepts: [] });
     await framework.save();
-    res.status(201).json({ framework });
+    return res.status(201).json({ framework });
   } catch (error) {
     console.error('Error creating framework:', error);
-    res.status(400).json({ error: 'Failed to create framework' });
+    return res.status(400).json({ error: 'Bad request' });
   }
 });
 
@@ -102,13 +102,13 @@ router.put('/frameworks/:id', auth, async (req, res) => {
     );
     
     if (!framework) {
-      return res.status(404).json({ error: 'Framework not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
     
-    res.json({ framework });
+    return res.json({ framework });
   } catch (error) {
     console.error('Error updating framework:', error);
-    res.status(400).json({ error: 'Failed to update framework' });
+    return res.status(400).json({ error: 'Bad request' });
   }
 });
 
@@ -118,7 +118,7 @@ router.delete('/frameworks/:id', auth, async (req, res) => {
     const framework = await Framework.findOne({ id: req.params.id }).populate('concepts');
     
     if (!framework) {
-      return res.status(404).json({ error: 'Framework not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
 
     // Check if framework has concepts
@@ -129,10 +129,10 @@ router.delete('/frameworks/:id', auth, async (req, res) => {
     }
 
     await Framework.findByIdAndDelete(framework._id);
-    res.json({ message: 'Framework deleted successfully' });
+    return res.json({ message: 'Framework deleted successfully' });
   } catch (error) {
     console.error('Error deleting framework:', error);
-    res.status(500).json({ error: 'Failed to delete framework' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -140,9 +140,9 @@ router.delete('/frameworks/:id', auth, async (req, res) => {
 router.get('/concepts', auth, async (req, res) => {
   try {
     const concepts = await Concept.find().sort({ createdAt: -1 });
-    res.json({ concepts });
+    return res.json({ concepts });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch concepts' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -151,11 +151,11 @@ router.get('/concepts/:id', auth, async (req, res) => {
   try {
     const concept = await Concept.findById(req.params.id);
     if (!concept) {
-      return res.status(404).json({ error: 'Concept not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
-    res.json({ concept });
+    return res.json({ concept });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch concept' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -164,9 +164,9 @@ router.post('/concepts', auth, async (req, res) => {
   try {
     const concept = new Concept(req.body);
     await concept.save();
-    res.status(201).json({ concept });
+    return res.status(201).json({ concept });
   } catch (error) {
-    res.status(400).json({ error: 'Failed to create concept' });
+    return res.status(400).json({ error: 'Bad request' });
   }
 });
 
@@ -183,7 +183,7 @@ router.put('/concepts/:id', auth, async (req, res) => {
     );
     
     if (!concept) {
-      return res.status(404).json({ error: 'Concept not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
 
     // If framework is provided, update the framework relationship
@@ -202,10 +202,10 @@ router.put('/concepts/:id', auth, async (req, res) => {
       }
     }
 
-    res.json({ concept });
+    return res.json({ concept });
   } catch (error) {
     console.error('Error updating concept:', error);
-    res.status(400).json({ error: 'Failed to update concept' });
+    return res.status(400).json({ error: 'Bad request' });
   }
 });
 
@@ -214,11 +214,11 @@ router.delete('/concepts/:id', auth, async (req, res) => {
   try {
     const concept = await Concept.findByIdAndDelete(req.params.id);
     if (!concept) {
-      return res.status(404).json({ error: 'Concept not found' });
+      return res.status(404).json({ error: 'Not found' });
     }
-    res.json({ message: 'Concept deleted successfully' });
+    return res.json({ message: 'Concept deleted successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to delete concept' });
+    return res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -229,7 +229,7 @@ router.post('/setup', async (req, res) => {
     
     const existingAdmin = await Admin.findOne({ $or: [{ username }, { email }] });
     if (existingAdmin) {
-      return res.status(400).json({ error: 'Admin already exists' });
+      return res.status(400).json({ error: 'Bad request' });
     }
 
     const admin = new Admin({
@@ -240,9 +240,9 @@ router.post('/setup', async (req, res) => {
     });
 
     await admin.save();
-    res.status(201).json({ message: 'Admin created successfully' });
+    return res.status(201).json({ message: 'Admin created successfully' });
   } catch (error) {
-    res.status(400).json({ error: 'Failed to create admin' });
+    return res.status(400).json({ error: 'Bad request' });
   }
 });
 
@@ -252,21 +252,21 @@ router.post('/setup', async (req, res) => {
             const { concept, framework } = req.body;
             
             if (!concept || !framework) {
-              return res.status(400).json({ error: 'Concept and framework are required' });
+              return res.status(400).json({ error: 'Bad request' });
             }
             
             console.log(`🤖 Generating concept: ${concept} for ${framework}`);
             
             const conceptData = await aiService.generateConceptData(concept, framework);
             
-            res.json({ 
+            return res.json({ 
               success: true, 
               conceptData,
               message: 'Concept generated successfully'
             });
           } catch (error) {
             console.error('Error generating concept:', error);
-            res.status(500).json({ error: 'Failed to generate concept' });
+            return res.status(500).json({ error: 'Server error' });
           }
         });
         
@@ -277,14 +277,14 @@ router.post('/setup', async (req, res) => {
             
             const popularConcepts = await aiService.searchPopularConcepts(framework);
             
-            res.json({ 
+            return res.json({ 
               success: true, 
               concepts: popularConcepts,
               framework
             });
           } catch (error) {
             console.error('Error fetching popular concepts:', error);
-            res.status(500).json({ error: 'Failed to fetch popular concepts' });
+            return res.status(500).json({ error: 'Server error' });
           }
         });
         
@@ -294,7 +294,7 @@ router.post('/setup', async (req, res) => {
             const { concept, framework } = req.body;
             
             if (!concept || !framework) {
-              return res.status(400).json({ error: 'Concept and framework are required' });
+              return res.status(400).json({ error: 'Bad request' });
             }
             
             console.log(`🚀 Auto-creating concept: ${concept} for ${framework}`);
@@ -326,14 +326,14 @@ router.post('/setup', async (req, res) => {
               await frameworkDoc.save();
             }
             
-            res.json({ 
+            return res.json({ 
               success: true, 
               concept: newConcept,
               message: 'Concept created successfully with AI-generated content'
             });
           } catch (error) {
             console.error('Error auto-creating concept:', error);
-            res.status(500).json({ error: 'Failed to create concept' });
+            return res.status(500).json({ error: 'Server error' });
           }
         });
 
@@ -344,39 +344,39 @@ router.post('/setup', async (req, res) => {
             const { conceptId } = req.body;
             
             if (!conceptId) {
-              return res.status(400).json({ error: 'Concept ID is required' });
+              return res.status(400).json({ error: 'Bad request' });
             }
             
             // Find the framework
             const framework = await Framework.findOne({ id: frameworkId });
             if (!framework) {
-              return res.status(404).json({ error: 'Framework not found' });
+              return res.status(404).json({ error: 'Not found' });
             }
             
             // Find the concept by id (not _id)
             const concept = await Concept.findOne({ id: conceptId });
             if (!concept) {
-              return res.status(404).json({ error: 'Concept not found' });
+              return res.status(404).json({ error: 'Not found' });
             }
             
             // Check if concept is already in framework
             const conceptObjectId = concept._id as mongoose.Types.ObjectId;
             if (framework.concepts.some(id => id.toString() === conceptObjectId.toString())) {
-              return res.status(400).json({ error: 'Concept is already in this framework' });
+              return res.status(400).json({ error: 'Bad request' });
             }
             
             // Add concept to framework
             framework.concepts.push(conceptObjectId);
             await framework.save();
             
-            res.json({ 
+            return res.json({ 
               success: true, 
               message: 'Concept added to framework successfully',
               framework
             });
           } catch (error) {
             console.error('Error adding concept to framework:', error);
-            res.status(500).json({ error: 'Failed to add concept to framework' });
+            return res.status(500).json({ error: 'Server error' });
           }
         });
 
@@ -388,13 +388,13 @@ router.post('/setup', async (req, res) => {
             // Find the framework
             const framework = await Framework.findOne({ id: frameworkId });
             if (!framework) {
-              return res.status(404).json({ error: 'Framework not found' });
+              return res.status(404).json({ error: 'Not found' });
             }
             
             // Check if concept is in framework
             const conceptObjectId = new mongoose.Types.ObjectId(conceptId);
             if (!framework.concepts.some(id => id.toString() === conceptId)) {
-              return res.status(400).json({ error: 'Concept is not in this framework' });
+              return res.status(400).json({ error: 'Bad request' });
             }
             
             // Remove concept from framework
@@ -403,14 +403,14 @@ router.post('/setup', async (req, res) => {
             );
             await framework.save();
             
-            res.json({ 
+            return res.json({ 
               success: true, 
               message: 'Concept removed from framework successfully',
               framework
             });
           } catch (error) {
             console.error('Error removing concept from framework:', error);
-            res.status(500).json({ error: 'Failed to remove concept from framework' });
+            return res.status(500).json({ error: 'Server error' });
           }
         });
 
@@ -429,14 +429,14 @@ router.post('/setup', async (req, res) => {
               popularConcepts = await aiService.searchPopularConcepts(framework);
             }
             
-            res.json({ 
+            return res.json({ 
               success: true, 
               concepts: popularConcepts,
               framework
             });
           } catch (error) {
             console.error('Error fetching popular concepts:', error);
-            res.status(500).json({ error: 'Failed to fetch popular concepts' });
+            return res.status(500).json({ error: 'Server error' });
           }
         });
         
