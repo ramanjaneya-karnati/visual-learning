@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { Layout, Typography, Card, Row, Col, Button, Space, Spin, Badge, Tag, Avatar, Statistic } from 'antd';
-import { BookOutlined, CodeOutlined, BulbOutlined, RocketOutlined, StarOutlined, TrophyOutlined, FireOutlined, HeartOutlined } from '@ant-design/icons';
+import { Layout, Typography, Card, Row, Col, Button, Space, Spin, Badge, Tag, Avatar, Statistic, Divider } from 'antd';
+import { BookOutlined, CodeOutlined, BulbOutlined, RocketOutlined, StarOutlined, TrophyOutlined, FireOutlined, HeartOutlined, CheckCircleOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import ConceptsPage from './pages/ConceptsPage';
 import ConceptDetailPage from './pages/ConceptDetailPage';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import FrameworksPage from './pages/admin/FrameworksPage';
+import Features from './pages/Features';
+import About from './pages/About';
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph } = Typography;
@@ -77,191 +79,264 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <Layout className="layout" style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+    <Layout style={{ minHeight: '100vh', background: '#ffffff' }}>
       <Header style={{ 
-        background: 'rgba(0, 21, 41, 0.9)', 
-        backdropFilter: 'blur(10px)',
+        background: '#ffffff', 
         padding: '0 50px',
         position: 'sticky',
         top: 0,
-        zIndex: 1000
+        zIndex: 1000,
+        borderBottom: '1px solid #f0f0f0',
+        height: '80px',
+        display: 'flex',
+        alignItems: 'center'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
           <BookOutlined style={{ fontSize: '28px', color: '#1890ff', marginRight: '12px' }} />
-          <Title level={3} style={{ color: 'white', margin: 0, fontWeight: 'bold' }}>
+          <Title level={3} style={{ color: '#1a1a1a', margin: 0, fontWeight: 'bold' }}>
             Visual Learning
           </Title>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <Tag color="blue" style={{ margin: 0 }}>
-              <StarOutlined /> Interactive Learning
-            </Tag>
-            <Tag color="green" style={{ margin: 0 }}>
-              <FireOutlined /> AI-Powered
-            </Tag>
+            <Button 
+              type="text" 
+              style={{ color: '#666', fontWeight: '500' }}
+              onClick={() => navigate('/features')}
+            >
+              Features
+            </Button>
+            <Button 
+              type="text" 
+              style={{ color: '#666', fontWeight: '500' }}
+              onClick={() => navigate('/about')}
+            >
+              About
+            </Button>
           </div>
         </div>
       </Header>
       
-      <Content style={{ padding: '0', background: 'transparent' }}>
+      <Content style={{ padding: '0', background: '#ffffff' }}>
         {/* Hero Section */}
         <div style={{ 
-          background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',
-          padding: '80px 50px 60px',
+          background: '#ffffff',
+          padding: '120px 50px 80px',
           textAlign: 'center',
-          position: 'relative',
-          overflow: 'hidden'
+          position: 'relative'
         }}>
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-            animation: 'float 20s ease-in-out infinite'
-          }} />
-          
-          <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <Title level={1} style={{ 
-              color: '#ffffff', 
+              color: '#1a1a1a', 
               marginBottom: '24px',
-              fontSize: '3.5rem',
+              fontSize: '4rem',
               fontWeight: 'bold',
-              textShadow: '0 4px 8px rgba(0,0,0,0.3)',
-              animation: 'fadeInUp 1s ease-out'
+              lineHeight: '1.1'
             }}>
-              Learn Programming Concepts
+              Learn Programming
               <br />
-              <span style={{ color: '#1890ff' }}>the Fun Way</span>
+              <span style={{ color: '#1890ff' }}>the Visual Way</span>
             </Title>
             
             <Paragraph style={{ 
               fontSize: '20px', 
-              color: '#ffffff', 
-              marginBottom: '40px',
-              opacity: 0.9,
-              animation: 'fadeInUp 1s ease-out 0.2s both'
+              color: '#666', 
+              marginBottom: '48px',
+              maxWidth: '600px',
+              margin: '0 auto 48px',
+              lineHeight: '1.6'
             }}>
-              Discover complex programming concepts through intuitive metaphors, 
-              interactive examples, and AI-powered learning experiences
+              Say goodbye to boring programming tutorials. Visual Learning offers a comprehensive suite of 
+              interactive concepts that cover all aspects of modern programming through intuitive metaphors.
             </Paragraph>
             
-            <Space size="large" style={{ animation: 'fadeInUp 1s ease-out 0.4s both' }}>
-              <Button 
-                type="primary" 
-                size="large" 
-                icon={<RocketOutlined />}
-                style={{
-                  height: '50px',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  borderRadius: '25px',
-                  boxShadow: '0 8px 16px rgba(24, 144, 255, 0.3)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(24, 144, 255, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 16px rgba(24, 144, 255, 0.3)';
-                }}
-              >
-                Start Learning Journey
-              </Button>
-              <Button 
-                size="large" 
-                icon={<BulbOutlined />}
-                style={{
-                  height: '50px',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  borderRadius: '25px',
-                  border: '2px solid #ffffff',
-                  color: '#ffffff',
-                  background: 'transparent',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#ffffff';
-                  e.currentTarget.style.color = '#1890ff';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.color = '#ffffff';
-                }}
-              >
-                Explore Concepts
-              </Button>
-            </Space>
+
+
+            {/* Stats Row */}
+            <Row gutter={[48, 24]} justify="center" style={{ maxWidth: '800px', margin: '0 auto' }}>
+              <Col xs={12} md={4}>
+                <div style={{ textAlign: 'center' }}>
+                  <Title level={2} style={{ color: '#1890ff', margin: '0 0 8px 0', fontSize: '2.5rem' }}>
+                    {stats.totalConcepts}+
+                  </Title>
+                  <Paragraph style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+                    Interactive Concepts
+                  </Paragraph>
+                </div>
+              </Col>
+              <Col xs={12} md={4}>
+                <div style={{ textAlign: 'center' }}>
+                  <Title level={2} style={{ color: '#52c41a', margin: '0 0 8px 0', fontSize: '2.5rem' }}>
+                    {stats.totalFrameworks}
+                  </Title>
+                  <Paragraph style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+                    Programming Frameworks
+                  </Paragraph>
+                </div>
+              </Col>
+              <Col xs={12} md={4}>
+                <div style={{ textAlign: 'center' }}>
+                  <Title level={2} style={{ color: '#722ed1', margin: '0 0 8px 0', fontSize: '2.5rem' }}>
+                    100%
+                  </Title>
+                  <Paragraph style={{ color: '#666', margin: 0, fontSize: '14px' }}>
+                    Visual Learning
+                  </Paragraph>
+                </div>
+              </Col>
+            </Row>
           </div>
         </div>
 
-        {/* Stats Section */}
+        {/* Features Section */}
         <div style={{ 
-          background: 'rgba(255, 255, 255, 0.1)', 
-          padding: '40px 50px',
-          backdropFilter: 'blur(10px)'
+          background: '#fafafa',
+          padding: '80px 50px',
+          borderTop: '1px solid #f0f0f0'
         }}>
-          <Row gutter={[32, 16]} justify="center" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <Col xs={12} md={6}>
-              <Statistic
-                title="Total Concepts"
-                value={stats.totalConcepts}
-                prefix={<BookOutlined />}
-                valueStyle={{ color: '#1890ff', fontSize: '2rem' }}
-                style={{ textAlign: 'center' }}
-              />
-            </Col>
-            <Col xs={12} md={6}>
-              <Statistic
-                title="Frameworks"
-                value={stats.totalFrameworks}
-                prefix={<CodeOutlined />}
-                valueStyle={{ color: '#52c41a', fontSize: '2rem' }}
-                style={{ textAlign: 'center' }}
-              />
-            </Col>
-            <Col xs={12} md={6}>
-              <Statistic
-                title="Interactive Stories"
-                value="100%"
-                prefix={<HeartOutlined />}
-                valueStyle={{ color: '#eb2f96', fontSize: '2rem' }}
-                style={{ textAlign: 'center' }}
-              />
-            </Col>
-            <Col xs={12} md={6}>
-              <Statistic
-                title="AI-Powered"
-                value="Yes"
-                prefix={<StarOutlined />}
-                valueStyle={{ color: '#faad14', fontSize: '2rem' }}
-                style={{ textAlign: 'center' }}
-              />
-            </Col>
-          </Row>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+              <Title level={2} style={{ 
+                color: '#1a1a1a', 
+                marginBottom: '16px',
+                fontSize: '2.5rem',
+                fontWeight: 'bold'
+              }}>
+                Everything you need to master programming
+              </Title>
+              <Paragraph style={{ 
+                fontSize: '18px', 
+                color: '#666',
+                maxWidth: '600px',
+                margin: '0 auto'
+              }}>
+                Visual Learning is designed to make your programming journey easier and more efficient.
+              </Paragraph>
+            </div>
+            
+            <Row gutter={[32, 32]} justify="center">
+              <Col xs={24} md={8}>
+                <Card 
+                  style={{ 
+                    border: 'none',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                    height: '100%'
+                  }}
+                  bodyStyle={{ padding: '32px' }}
+                >
+                  <div style={{ 
+                    width: '48px', 
+                    height: '48px', 
+                    background: 'linear-gradient(135deg, #1890ff 0%, #722ed1 100%)',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px'
+                  }}>
+                    <BookOutlined style={{ fontSize: '24px', color: 'white' }} />
+                  </div>
+                  <Title level={4} style={{ color: '#1a1a1a', marginBottom: '16px' }}>
+                    Visual Metaphors
+                  </Title>
+                  <Paragraph style={{ color: '#666', margin: 0, lineHeight: '1.6' }}>
+                    Complex programming concepts explained through intuitive real-world analogies that make learning engaging and memorable.
+                  </Paragraph>
+                </Card>
+              </Col>
+              <Col xs={24} md={8}>
+                <Card 
+                  style={{ 
+                    border: 'none',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                    height: '100%'
+                  }}
+                  bodyStyle={{ padding: '32px' }}
+                >
+                  <div style={{ 
+                    width: '48px', 
+                    height: '48px', 
+                    background: 'linear-gradient(135deg, #52c41a 0%, #389e0d 100%)',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px'
+                  }}>
+                    <BulbOutlined style={{ fontSize: '24px', color: 'white' }} />
+                  </div>
+                  <Title level={4} style={{ color: '#1a1a1a', marginBottom: '16px' }}>
+                    Interactive Stories
+                  </Title>
+                  <Paragraph style={{ color: '#666', margin: 0, lineHeight: '1.6' }}>
+                    Character-driven narratives that guide you through programming concepts with step-by-step explanations and real-world scenarios.
+                  </Paragraph>
+                </Card>
+              </Col>
+              <Col xs={24} md={8}>
+                <Card 
+                  style={{ 
+                    border: 'none',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                    height: '100%'
+                  }}
+                  bodyStyle={{ padding: '32px' }}
+                >
+                  <div style={{ 
+                    width: '48px', 
+                    height: '48px', 
+                    background: 'linear-gradient(135deg, #fa541c 0%, #d4380d 100%)',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px'
+                  }}>
+                    <StarOutlined style={{ fontSize: '24px', color: 'white' }} />
+                  </div>
+                  <Title level={4} style={{ color: '#1a1a1a', marginBottom: '16px' }}>
+                    AI-Powered Learning
+                  </Title>
+                  <Paragraph style={{ color: '#666', margin: 0, lineHeight: '1.6' }}>
+                    Advanced AI generates personalized content and suggests learning paths tailored to your skill level and interests.
+                  </Paragraph>
+                </Card>
+              </Col>
+            </Row>
+          </div>
         </div>
 
         {/* Frameworks Section */}
-        <div style={{ padding: '60px 50px', background: 'rgba(255, 255, 255, 0.05)' }}>
+        <div style={{ 
+          padding: '80px 50px', 
+          background: '#ffffff'
+        }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <Title level={2} style={{ 
-              textAlign: 'center', 
-              color: '#ffffff', 
-              marginBottom: '50px',
-              fontSize: '2.5rem',
-              fontWeight: 'bold'
-            }}>
-              Choose Your Learning Path
-            </Title>
+            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+              <Title level={2} style={{ 
+                color: '#1a1a1a', 
+                marginBottom: '16px',
+                fontSize: '2.5rem',
+                fontWeight: 'bold'
+              }}>
+                Choose Your Learning Path
+              </Title>
+              <Paragraph style={{ 
+                fontSize: '18px', 
+                color: '#666',
+                maxWidth: '600px',
+                margin: '0 auto'
+              }}>
+                Explore programming frameworks through interactive concepts designed for all skill levels.
+              </Paragraph>
+            </div>
             
             {loading ? (
               <Row justify="center">
                 <Col>
                   <Spin size="large" />
-                  <Paragraph style={{ textAlign: 'center', marginTop: '16px', color: '#ffffff' }}>
+                  <Paragraph style={{ textAlign: 'center', marginTop: '16px', color: '#666' }}>
                     Loading frameworks...
                   </Paragraph>
                 </Col>
@@ -275,39 +350,46 @@ const HomePage: React.FC = () => {
                       onClick={() => handleFrameworkClick(framework.id)}
                       style={{ 
                         cursor: 'pointer',
-                        borderRadius: '16px',
+                        borderRadius: '12px',
                         overflow: 'hidden',
-                        background: hoveredCard === framework.id 
-                          ? 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)' 
-                          : 'rgba(255,255,255,0.1)',
-                        backdropFilter: 'blur(10px)',
-                        border: '1px solid rgba(255,255,255,0.2)',
+                        border: '1px solid #f0f0f0',
+                        boxShadow: hoveredCard === framework.id 
+                          ? '0 8px 24px rgba(24, 144, 255, 0.15)' 
+                          : '0 2px 8px rgba(0,0,0,0.05)',
                         transition: 'all 0.3s ease',
-                        transform: hoveredCard === framework.id ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
+                        transform: hoveredCard === framework.id ? 'translateY(-4px)' : 'translateY(0)',
                         animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`
                       }}
                       onMouseEnter={() => setHoveredCard(framework.id)}
                       onMouseLeave={() => setHoveredCard(null)}
-                      bodyStyle={{ padding: '24px' }}
+                      bodyStyle={{ padding: '32px' }}
                     >
-                      <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-                        {getFrameworkIcon(framework.name)}
+                      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                        <Avatar 
+                          size={64} 
+                          icon={getFrameworkIcon(framework.name)}
+                          style={{ 
+                            background: 'linear-gradient(135deg, #1890ff 0%, #722ed1 100%)',
+                            fontSize: '28px'
+                          }}
+                        />
                       </div>
                       
                       <Title level={4} style={{ 
-                        color: '#ffffff', 
+                        color: '#1a1a1a', 
                         textAlign: 'center',
-                        marginBottom: '12px',
-                        fontWeight: 'bold'
+                        marginBottom: '16px',
+                        fontWeight: '600'
                       }}>
                         {framework.name} Concepts
                       </Title>
                       
                       <Paragraph style={{ 
-                        color: '#ffffff', 
+                        color: '#666', 
                         textAlign: 'center',
-                        marginBottom: '20px',
-                        opacity: 0.9
+                        marginBottom: '24px',
+                        fontSize: '14px',
+                        lineHeight: '1.6'
                       }}>
                         {framework.concepts && framework.concepts.length > 0 
                           ? `Explore ${framework.concepts.length} concepts with visual metaphors and interactive examples.`
@@ -315,12 +397,12 @@ const HomePage: React.FC = () => {
                         }
                       </Paragraph>
                       
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
                         <Badge 
                           count={framework.concepts?.length || 0} 
                           style={{ backgroundColor: '#1890ff' }}
                         />
-                        <Tag color={getDifficultyColor(framework.concepts || [])}>
+                        <Tag color={getDifficultyColor(framework.concepts || [])} style={{ fontWeight: '500' }}>
                           {framework.concepts?.some((c: any) => c.difficulty === 'advanced') ? 'Advanced' :
                            framework.concepts?.some((c: any) => c.difficulty === 'intermediate') ? 'Intermediate' : 'Beginner'}
                         </Tag>
@@ -331,17 +413,17 @@ const HomePage: React.FC = () => {
                         block
                         style={{
                           borderRadius: '8px',
-                          height: '40px',
-                          fontWeight: 'bold',
-                          background: 'linear-gradient(135deg, #1890ff 0%, #722ed1 100%)',
+                          height: '48px',
+                          fontWeight: '600',
+                          background: '#1890ff',
                           border: 'none',
                           transition: 'all 0.3s ease'
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'scale(1.05)';
+                          e.currentTarget.style.background = '#40a9ff';
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'scale(1)';
+                          e.currentTarget.style.background = '#1890ff';
                         }}
                       >
                         Start Learning →
@@ -353,31 +435,39 @@ const HomePage: React.FC = () => {
             )}
           </div>
         </div>
+
+
       </Content>
       
       <Footer style={{ 
-        textAlign: 'center', 
-        background: 'rgba(0, 21, 41, 0.9)',
-        color: '#ffffff',
-        padding: '24px 50px'
+        background: '#fafafa',
+        borderTop: '1px solid #f0f0f0',
+        padding: '40px 50px'
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
-          <div>
-            <BookOutlined style={{ marginRight: '8px' }} />
-            Visual Learning Platform ©2024 Created by Ramanjaneya
-          </div>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <Tag color="blue">React</Tag>
-            <Tag color="red">Angular</Tag>
-            <Tag color="purple">Next.js</Tag>
-            <Tag color="gold">Advanced</Tag>
-          </div>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <Row gutter={[32, 32]}>
+            <Col xs={24} md={8}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+                <BookOutlined style={{ fontSize: '24px', color: '#1890ff', marginRight: '12px' }} />
+                <Title level={4} style={{ color: '#1a1a1a', margin: 0, fontWeight: 'bold' }}>
+                  Visual Learning
+                </Title>
+              </div>
+              <Paragraph style={{ color: '#666', margin: 0 }}>
+                Making programming concepts accessible through visual metaphors and interactive learning experiences.
+              </Paragraph>
+            </Col>
+
+
+          </Row>
+          <Divider style={{ margin: '32px 0 16px 0' }} />
+
         </div>
       </Footer>
 
       <style dangerouslySetInnerHTML={{
         __html: `
-          @keyframes fadeInUp {
+          @keyframes slideInUp {
             from {
               opacity: 0;
               transform: translateY(30px);
@@ -386,30 +476,6 @@ const HomePage: React.FC = () => {
               opacity: 1;
               transform: translateY(0);
             }
-          }
-          
-          @keyframes slideInUp {
-            from {
-              opacity: 0;
-              transform: translateY(50px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          
-          @keyframes float {
-            0%, 100% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-20px);
-            }
-          }
-          
-          .layout {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           }
         `
       }} />
@@ -427,6 +493,8 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/frameworks" element={<FrameworksPage />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );
