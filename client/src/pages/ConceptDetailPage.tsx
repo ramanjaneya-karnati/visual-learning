@@ -118,6 +118,282 @@ const ConceptDetailPage: React.FC = () => {
     setProgress(((step + 1) / 4) * 100);
   };
 
+  const getDetailedExplanation = (frameworkId: string, conceptId: string): string => {
+    if (frameworkId === 'angular') {
+      switch (conceptId) {
+        case 'components':
+          return "Components are the building blocks of Angular applications. Think of them as reusable UI elements that encapsulate their own logic, template, and styles. You'll learn how to create components, pass data between them using inputs and outputs, and organize your application into a component hierarchy. This includes understanding component lifecycle hooks, change detection, and best practices for component design.";
+        case 'services':
+          return "Services in Angular are singleton objects that provide functionality across your application. They're perfect for sharing data, handling HTTP requests, and implementing business logic. You'll learn how to create services, inject them into components, and use them for state management and API communication. This includes understanding dependency injection, service providers, and how to create reusable business logic.";
+        case 'routing':
+          return "Angular routing enables single-page application navigation without page reloads. You'll learn how to configure routes, handle route parameters, implement route guards for authentication, and create nested routes. This includes understanding route resolvers, lazy loading modules, and creating a smooth user experience with proper navigation.";
+        case 'forms':
+          return "Angular forms provide powerful tools for user input validation and data handling. You'll learn both template-driven and reactive forms, form validation, custom validators, and form submission handling. This includes understanding form state management, error handling, and creating user-friendly form experiences.";
+        case 'pipes':
+          return "Pipes transform data for display in templates. You'll learn built-in pipes for common transformations, how to create custom pipes, and when to use pipes vs. methods. This includes understanding pure vs. impure pipes, parameterized pipes, and performance considerations.";
+        case 'decorators':
+          return "Decorators are special functions that modify classes, properties, and methods. You'll learn built-in decorators like @Component, @Injectable, and how to create custom decorators. This includes understanding metadata, reflection, and advanced TypeScript features.";
+        case 'change-detection':
+          return "Change detection is Angular's mechanism for updating the DOM when data changes. You'll learn how change detection works, strategies for optimization, and how to manually trigger updates. This includes understanding OnPush strategy, zone.js, and performance optimization techniques.";
+        default:
+          return "This concept provides fundamental knowledge for building robust Angular applications with modern development practices.";
+      }
+    } else if (frameworkId === 'react') {
+      switch (conceptId) {
+        case 'hooks':
+          return "React Hooks revolutionized functional components by allowing state and side effects. You'll learn useState for state management, useEffect for side effects, and custom hooks for reusable logic. This includes understanding hook rules, dependencies, and creating custom hooks for complex functionality.";
+        case 'context-api':
+          return "Context API provides a way to share data across component trees without prop drilling. You'll learn how to create contexts, use providers and consumers, and manage global state. This includes understanding context optimization, when to use Context vs. other state management solutions, and best practices.";
+        case 'state-management':
+          return "State management is crucial for complex React applications. You'll learn different approaches from local state to global state management, including Redux patterns, Context API, and modern solutions like Zustand. This includes understanding state architecture, immutability, and performance considerations.";
+        case 'server-components':
+          return "Server Components are React's new paradigm for server-side rendering. You'll learn how to create server and client components, understand the hybrid rendering model, and optimize for performance. This includes understanding streaming, suspense, and the future of React development.";
+        case 'virtual-dom':
+          return "Virtual DOM is React's reconciliation algorithm for efficient UI updates. You'll learn how React compares virtual DOM trees, batches updates, and optimizes rendering. This includes understanding reconciliation, keys, and performance optimization strategies.";
+        case 'jsx':
+          return "JSX is React's syntax extension for writing components. You'll learn JSX syntax, expressions, conditional rendering, and how JSX compiles to JavaScript. This includes understanding JSX transformation, fragments, and best practices for readable component code.";
+        default:
+          return "This concept provides essential knowledge for building modern React applications with best practices and performance optimization.";
+      }
+    } else if (frameworkId === 'nextjs') {
+      switch (conceptId) {
+        case 'app-router':
+          return "The App Router is Next.js 13's new file-system based routing system. You'll learn how to create routes using folders, handle dynamic routes, implement layouts, and use special files like loading.js and error.js. This includes understanding server and client components, streaming, and the new routing paradigm.";
+        case 'server-components':
+          return "Server Components run on the server and reduce client-side JavaScript. You'll learn how to create server components, understand the hybrid model with client components, and optimize for performance. This includes understanding streaming, suspense boundaries, and server-side data fetching.";
+        case 'data-fetching':
+          return "Next.js provides powerful data fetching capabilities. You'll learn how to fetch data on the server, implement caching strategies, handle loading and error states, and optimize for performance. This includes understanding static generation, server-side rendering, and incremental static regeneration.";
+        default:
+          return "This concept provides knowledge for building modern, performant web applications with Next.js.";
+      }
+    }
+    return "This concept provides fundamental knowledge for modern web development.";
+  };
+
+  const getRealTimeUseCase = (frameworkId: string, conceptId: string): string => {
+    if (frameworkId === 'angular') {
+      switch (conceptId) {
+        case 'components':
+          return "Imagine building an e-commerce dashboard where you need a ProductCard component that displays product information, handles user interactions, and updates in real-time when inventory changes. The component receives product data, manages its own state for user interactions, and communicates with parent components when users add items to cart.";
+        case 'services':
+          return "Consider a real-time chat application where a ChatService manages WebSocket connections, handles message broadcasting, and maintains user presence. The service provides methods for sending/receiving messages, manages connection state, and can be injected into multiple components that need chat functionality.";
+        case 'routing':
+          return "Picture a social media app where users navigate between profiles, posts, and settings. The routing system handles deep linking, preserves scroll position, shows loading states during navigation, and implements route guards to ensure only authenticated users can access certain pages.";
+        case 'forms':
+          return "Think of a multi-step registration form that validates user input in real-time, shows field-specific error messages, and prevents submission until all required fields are valid. The form handles complex validation rules, async validation for email uniqueness, and provides immediate feedback to users.";
+        case 'pipes':
+          return "Envision a financial dashboard that displays currency values, dates, and percentages. Pipes automatically format numbers as currency, convert timestamps to readable dates, and transform data for different locales without modifying the underlying data.";
+        case 'decorators':
+          return "Consider a logging system where @Log decorators automatically track method calls, @Cache decorators store expensive computation results, and @Validate decorators ensure data integrity before processing. These decorators work across your entire application without cluttering business logic.";
+        case 'change-detection':
+          return "Imagine a real-time stock ticker that updates prices every second. Change detection efficiently updates only the changed DOM elements, handles thousands of price updates per second, and maintains smooth UI performance while keeping the display synchronized with live data.";
+        default:
+          return "This concept is applied in real-world scenarios to solve common development challenges and improve application performance.";
+      }
+    } else if (frameworkId === 'react') {
+      switch (conceptId) {
+        case 'hooks':
+          return "Picture a live dashboard that tracks user activity in real-time. Custom hooks like useUserActivity manage WebSocket connections, useLocalStorage persists user preferences, and useDebounce prevents excessive API calls. These hooks can be reused across different components while maintaining clean, readable code.";
+        case 'context-api':
+          return "Consider a theme system where users can switch between light and dark modes. The ThemeContext provides current theme data to all components, and when a user toggles themes, all components automatically update without prop drilling. This includes user preferences, language settings, and authentication state.";
+        case 'state-management':
+          return "Imagine a collaborative document editor where multiple users can edit simultaneously. State management handles real-time synchronization, conflict resolution, and maintains consistency across all connected clients while providing a smooth user experience with optimistic updates.";
+        case 'server-components':
+          return "Think of a news website that loads instantly with server-rendered content, then becomes interactive for user comments and sharing. Server components handle the initial render, while client components manage user interactions, creating a hybrid experience that's both fast and interactive.";
+        case 'virtual-dom':
+          return "Consider a dynamic list that updates frequently, like a live sports scoreboard. The Virtual DOM efficiently updates only the changed scores, maintains scroll position, and handles thousands of updates per second while keeping the UI responsive and smooth.";
+        case 'jsx':
+          return "Imagine building a complex UI like a project management dashboard with nested components, conditional rendering for different user roles, and dynamic content. JSX makes this intuitive by allowing you to write HTML-like syntax with JavaScript expressions and component composition.";
+        default:
+          return "This concept is applied in real-world scenarios to create responsive, interactive user interfaces.";
+      }
+    } else if (frameworkId === 'nextjs') {
+      switch (conceptId) {
+        case 'app-router':
+          return "Picture a blog platform with dynamic routes for posts, user profiles, and categories. The App Router handles SEO-friendly URLs, implements loading states for slow pages, and provides error boundaries for graceful error handling while maintaining fast navigation between pages.";
+        case 'server-components':
+          return "Consider an e-commerce site that loads product listings instantly with server-rendered content, then becomes interactive for user reviews and recommendations. Server components handle the initial render for SEO and performance, while client components manage user interactions.";
+        case 'data-fetching':
+          return "Think of a news aggregator that fetches articles from multiple sources, caches popular content, and provides real-time updates. Data fetching handles complex API calls, implements intelligent caching strategies, and ensures fast loading times while keeping content fresh.";
+        default:
+          return "This concept is applied in real-world scenarios to build performant, SEO-friendly web applications.";
+      }
+    }
+    return "This concept is applied in real-world scenarios to solve common development challenges.";
+  };
+
+  const getKeyBenefits = (frameworkId: string, conceptId: string): string[] => {
+    if (frameworkId === 'angular') {
+      switch (conceptId) {
+        case 'components':
+          return [
+            "Reusable UI elements that reduce code duplication",
+            "Better organization and maintainability of your application",
+            "Encapsulated logic and styling for cleaner code",
+            "Easier testing with isolated component units",
+            "Improved performance through change detection optimization"
+          ];
+        case 'services':
+          return [
+            "Centralized business logic that can be shared across components",
+            "Better separation of concerns and code organization",
+            "Easier testing with dependency injection",
+            "Reduced code duplication and improved maintainability",
+            "Better state management and data flow control"
+          ];
+        case 'routing':
+          return [
+            "Single-page application navigation without page reloads",
+            "Better user experience with faster navigation",
+            "SEO-friendly URLs and deep linking support",
+            "Route guards for security and authentication",
+            "Lazy loading for improved initial load performance"
+          ];
+        case 'forms':
+          return [
+            "Built-in validation and error handling",
+            "Better user experience with real-time feedback",
+            "Type-safe form handling with TypeScript",
+            "Reusable form components and validation logic",
+            "Integration with Angular's reactive programming model"
+          ];
+        case 'pipes':
+          return [
+            "Clean data transformation without modifying original data",
+            "Reusable formatting logic across your application",
+            "Better performance with pure pipe optimization",
+            "Easy internationalization and localization",
+            "Declarative data transformation in templates"
+          ];
+        case 'decorators':
+          return [
+            "Cleaner, more readable code with declarative syntax",
+            "Reusable metadata and behavior patterns",
+            "Better code organization and maintainability",
+            "Type-safe configuration and validation",
+            "Integration with Angular's dependency injection system"
+          ];
+        case 'change-detection':
+          return [
+            "Automatic UI updates when data changes",
+            "Optimized performance with smart change detection",
+            "Better user experience with responsive interfaces",
+            "Reduced manual DOM manipulation",
+            "Predictable and reliable UI updates"
+          ];
+        default:
+          return [
+            "Improved code organization and maintainability",
+            "Better performance and user experience",
+            "Reduced development time and complexity",
+            "Enhanced testing capabilities",
+            "Modern development practices and patterns"
+          ];
+      }
+    } else if (frameworkId === 'react') {
+      switch (conceptId) {
+        case 'hooks':
+          return [
+            "Simplified state management in functional components",
+            "Reusable logic across components with custom hooks",
+            "Better code organization and readability",
+            "Reduced complexity compared to class components",
+            "Easier testing and debugging"
+          ];
+        case 'context-api':
+          return [
+            "Global state management without external libraries",
+            "Eliminates prop drilling across component trees",
+            "Cleaner component interfaces and props",
+            "Built-in React solution with no additional dependencies",
+            "Easy integration with existing React applications"
+          ];
+        case 'state-management':
+          return [
+            "Predictable data flow and state updates",
+            "Better debugging with state time-travel",
+            "Centralized state management for complex applications",
+            "Improved performance with optimized re-renders",
+            "Easier testing with isolated state logic"
+          ];
+        case 'server-components':
+          return [
+            "Reduced client-side JavaScript bundle size",
+            "Better initial page load performance",
+            "Improved SEO with server-side rendering",
+            "Enhanced security with server-side execution",
+            "Better caching and optimization opportunities"
+          ];
+        case 'virtual-dom':
+          return [
+            "Efficient DOM updates with minimal re-renders",
+            "Better performance for complex UI updates",
+            "Cross-platform compatibility and consistency",
+            "Automatic batching of multiple state updates",
+            "Optimized rendering for large component trees"
+          ];
+        case 'jsx':
+          return [
+            "Intuitive component composition and nesting",
+            "Better readability with HTML-like syntax",
+            "Type-safe component development with TypeScript",
+            "Easier debugging with familiar syntax",
+            "Seamless integration of JavaScript expressions"
+          ];
+        default:
+          return [
+            "Improved component reusability and maintainability",
+            "Better performance and user experience",
+            "Reduced development complexity",
+            "Enhanced testing capabilities",
+            "Modern React development patterns"
+          ];
+      }
+    } else if (frameworkId === 'nextjs') {
+      switch (conceptId) {
+        case 'app-router':
+          return [
+            "File-system based routing for intuitive navigation",
+            "Built-in loading and error handling",
+            "Automatic code splitting and optimization",
+            "Better SEO with server-side rendering",
+            "Improved developer experience with conventions"
+          ];
+        case 'server-components':
+          return [
+            "Reduced client-side JavaScript for better performance",
+            "Better initial page load times",
+            "Enhanced security with server-side execution",
+            "Improved SEO with server-side rendering",
+            "Better caching and optimization strategies"
+          ];
+        case 'data-fetching':
+          return [
+            "Flexible data fetching strategies for different use cases",
+            "Built-in caching and optimization",
+            "Better performance with static generation",
+            "Improved SEO with server-side data fetching",
+            "Automatic revalidation and incremental updates"
+          ];
+        default:
+          return [
+            "Improved application performance and user experience",
+            "Better SEO and search engine optimization",
+            "Reduced development complexity",
+            "Enhanced security and reliability",
+            "Modern web development best practices"
+          ];
+      }
+    }
+    return [
+      "Improved code organization and maintainability",
+      "Better performance and user experience",
+      "Reduced development complexity",
+      "Enhanced testing capabilities",
+      "Modern development practices"
+    ];
+  };
+
   const getExamples = (frameworkId: string, conceptId: string) => {
     if (frameworkId === 'angular') {
       switch (conceptId) {
@@ -588,9 +864,61 @@ console.log('Learning made easy!');`,
       content: (
         <Card>
           <Title level={3}>Understanding {concept?.title}</Title>
-          <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
-            {concept?.description}
-          </Paragraph>
+          
+          {/* Enhanced Description */}
+          <div style={{ marginBottom: '24px' }}>
+            <Paragraph style={{ fontSize: '16px', lineHeight: '1.8', marginBottom: '16px' }}>
+              {concept?.description}
+            </Paragraph>
+            
+            {/* Detailed Explanation */}
+            <div style={{ 
+              background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)', 
+              padding: '20px', 
+              borderRadius: '8px',
+              marginBottom: '16px'
+            }}>
+              <Title level={4} style={{ color: '#1a1a1a', marginBottom: '12px' }}>
+                📚 What You'll Learn
+              </Title>
+              <Paragraph style={{ fontSize: '15px', lineHeight: '1.7', color: '#4a4a4a' }}>
+                {getDetailedExplanation(frameworkId || '', conceptId || '')}
+              </Paragraph>
+            </div>
+            
+            {/* Real-time Use Case */}
+            <div style={{ 
+              background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)', 
+              padding: '20px', 
+              borderRadius: '8px',
+              marginBottom: '16px'
+            }}>
+              <Title level={4} style={{ color: '#1565c0', marginBottom: '12px' }}>
+                🚀 Real-time Use Case Scenario
+              </Title>
+              <Paragraph style={{ fontSize: '15px', lineHeight: '1.7', color: '#1976d2' }}>
+                {getRealTimeUseCase(frameworkId || '', conceptId || '')}
+              </Paragraph>
+            </div>
+            
+            {/* Benefits Section */}
+            <div style={{ 
+              background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%)', 
+              padding: '20px', 
+              borderRadius: '8px',
+              marginBottom: '16px'
+            }}>
+              <Title level={4} style={{ color: '#7b1fa2', marginBottom: '12px' }}>
+                ✨ Key Benefits
+              </Title>
+              <ul style={{ fontSize: '15px', lineHeight: '1.7', color: '#6a1b9a' }}>
+                {getKeyBenefits(frameworkId || '', conceptId || '').map((benefit, index) => (
+                  <li key={index} style={{ marginBottom: '8px' }}>{benefit}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
           <Alert
             message="Key Takeaway"
             description="This concept helps you build more efficient and maintainable applications."

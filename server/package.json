@@ -10,7 +10,8 @@
     "test:db": "ts-node scripts/testConnection.ts",
     "setup:atlas": "ts-node scripts/setupAtlas.ts",
     "create:admin": "ts-node scripts/createAdmin.ts",
-    "create:secure-admin": "ts-node scripts/createSecureAdmin.ts"
+    "create:secure-admin": "ts-node scripts/createSecureAdmin.ts",
+    "update:enhanced-stories": "ts-node scripts/updateEnhancedStories.ts"
   },
   "author": {
     "name": "Ramanjaneya",
