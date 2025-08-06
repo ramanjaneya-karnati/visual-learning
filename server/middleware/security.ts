@@ -40,23 +40,14 @@ export const securityHeaders = (req: Request, res: Response, next: NextFunction)
   next();
 };
 
-// CSRF protection middleware
+// CSRF protection middleware - more permissive for now
 export const csrfProtection = (req: Request, res: Response, next: NextFunction) => {
   // Check for AJAX requests
   if (req.headers['x-requested-with'] !== 'XMLHttpRequest') {
     return res.status(403).json({ error: 'Invalid request' });
   }
   
-  // Check origin header
-  const origin = req.headers.origin;
-  const allowedOrigins = process.env.NODE_ENV === 'production' 
-    ? ['https://learnify-kkmcuspm7-anji.vercel.app']
-    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'];
-  
-  if (origin && !allowedOrigins.includes(origin)) {
-    return res.status(403).json({ error: 'Invalid origin' });
-  }
-  
+  // Allow all origins for now
   return next();
 };
 

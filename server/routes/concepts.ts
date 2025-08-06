@@ -1,12 +1,22 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Framework from '../models/Framework';
 import Concept from '../models/Concept';
 
 const router = express.Router();
 
 // Get all frameworks with their concepts
-router.get('/concepts', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
+    // Check if database is connected
+    if (mongoose.connection.readyState !== 1) {
+      console.log('⚠️  Database not connected');
+      return res.status(503).json({ 
+        error: 'Database connection failed',
+        message: 'Please check MongoDB Atlas configuration. See MONGODB_SETUP.md for instructions.'
+      });
+    }
+
     const frameworks = await Framework.find().populate('concepts');
     
     // Transform the data to match the expected format
@@ -34,13 +44,20 @@ router.get('/concepts', async (req, res) => {
 });
 
 // Get concepts by framework ID
-router.get('/concepts/:frameworkId', async (req, res) => {
+router.get('/:frameworkId', async (req, res) => {
   try {
     const { frameworkId } = req.params;
-    const framework = await Framework.findOne({ id: frameworkId }).populate('concepts');
+    
+    // Try to find by the custom 'id' field first, then by _id
+    let framework = await Framework.findOne({ id: frameworkId }).populate('concepts');
     
     if (!framework) {
-      return res.status(404).json({ error: 'Not found' });
+      // If not found by custom id, try by _id
+      framework = await Framework.findById(frameworkId).populate('concepts');
+    }
+    
+    if (!framework) {
+      return res.status(404).json({ error: 'Framework not found' });
     }
 
     const concepts = framework.concepts.map((concept: any) => ({
@@ -61,13 +78,20 @@ router.get('/concepts/:frameworkId', async (req, res) => {
 });
 
 // Get a specific concept by ID
-router.get('/concepts/:frameworkId/:conceptId', async (req, res) => {
+router.get('/:frameworkId/:conceptId', async (req, res) => {
   try {
     const { conceptId } = req.params;
-    const concept = await Concept.findOne({ id: conceptId });
+    
+    // Try to find by the custom 'id' field first, then by _id
+    let concept = await Concept.findOne({ id: conceptId });
     
     if (!concept) {
-      return res.status(404).json({ error: 'Not found' });
+      // If not found by custom id, try by _id
+      concept = await Concept.findById(conceptId);
+    }
+    
+    if (!concept) {
+      return res.status(404).json({ error: 'Concept not found' });
     }
 
     return res.json({
