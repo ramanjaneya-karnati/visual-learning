@@ -1,3 +1,0 @@
-@each $letter-spacing, $value  in $letter-spacings {
-	.letter-spacing-#{$letter-spacing} { letter-spacing: $value !important; }
-}

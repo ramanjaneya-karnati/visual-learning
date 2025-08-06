@@ -1,3 +1,0 @@
-@each $line-height, $value  in $line-heights {
-	.lh-#{$line-height} { line-height: $value !important; }
-}
