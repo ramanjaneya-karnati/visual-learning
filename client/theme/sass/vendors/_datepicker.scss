@@ -1,0 +1,143 @@
+.datepicker {
+	.datepicker--content {
+		padding: 0;
+	}
+
+	.datepicker--nav-title {
+		font-size: 16px;
+		font-weight: 600;
+		color: $dark;
+	}
+
+	.datepicker--day-name {
+		font-size: 14px;
+		color: $secondary;
+	}
+
+
+	.datepicker--cell {
+		border-radius: 0;
+		border-top: 1px solid $border-color;
+		border-left: 1px solid $border-color;
+		height: 34px;
+		color: $gray-600;
+
+		&.-weekend- {
+			border-left: 0;
+		}
+
+		&.-current- ~ .datepicker--cell {
+			color: $black;
+		}
+
+	}
+
+}
+
+.datepicker-style-01 {
+	border: none;
+
+	.datepicker--cells {
+		background: #f0f2f3;
+	}
+
+	.datepicker--cell {
+		background: #f0f2f3;
+
+		&.-current- ~ .datepicker--cell {
+			background: #fff;
+			color: $black;
+		}
+
+		&.-current-, &.-selected- {
+			background: $primary !important;
+			color: #fff !important;
+		}
+
+	}
+
+}
+
+.datepicker-style-02 {
+	border: none;
+
+	.datepicker {
+		background: #f7f7f7;
+	}
+
+	.datepicker--nav {
+		background: #e1e1e1;
+	}
+
+	.datepicker--days-names {
+		border-bottom: 1px solid $border-color;
+		margin: 0;
+	}
+
+	.datepicker--day-name {
+		font-size: 18px;
+		color: #cccccc;
+		height: 52px;
+	}
+
+
+	.datepicker--cell {
+		font-size: 14px;
+		border-radius: 0;
+		height: 42px;
+		font-weight: 600;
+		color: $secondary;
+		border-top: 1px solid $border-color;
+		border-left: 1px solid $border-color;
+
+		&.-weekend- {
+			border-left: 0 !important;
+		}
+
+		&.-current-, &.-selected- {
+			color: $primary !important;
+			background: transparent;
+		}
+
+		&.-current- ~ .datepicker--cell {
+			color: $secondary;
+		}
+
+		&.-other-month- {
+			color: #f7f7f7 !important;
+			border-left: none;
+
+			&[data-date="1"] {
+				border-left: 1px solid $border-color;
+			}
+		}
+
+	}
+
+
+}
+
+.ui-datepicker {
+	min-width: 300px;
+	background: #f7f7f7 !important;
+	padding: 0;
+
+	.ui-datepicker-header {
+		background: #e1e1e1 !important;
+	}
+
+	thead th {
+		color: #cccccc;
+		text-transform: uppercase;
+	}
+
+	tbody td {
+		a {
+			color: #666666 !important;
+			font-size: 14px;
+			font-weight: 600 !important;
+			text-align: center;
+		}
+
+	}
+}

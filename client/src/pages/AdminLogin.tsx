@@ -75,7 +75,7 @@ const AdminLogin: React.FC = () => {
             <LoginOutlined /> Admin Login
           </Title>
           <Text type="secondary">
-            Visual Learning Platform Administration
+            Learnify Platform Administration
           </Text>
         </div>
 

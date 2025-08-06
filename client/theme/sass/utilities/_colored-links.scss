@@ -1,0 +1,52 @@
+@each $color, $value in $theme-colors {
+	.link-hover-#{$color}-primary {
+		color: $value;
+
+		&:hover,
+		&:focus {
+			color: $primary !important;
+			text-decoration: none;
+		}
+	}
+}
+
+@each $color, $value in $theme-colors {
+	.link-hover-#{$color}-dark {
+		color: $value;
+
+		&:hover,
+		&:focus {
+			color: $black !important;
+			text-decoration: none;
+		}
+	}
+}
+
+@each $color, $value in $theme-colors {
+	.link-hover-#{$color}-blue {
+		color: $value;
+
+		&:hover,
+		&:focus {
+			color: $link-color !important;
+			text-decoration: none;
+		}
+	}
+}
+
+@each $color, $value in $theme-colors {
+	.link-hover-#{$color}-white {
+		color: $value;
+
+		&:hover {
+			color: $white !important;
+			text-decoration: none;
+		}
+		&:focus {
+			color: $value !important;
+			text-decoration: none;
+		}
+	}
+}
+
+

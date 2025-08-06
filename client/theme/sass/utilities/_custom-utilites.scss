@@ -1,0 +1,15 @@
+.text-decoration-line-through {
+	text-decoration: line-through !important;
+}
+
+.text-decoration-underline {
+	text-decoration: underline !important;
+}
+
+.box-shadow-hover {
+	transition: all 0.2s;
+
+	&:hover {
+		box-shadow: $box-shadow;
+	}
+}

@@ -1,0 +1,32 @@
+.client-logo {
+	.slick-slide {
+		display: flex;
+		align-items: center;
+	}
+
+	.item {
+		img {
+			opacity: 1;
+			transition: opacity 0.2s;
+		}
+
+		&:hover {
+			img {
+				opacity: 0.5;
+			}
+
+		}
+	}
+
+	&.inline {
+		h4 {
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+		}
+
+		.slick-slider {
+			padding-left: 160px;
+		}
+	}
+}

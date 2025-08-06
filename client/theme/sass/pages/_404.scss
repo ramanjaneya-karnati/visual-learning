@@ -1,0 +1,39 @@
+.page-404 {
+	.page-container {
+		padding: 250px 0 277px;
+		.icon {
+			width: 72px;
+			height: 72px;
+			fill: $primary;
+		}
+	}
+
+
+	.form-search {
+		max-width: 370px;
+		margin: 0 auto;
+
+		.form-control {
+			min-height: 52px;
+
+			&:focus {
+				background: transparent;
+			}
+		}
+
+		.input-group-append {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 20px;
+			font-size: 20px;
+
+			&:hover, &:focus, &:active {
+				border: none;
+				box-shadow: none !important;
+				color: $black;
+			}
+		}
+	}
+
+}

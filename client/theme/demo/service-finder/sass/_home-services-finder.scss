@@ -1,0 +1,49 @@
+.home-services-finder {
+	.main-header, .header-wrapper {
+		background: transparent;
+	}
+	.toggle-icon:hover {
+		color: $primary;
+	}
+
+	.banner {
+		background-image: url("../../images/banner/services-finder-banner.jpg");
+
+		.banner-content {
+			padding-top: 170px;
+			padding-bottom: 143px;
+		}
+
+		.heading {
+			margin-bottom: 65px;
+
+			h1 {
+				font-size: 60px;
+				@include media-breakpoint-down(sm) {
+					font-size: 48px;
+				}
+			}
+		}
+	}
+
+	.how-thedir-work {
+		padding-top: 110px;
+		padding-bottom: 127px;
+
+		.heading {
+			margin-bottom: 80px;
+		}
+	}
+
+	.providers {
+		.main-header {
+			margin-bottom: 96px;
+		}
+	}
+}
+
+.bg-pattern-01 {
+	background-image: url("../../images/other/background-thedir-cover.jpg");
+	background-size: cover;
+	background-position: center;
+}

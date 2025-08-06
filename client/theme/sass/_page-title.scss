@@ -1,0 +1,27 @@
+.page-title {
+
+	.breadcrumb {
+		padding: 6px 0;
+	}
+
+}
+
+.page-title-style-background {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 605px;
+	@include media-breakpoint-down(sm) {
+		height: 400px;
+	}
+
+	.container {
+		height: 100%;
+	}
+}
+
+.page-title-style-no-background {
+	padding-top: 210px;
+	padding-bottom: 30px;
+	text-align: center;
+}

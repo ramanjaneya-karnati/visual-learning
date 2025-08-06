@@ -1,0 +1,339 @@
+
+.store {
+	&.card {
+		display: block;
+	}
+
+	.store-image {
+		z-index: 1;
+
+		&:hover {
+			.content-right {
+				opacity: 1;
+			}
+		}
+
+	}
+
+
+	.image-content {
+		bottom: 0;
+		width: 100%;
+		padding: 10px 15px;
+	}
+
+	.icon {
+		fill: $link-color;
+	}
+
+	.content-left {
+		.badge {
+			padding: 5px 8px;
+		}
+
+		.badge-primary {
+			background: #ff5a5f;
+		}
+	}
+
+	.content-right {
+		opacity: 0;
+		@include transition(all 0.2s);
+		width: 80px;
+		margin-right: -15px;
+
+		&.show-link {
+			opacity: 1;
+		}
+
+		&.w-lg {
+			width: 106px !important;
+		}
+
+		.item {
+			background: #000;
+			color: #fff;
+			width: 30px;
+			height: 30px;
+			@include d-flex();
+			@include align-items-center();
+			@include justify-content-center();
+
+			&:not(:last-child) {
+				margin-right: 5px;
+			}
+		}
+
+		.icon {
+			width: 14px;
+			height: 14px;
+			fill: #fff;
+		}
+
+		a:hover {
+			.icon {
+				stroke: $link-color;
+				fill: $link-color;
+			}
+		}
+
+		.marking {
+			i {
+				font-size: 14px;
+				color: #fff;
+			}
+
+			&:hover {
+				i {
+					color: $link-color;
+				}
+			}
+		}
+
+
+	}
+
+	.check .icon {
+		fill: $green !important;
+	}
+
+	.card-body .icon {
+		width: 16px;
+		height: 16px;
+		stroke: $link-color;
+		fill: $link-color;
+		margin-right: 5px;
+	}
+
+	.store-meta {
+		.list-inline-item:not(:last-child) {
+			margin-right: 15px;
+		}
+
+		.separate {
+			width: 1px;
+			height: 25px;
+			background: $border-color;
+			font-size: $font-size-base;
+		}
+	}
+
+	&.job-store {
+		padding: 25px 28px;
+		font-size: $font-size-sm;
+
+		.store-image {
+			width: 140px;
+		}
+
+		.favourite {
+			font-size: 20px;
+		}
+	}
+
+	&.map {
+		max-width: 270px;
+
+		.card-body {
+			font-family: $font-family-base !important;
+		}
+	}
+
+	.card-footer {
+		margin-top: auto;
+
+	}
+
+	.address {
+		font-size: $font-size-sm;
+
+		&:hover {
+			color: $link-color !important;
+		}
+	}
+
+	.badge {
+		color: $white;
+	}
+
+	.media-body {
+		flex: 1;
+	}
+}
+
+.store-grid-style {
+	.store-image {
+		height: 100%;
+	}
+
+	.slick-arrows {
+		top: -60px !important;
+	}
+
+	&.slick-dotted {
+		.slick-dots {
+			top: 108%;
+		}
+	}
+}
+
+.store-listing-style-01 {
+	.store-image {
+		width: 300px;
+	}
+
+}
+
+.store-listing-style-02 {
+	.store-image {
+		width: 245px;
+	}
+
+}
+
+.recent-view, .relate-listing {
+	.heading {
+		margin-bottom: 38px;
+	}
+
+	.store-image {
+		@include flex(0 0 120px);
+		max-width: 120px;
+	}
+}
+
+.recent-view {
+	.media-body {
+		margin-top: -4px;
+	}
+}
+
+.store-listing-style {
+	.store {
+		@include media-breakpoint-down(md) {
+			@include flex-wrap();
+		}
+	}
+
+	.store-image {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		@include media-breakpoint-down(md) {
+			@include flex(1 1 100%);
+			max-width: 100%;
+		}
+	}
+
+}
+
+.store-listing-style-01, .store-listing-style-02, .job-store {
+	@include media-breakpoint-down(md) {
+		.store-image {
+			height: 0;
+			padding-top: 75%;
+		}
+	}
+}
+
+.store-listing-style-03 {
+	.store {
+		padding: 25px 23px;
+		height: 100%;
+	}
+
+	.store-image {
+		width: 76px;
+		height: 73px;
+		max-width: 76px;
+		max-height: 73px;
+		min-width: 76px;
+		min-height: 73px;
+	}
+
+	.store-top {
+		margin-bottom: 7px;
+	}
+
+	.slick-arrows {
+		top: -52px !important;
+	}
+}
+
+.store-listing-style-04 {
+	.store {
+		@include media-breakpoint-down(sm) {
+			@include flex-wrap();
+		}
+
+		.store-image {
+			margin-right: 23px;
+			@include flex(0 0 155px);
+			max-width: 155px;
+		}
+
+		.media-body {
+			@include flex(0 0 350px);
+			max-width: 350px;
+			padding: 0;
+		}
+
+		@include media-breakpoint-down(sm) {
+			@include flex-wrap();
+			.store-image {
+				@include flex(1 1 100%);
+				max-width: 100%;
+			}
+			.media-body {
+				margin-top: 23px;
+				@include flex(1 1 100%);
+				max-width: 100%;
+			}
+		}
+
+
+	}
+}
+
+
+.full-slide {
+	.slick-arrows {
+		right: 274px;
+	}
+}
+
+.job-recent-view {
+	@include d-flex();
+	@include justify-content-between();
+	@include media-breakpoint-down(sm) {
+		@include flex-wrap();
+	}
+
+	.store-image {
+		@include flex(0 0 90px);
+		max-width: 90px;
+	}
+}
+
+
+.relate-listing, .recent-view {
+	.store {
+		@include media-breakpoint-down(xs) {
+			@include flex-wrap();
+			.store-image {
+				@include flex(1 1 100%);
+				max-width: 100%;
+			}
+		}
+	}
+}
+
+.equal-height {
+	.store {
+		height: 100%;
+	}
+
+	.store-image {
+		height: auto;
+	}
+}

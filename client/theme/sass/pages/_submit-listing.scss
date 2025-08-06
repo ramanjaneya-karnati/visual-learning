@@ -1,0 +1,128 @@
+.page-submit-listing {
+	.page-description {
+		background: #f3f6f7;
+	}
+
+	.card {
+		label {
+			line-height: 36px;
+		}
+
+		.form-control {
+			color: $black;
+
+			&:not(:last-child) {
+				margin-bottom: 10px;
+
+			}
+
+			&::placeholder {
+				color: $secondary;
+			}
+
+			&.color-gray {
+				color: $secondary;
+			}
+		}
+
+		.checkbox {
+			label {
+				margin-bottom: 0;
+			}
+		}
+
+		.btn-add-new {
+			padding: 0 12px;
+
+			i {
+				font-size: 20px;
+				line-height: 43px;
+			}
+		}
+
+		.upload-file {
+			border: 1px dashed $border-color;
+			background: #f2f5f6;
+			padding: 35px 20px 25px;
+
+			.dz-message {
+				margin: 0;
+			}
+
+			.title {
+				margin-bottom: 17px;
+
+				span {
+					line-height: 1;
+				}
+
+				span:first-child {
+					font-size: 18px;
+					display: block;
+					margin-bottom: 15px;
+				}
+			}
+
+		}
+
+		textarea.form-control {
+			height: 103px;
+		}
+
+		.form-time {
+			margin-bottom: 12px;
+
+			.item {
+				margin-bottom: 0;
+				padding-top: 7px;
+				padding-bottom: 7px;
+			}
+
+			.form-group {
+				@include flex(0 0 100px);
+
+			}
+
+			.day {
+				@include flex(0 0 121px);
+			}
+
+			select {
+
+				letter-spacing: -0.025em;
+			}
+
+			.form-checkbox {
+				padding: 0 9px;
+
+				label {
+
+					line-height: 27px;
+				}
+			}
+		}
+	}
+
+	.business-hours {
+		font-size: $font-size-sm;
+	}
+
+	.contact-section {
+		max-width: 570px;
+		margin: 0 auto;
+
+		.custom-checkbox {
+			margin-top: 10px;
+
+			label {
+				margin-left: 5px;
+			}
+		}
+	}
+
+	.checkbox {
+		label {
+			color: $secondary;
+		}
+	}
+}

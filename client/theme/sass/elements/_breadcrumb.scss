@@ -1,0 +1,80 @@
+.breadcrumb {
+	background: transparent;
+	padding-left: 0;
+	padding-right: 0;
+	margin-bottom: 0;
+
+	.breadcrumb-item {
+		a {
+			color: $black;
+			@include transition(all 0.2s);
+
+			&:hover {
+				color: $primary;
+				text-decoration: none;
+			}
+		}
+
+		&:last-child {
+			color: $secondary;
+		}
+	}
+
+	&.breadcrumb-style-01 {
+		.breadcrumb-item {
+
+			a {
+				color: $black;
+
+				&:hover {
+					color: $primary;
+				}
+			}
+
+			&:last-child {
+				color: $primary;
+			}
+		}
+	}
+
+	&.breadcrumb-style-02 {
+		.breadcrumb-item {
+			color: $secondary;
+
+			a {
+				color: $primary;
+
+				&:hover {
+					color: lighten($primary, 10%);
+				}
+
+			}
+		}
+
+	}
+
+	&.breadcrumb-style-03 {
+		.breadcrumb-item {
+			font-weight: 500;
+
+			a {
+				color: $black;
+			}
+
+			&:first-child {
+				a {
+					color: $primary;
+
+					&:hover {
+						color: lighten($primary, 10%);
+					}
+				}
+			}
+
+			&:last-child {
+				color: $secondary;
+			}
+		}
+
+	}
+}

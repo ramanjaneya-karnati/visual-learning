@@ -1,0 +1,76 @@
+.form-login-register {
+	max-width: 430px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 65px 30px 45px;
+
+	.tabs {
+		.nav-link h3 {
+			color: $gray-600;
+		}
+
+		.nav-link.active h3 {
+			color: $black;
+		}
+
+		.nav-item {
+			padding: 0 28px;
+		}
+	}
+
+	.input-group {
+		border: 1px solid $border-color;
+
+		.form-control {
+			border: none;
+
+			&:focus {
+				box-shadow: none;
+				background: transparent;
+			}
+		}
+
+		.input-group-append {
+			padding: 0 13px;
+		}
+	}
+	.custom-control {
+		line-height: 1.7;
+	}
+	.social-icon {
+		ul {
+			margin: 0 -5px;
+		}
+
+		li {
+			@include flex(0 0 25%);
+			max-width: 25%;
+			height: 50px;
+			margin: 0 !important;
+			padding: 0 5px;
+			@media screen and (max-width: 430px) {
+				width: 70px;
+			}
+		}
+
+		a {
+			width: 100%;
+			height: 100%;
+			line-height: 50px;
+			border-radius: 2px;
+		}
+
+		i {
+			font-size: 18px;
+		}
+
+		.icon {
+			width: 18px;
+			height: 18px;
+		}
+	}
+
+	.btn-register {
+		margin-top: 65px;
+	}
+}

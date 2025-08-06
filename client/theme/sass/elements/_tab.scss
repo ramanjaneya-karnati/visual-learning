@@ -1,0 +1,296 @@
+.nav-pills {
+	&.font-size-lg {
+		.nav-link {
+			font-size: 18px !important;
+		}
+	}
+
+	&.fs-20 {
+		.nav-link {
+			font-size: 20px !important;
+		}
+	}
+
+	&.text-capitalize {
+		.nav-link {
+			text-transform: capitalize !important;
+		}
+	}
+
+	&.text-primary {
+		.nav-link.active {
+			color: $primary !important;
+		}
+	}
+
+	&.tab-style-01 {
+		margin: 0 -20px;
+
+		.nav-item {
+			padding: 0 20px;
+		}
+
+		.nav-link, .card-header.collapsed {
+			text-transform: uppercase;
+			color: $gray-600;
+			font-weight: 600;
+			padding: 0;
+			font-size: 16px;
+
+			&.active, :not(.collapsed) {
+				color: $black;
+				background: none;
+			}
+		}
+	}
+
+	&.tab-style-02 {
+
+		.nav-item {
+			padding: 0;
+
+			&:first-of-type {
+				.nav-link {
+					border-top-left-radius: 3px;
+				}
+
+			}
+
+			&:last-of-type {
+				.nav-link {
+					border-top-right-radius: 3px;
+				}
+
+			}
+		}
+
+		.nav-link {
+			background-color: #333333;
+			border-radius: 0;
+			padding: 11px 0;
+			text-align: center;
+			color: #fff;
+
+			&.active {
+				background: #000;
+			}
+		}
+
+	}
+
+	&.tab-style-03 {
+		margin-left: -28px;
+		margin-right: -28px;
+
+		.nav-link {
+			font-size: 30px;
+			font-weight: 700;
+			color: #ccc;
+			padding: 0 28px;
+			text-transform: capitalize;
+			line-height: 1.2;
+
+			&.active {
+				background-color: transparent;
+				color: $black;
+			}
+		}
+	}
+
+	&.tab-style-04 {
+		margin-left: -25px;
+		margin-right: -25px;
+
+		.nav-link {
+			font-size: 24px;
+			font-weight: 700;
+			color: #ccc;
+			padding: 0 25px;
+			text-transform: uppercase;
+			line-height: 1.2;
+
+			&.active {
+				background-color: transparent;
+				color: $black;
+			}
+		}
+	}
+
+	&.tab-style-05 {
+		.nav-link {
+			padding-left: 12px;
+			padding-right: 12px;
+			text-transform: uppercase;
+			color: $gray-600;
+			font-weight: 600;
+			border-radius: 0;
+			position: relative;
+
+			&.active {
+				background: none;
+				color: $primary;
+
+				&::after {
+					position: absolute;
+					content: '';
+					background: $primary;
+				}
+
+			}
+
+		}
+
+		&.tab-horizontal {
+			.nav-link {
+				padding-bottom: 20px;
+			}
+
+			.nav-item:first-child {
+				.nav-link {
+					padding-right: 12px;
+					padding-left: 0;
+				}
+			}
+
+			.nav-link.active {
+				&::after {
+					height: 2px;
+					width: 100%;
+					left: 0;
+					bottom: -1px;
+
+				}
+			}
+		}
+
+		&.tab-vertical {
+			border-right: 1px solid $border-color;
+			height: 100%;
+
+
+			.nav-link.active {
+				&::after {
+					height: 100%;
+					width: 2px;
+					right: -1px;
+					top: 0;
+
+				}
+			}
+
+			@include media-breakpoint-down(md) {
+				border-right: none;
+				padding-bottom: 30px;
+				.nav-link:first-child {
+					padding-left: 0;
+				}
+				.nav-link.active {
+					&::after {
+						width: 100%;
+						height: 2px;
+						top: 100%;
+						left: 0;
+
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.accordion {
+	.card {
+		border-bottom: 1px solid $border-color !important;
+		border-radius: 0 !important;
+	}
+
+	.card-header {
+		background: none;
+		padding: 0;
+		display: flex;
+
+		.card-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 20px;
+			width: 55px;
+			text-align: center;
+			min-height: 58px;
+			background: $primary;
+			color: #fff;
+		}
+
+		.card-title {
+			padding-left: 18px;
+			font-size: 18px;
+			color: $primary;
+			font-weight: 600;
+			align-self: center;
+		}
+
+		.dynamic-icon {
+			position: relative;
+			margin-left: auto;
+			width: 55px;
+			min-height: 58px;
+			text-align: center;
+			border-left: 1px solid $border-color;
+
+			&::after {
+				content: '\f068';
+				font-family: "Font Awesome 5 Pro";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate3d(-50%, -50%, 0);
+				right: 0;
+				color: $primary;
+
+			}
+		}
+
+
+		&.collapsed {
+			.card-icon {
+				background: #f0f0f0;
+				color: $gray-600;
+			}
+
+			.card-title {
+				color: $black;
+			}
+
+			.dynamic-icon {
+				&::after {
+					content: "\f067";
+					color: $black;
+				}
+			}
+
+		}
+	}
+
+	.card-body {
+		padding: 25px 15px 25px 72px;
+	}
+
+
+}
+
+.job-by {
+	position: relative;
+
+}
+
+.job-filter {
+	background-color: transparent;
+	position: absolute;
+	top: -49px;
+	z-index: 5;
+	width: 100%;
+	@include media-breakpoint-down(md) {
+		top: -150px;
+	}
+}

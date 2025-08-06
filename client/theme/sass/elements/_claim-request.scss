@@ -1,0 +1,13 @@
+.claim-request-popup {
+	max-width: 630px;
+	margin: auto;
+
+	.form-control::placeholder {
+		color: $secondary;
+	}
+
+	textarea {
+		height: 80px !important;
+	}
+
+}

@@ -1,0 +1,96 @@
+.home-food-restaurant {
+	.toggle-icon:hover {
+		color: lighten($primary,10%);
+	}
+	.map {
+		position: relative;
+		z-index: 1;
+	}
+
+	.section-category {
+		padding-top: 65px;
+		padding-bottom: 70px;
+	}
+
+	.top-place {
+		@media screen and (max-width: 1500px) {
+			max-width: 1170px;
+			margin: 0 auto;
+		}
+
+		.store {
+			height: auto;
+		}
+	}
+
+
+	.download {
+		padding-top: 100px;
+		margin-bottom: -200px;
+		@include media-breakpoint-down(lg) {
+			margin-bottom: 0;
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+
+		.logo {
+			width: 69px;
+			height: 69px;
+			background: $primary;
+			border-radius: 9px;
+			@include d-flex();
+			@include align-items-center();
+			@include justify-content-center();
+			margin-bottom: 42px;
+		}
+
+		.content {
+			padding-top: 30px;
+		}
+
+		.heading {
+			margin-bottom: 30px;
+
+			.heading-description {
+				margin-top: 25px;
+				margin-bottom: 0;
+				font-size: 16px;
+				color: $secondary;
+			}
+		}
+
+		.form-get-link {
+			margin-bottom: 34px;
+
+			.title {
+				display: block;
+				color: $secondary;
+				margin-bottom: 20px;
+				font-size: 16px;
+			}
+
+			.form-control, .btn {
+				border-radius: 0;
+			}
+
+			.form-control {
+				background: #e8edef;
+			}
+
+			.btn {
+
+			}
+		}
+
+		.download-apps {
+			.item {
+				&:not(:last-child) {
+					margin-right: 5px;
+				}
+
+				margin-top: 15px;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,47 @@
+.page-contact {
+	.heading {
+		max-width: 811px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.form-contact {
+		background: #f2f5f6;
+
+		.form-control {
+			border-width: 0 0 1px 0;
+			border-color: #c2c4c5;
+
+			&::placeholder {
+				color: $black;
+
+			}
+
+			&:focus {
+				box-shadow: none;
+				outline: none;
+			}
+		}
+
+		textarea {
+			height: 136px;
+			overflow: auto;
+			outline: none;
+
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+
+			resize: none; /*remove the resize handle on the bottom right*/
+		}
+
+		.btn {
+
+			&:hover, &:focus, &:active {
+				background: none;
+				color: $black;
+			}
+		}
+
+	}
+}

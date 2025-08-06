@@ -1,0 +1,28 @@
+.page-about {
+	.banner {
+		background-image: url("./images/banner/about-banner.jpg");
+
+		.heading {
+			max-width: 830px;
+			margin: 0 auto;
+		}
+	}
+
+	.banner-content {
+		padding-top: 320px;
+		padding-bottom: 288px;
+
+	}
+
+	.about-intro {
+
+		.jumbotron {
+			max-width: 830px;
+			margin: 0 auto 80px;
+		}
+	}
+
+	.counter {
+		width: auto;
+	}
+}

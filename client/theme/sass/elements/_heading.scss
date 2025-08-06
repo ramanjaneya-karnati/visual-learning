@@ -1,0 +1,28 @@
+.heading {
+	&.heading-style-title-behind {
+		.heading-title-wrapper {
+			position: relative;
+
+			span {
+				font-size: 60px;
+				font-weight: 700;
+				color: #cccccc;
+				text-transform: uppercase;
+				opacity: 0.1;
+			}
+		}
+
+		.heading-title {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate3d(-50%, -50%, 0);
+			color: $black;
+		}
+
+	}
+}
+
+
+
+

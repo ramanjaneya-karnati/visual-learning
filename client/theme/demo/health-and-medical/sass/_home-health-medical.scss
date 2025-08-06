@@ -1,0 +1,80 @@
+.home-health-medical {
+	.main-header, .header-wrapper {
+		background: transparent;
+	}
+	.toggle-icon:hover {
+		color: $primary;
+	}
+	.banner {
+		background-image: url("../../images/banner/health-and-medical-banner.jpg");
+
+		.banner-content {
+			padding-top: 235px;
+			padding-bottom: 155px;
+		}
+		h1 {
+			font-size: 60px!important;
+		}
+
+
+	}
+
+	.categories {
+		.heading {
+			max-width: 970px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.home-category {
+			font-weight: 400;
+		}
+	}
+
+
+	.section-testimonial {
+		.read-more {
+			margin-top: 60px;
+
+			a {
+				font-size: 18px;
+				font-weight: 700;
+				text-transform: uppercase;
+				text-decoration: underline;
+			}
+		}
+
+		.slick-arrow {
+			top: calc(50% - 80px) !important;
+
+			i {
+				font-size: 26px;
+			}
+		}
+	}
+
+	.section-explore {
+		.heading {
+			margin-bottom: 75px;
+
+			.heading-description {
+				margin-top: 27px;
+			}
+		}
+	}
+
+	.footer-second {
+		margin-top: 65px;
+	}
+
+	.footer-last {
+		margin-top: 50px;
+
+		.social-icon {
+			a:hover {
+				color: $cyan;
+
+			}
+		}
+	}
+}

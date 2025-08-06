@@ -1,0 +1,21 @@
+.listing-thedir-cover {
+	padding-top: 110px;
+	padding-bottom: 105px;
+
+}
+
+.listing {
+	.item {
+		flex: 0 0 20%;
+		max-width: 20%;
+		@include media-breakpoint-down(md){
+			flex: 0 0 33.333%;
+			max-width: 33.333%;
+		}
+		@include media-breakpoint-down(sm){
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+	}
+}
+

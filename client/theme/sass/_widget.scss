@@ -1,0 +1,170 @@
+.widget {
+	.list-group-item {
+		padding: 5px 0;
+		border-color: $border-color;
+
+		.item-icon {
+			font-size: 18px;
+		}
+
+		.icon {
+			width: 18px;
+			height: 18px;
+		}
+	}
+
+	&.datepicker {
+		position: static;
+		opacity: 1;
+		width: 100%;
+		@include box-shadow(none);
+		border-radius: 0;
+		border: none;
+
+		.datepicker--nav {
+			padding: 8px 0;
+		}
+
+		.datepicker--days-names {
+			margin: 0;
+			padding: 6px 0;
+		}
+	}
+
+	&.reservation {
+		.datepicker {
+			width: 100%;
+			border: none;
+			border-radius: 0;
+		}
+
+		.form-group {
+			margin-bottom: 20px;
+		}
+
+		label {
+			color: $black;
+		}
+
+		.person {
+			@include flex(0 0 80px);
+			max-width: 80px;
+		}
+
+		.type {
+			@include flex(1 1 auto);
+			padding-left: 18px;
+		}
+
+		.form-control {
+			color: $black;
+		}
+
+
+		.btn {
+			font-size: 18px;
+		}
+
+		.arrows {
+			.form-control {
+				position: relative;
+				z-index: 2;
+			}
+
+			&::after, &:before {
+				font-size: 12px;
+				line-height: 1;
+			}
+
+			&::after {
+				bottom: 20%;
+			}
+
+			&:before {
+				top: 20%;
+			}
+		}
+
+		.select-custom {
+			&::after {
+				font-size: 12px;
+				line-height: 1;
+			}
+		}
+
+	}
+
+	&.map {
+		.button-direction {
+			top: 10px;
+			right: 10px;
+
+			.btn {
+				background: #333333;
+				border: #333333;
+				color: #fff;
+				font-weight: 400;
+
+				&:hover {
+					background: #fff;
+					color: #333333;
+				}
+			}
+		}
+	}
+
+	&.gallery {
+		.photo-gallery {
+			margin: -10px;
+		}
+
+		.photo-item {
+			@include flex(0 0 33.3333%);
+			max-width: 33.333%;
+			padding: 10px;
+		}
+	}
+
+	&.contact {
+		.image {
+			max-width: 77px;
+			max-height: 77px;
+			min-width: 77px;
+			min-height: 77px;
+			width: 77px;
+			height: 77px;
+		}
+
+		.media .btn {
+			margin-right: 10px;
+			font-weight: 400;
+		}
+
+		.form-control {
+			font-size: 14px;
+		}
+
+		textarea {
+			height: 124px !important;
+		}
+
+		.contact-form .btn {
+			font-size: 16px !important;
+		}
+
+	}
+}
+
+.tags {
+	a {
+		color: $gray-600;
+		line-height: 2.1;
+
+		&:hover {
+			color: $black;
+		}
+	}
+}
+
+
+

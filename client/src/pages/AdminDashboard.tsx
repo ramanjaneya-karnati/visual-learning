@@ -294,7 +294,7 @@ const AdminDashboard: React.FC = () => {
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
         }}>
           <Title level={4} style={{ margin: 0 }}>
-            Visual Learning Administration
+            Learnify Administration
           </Title>
           
           <Space>

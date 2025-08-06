@@ -11,7 +11,8 @@ import {
   Tag,
   Avatar,
   Divider,
-  List
+  List,
+  Statistic
 } from 'antd';
 import { 
   ArrowLeftOutlined, 
@@ -28,8 +29,11 @@ import {
   TeamOutlined,
   SafetyOutlined,
   SettingOutlined,
-  PlayCircleOutlined
+  PlayCircleOutlined,
+  ClockCircleOutlined,
+  UserOutlined
 } from '@ant-design/icons';
+import UnifiedFooter from '../components/Footer';
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -48,7 +52,7 @@ const Features: React.FC = () => {
         "Interactive character-driven narratives",
         "Step-by-step visual explanations"
       ],
-      color: "#1890ff"
+      color: "#12715b"
     },
     {
       icon: <BulbOutlined />,
@@ -60,7 +64,7 @@ const Features: React.FC = () => {
         "Automatic concept suggestions",
         "Personalized learning recommendations"
       ],
-      color: "#722ed1"
+      color: "#12715b"
     },
     {
       icon: <EyeOutlined />,
@@ -72,7 +76,7 @@ const Features: React.FC = () => {
         "Problem-solution storytelling",
         "Real-world application examples"
       ],
-      color: "#52c41a"
+      color: "#12715b"
     },
     {
       icon: <CodeOutlined />,
@@ -84,7 +88,7 @@ const Features: React.FC = () => {
         "Copy-to-clipboard functionality",
         "Language-agnostic highlighting"
       ],
-      color: "#fa541c"
+      color: "#12715b"
     },
     {
       icon: <TeamOutlined />,
@@ -96,7 +100,7 @@ const Features: React.FC = () => {
         "Concept association management",
         "Real-time content updates"
       ],
-      color: "#13c2c2"
+      color: "#12715b"
     },
     {
       icon: <SafetyOutlined />,
@@ -108,7 +112,7 @@ const Features: React.FC = () => {
         "Rate limiting and CSRF protection",
         "Input sanitization and validation"
       ],
-      color: "#eb2f96"
+      color: "#12715b"
     },
     {
       icon: <SettingOutlined />,
@@ -120,7 +124,7 @@ const Features: React.FC = () => {
         "Vite for fast development",
         "Ant Design UI components"
       ],
-      color: "#faad14"
+      color: "#12715b"
     },
     {
       icon: <BookOutlined />,
@@ -132,278 +136,423 @@ const Features: React.FC = () => {
         "Estimated learning times",
         "Visual progress tracking"
       ],
-      color: "#f5222d"
+      color: "#12715b"
     }
   ];
 
   const stats = [
-    { number: "16+", label: "Interactive Concepts", icon: <BookOutlined />, color: "#1890ff" },
-    { number: "4", label: "Programming Frameworks", icon: <CodeOutlined />, color: "#52c41a" },
-    { number: "100%", label: "Visual Learning", icon: <EyeOutlined />, color: "#722ed1" },
-    { number: "AI", label: "Powered Content", icon: <BulbOutlined />, color: "#fa541c" }
+    { number: "16+", label: "Interactive Concepts", icon: <BookOutlined />, color: "#12715b" },
+    { number: "4", label: "Programming Frameworks", icon: <CodeOutlined />, color: "#12715b" },
+    { number: "100%", label: "Visual Learning", icon: <EyeOutlined />, color: "#12715b" },
+    { number: "AI", label: "Powered Content", icon: <BulbOutlined />, color: "#12715b" }
   ];
 
   return (
     <Layout style={{ minHeight: '100vh', background: '#ffffff' }}>
+      {/* Header */}
       <Header style={{ 
-        background: '#ffffff', 
-        padding: '0 50px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        borderBottom: '1px solid #f0f0f0',
+        background: 'rgb(245, 238, 233)',
+        borderBottom: 'none',
+        padding: '0 20px',
         height: '80px',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'space-between'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <Button 
             type="text" 
             icon={<ArrowLeftOutlined />} 
             style={{ 
-              color: '#666', 
+              color: '#12715b', 
               marginRight: '16px',
-              fontSize: '16px',
-              fontWeight: '500'
+              fontFamily: '"Open Sans", sans-serif',
+              fontWeight: '600'
             }}
             onClick={() => navigate('/')}
           >
             Back to Home
           </Button>
-          <BookOutlined style={{ fontSize: '28px', color: '#1890ff', marginRight: '12px' }} />
-          <Title level={3} style={{ color: '#1a1a1a', margin: 0, fontWeight: 'bold' }}>
-            Visual Learning
+          <BookOutlined style={{ fontSize: '24px', color: '#12715b', marginRight: '12px' }} />
+          <Title level={4} style={{ 
+            color: '#1a1a1a', 
+            margin: 0, 
+            fontWeight: 'bold',
+            fontFamily: '"Open Sans", sans-serif'
+          }}>
+            Features
           </Title>
-          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <Button 
-              type="text" 
-              style={{ color: '#666', fontWeight: '500' }}
-              onClick={() => navigate('/features')}
-            >
-              Features
-            </Button>
-            <Button 
-              type="text" 
-              style={{ color: '#666', fontWeight: '500' }}
-              onClick={() => navigate('/about')}
-            >
-              About
-            </Button>
-          </div>
         </div>
       </Header>
-      
+
       <Content style={{ padding: '0', background: '#ffffff' }}>
-        {/* Hero Section */}
-        <div style={{ 
-          background: '#ffffff',
-          padding: '120px 50px 80px',
-          textAlign: 'center',
-          position: 'relative'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '50px 20px' }}>
+          {/* Hero Section */}
+          <div style={{ 
+            textAlign: 'center',
+            marginBottom: '80px'
+          }}>
             <Title level={1} style={{ 
               color: '#1a1a1a', 
               marginBottom: '24px',
-              fontSize: '4rem',
+              fontSize: '3rem',
               fontWeight: 'bold',
-              lineHeight: '1.1'
+              fontFamily: '"Open Sans", sans-serif'
             }}>
               Powerful Features for
               <br />
-              <span style={{ color: '#1890ff' }}>Visual Learning</span>
+              <span style={{ 
+                color: '#12715b',
+                fontWeight: '600'
+              }}>
+                Visual Learning
+              </span>
             </Title>
-            
             <Paragraph style={{ 
-              fontSize: '20px', 
-              color: '#666', 
-              marginBottom: '48px',
+              fontSize: '18px', 
+              color: '#666',
               maxWidth: '600px',
-              margin: '0 auto 48px',
-              lineHeight: '1.6'
+              margin: '0 auto',
+              lineHeight: '1.6',
+              fontFamily: '"Open Sans", sans-serif'
             }}>
-              Discover the comprehensive suite of features that make Visual Learning the most engaging 
-              and effective way to master programming concepts.
+              Discover the innovative features that make Learnify the most effective platform for mastering programming concepts through visual metaphors and interactive experiences.
             </Paragraph>
-
-            {/* Stats Row */}
-            <Row gutter={[48, 24]} justify="center" style={{ maxWidth: '800px', margin: '0 auto' }}>
-              {stats.map((stat, index) => (
-                <Col xs={12} md={6} key={index}>
-                  <div style={{ textAlign: 'center' }}>
-                    <Title level={2} style={{ color: stat.color, margin: '0 0 8px 0', fontSize: '2.5rem' }}>
-                      {stat.number}
-                    </Title>
-                    <Paragraph style={{ color: '#666', margin: 0, fontSize: '14px' }}>
-                      {stat.label}
-                    </Paragraph>
-                  </div>
-                </Col>
-              ))}
-            </Row>
           </div>
-        </div>
 
-        {/* Features Grid */}
-        <div style={{ 
-          background: '#fafafa',
-          padding: '80px 50px',
-          borderTop: '1px solid #f0f0f0'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <Title level={2} style={{ 
-                color: '#1a1a1a', 
-                marginBottom: '16px',
-                fontSize: '2.5rem',
-                fontWeight: 'bold'
-              }}>
-                Everything you need to master programming
-              </Title>
-              <Paragraph style={{ 
-                fontSize: '18px', 
-                color: '#666',
-                maxWidth: '600px',
-                margin: '0 auto'
-              }}>
-                Our comprehensive feature set is designed to make your programming journey easier and more efficient.
-              </Paragraph>
-            </div>
+          {/* Built with Modern Technology */}
+          <div style={{ 
+            marginBottom: '80px',
+            textAlign: 'center'
+          }}>
+            <Title level={2} style={{ 
+              color: '#1a1a1a', 
+              marginBottom: '16px',
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              Built with Modern Technology
+            </Title>
+            <Paragraph style={{ 
+              fontSize: '18px', 
+              color: '#666',
+              maxWidth: '600px',
+              margin: '0 auto 60px',
+              lineHeight: '1.6',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              Our platform leverages cutting-edge technologies to deliver an exceptional learning experience.
+            </Paragraph>
             
-            <Row gutter={[32, 32]} justify="center">
-              {features.map((feature, index) => (
-                <Col xs={24} md={12} lg={8} key={index}>
-                  <Card 
-                    style={{ 
-                      border: 'none',
-                      borderRadius: '12px',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                      height: '100%',
-                      transition: 'all 0.3s ease'
-                    }}
-                    bodyStyle={{ padding: '32px' }}
-                    hoverable
-                  >
-                    <div style={{ 
-                      width: '56px', 
-                      height: '56px', 
-                      background: `linear-gradient(135deg, ${feature.color} 0%, ${feature.color}dd 100%)`,
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '24px'
-                    }}>
-                      <div style={{ fontSize: '28px', color: 'white' }}>
-                        {feature.icon}
-                      </div>
+            <Row gutter={[24, 24]} justify="center">
+              <Col xs={24} sm={12} md={8}>
+                <Card style={{ 
+                  border: 'none',
+                  borderRadius: '16px',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  background: '#ffffff'
+                }}
+                bodyStyle={{ padding: '32px' }}
+                hoverable
+                >
+                  <div style={{ 
+                    width: '56px', 
+                    height: '56px', 
+                    background: '#12715b',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px'
+                  }}>
+                    <div style={{ fontSize: '28px', color: 'white' }}>
+                      <CodeOutlined />
                     </div>
-                    <Title level={4} style={{ color: '#1a1a1a', marginBottom: '16px', fontWeight: '600' }}>
-                      {feature.title}
-                    </Title>
-                    <Paragraph style={{ color: '#666', margin: '0 0 20px 0', lineHeight: '1.6' }}>
-                      {feature.description}
-                    </Paragraph>
-                    <List
-                      size="small"
-                      dataSource={feature.benefits}
-                      renderItem={(item) => (
-                        <List.Item style={{ padding: '4px 0', border: 'none' }}>
-                          <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <CheckCircleOutlined style={{ color: feature.color, marginRight: '8px' }} />
-                            <Text style={{ color: '#666', fontSize: '14px' }}>{item}</Text>
-                          </div>
-                        </List.Item>
-                      )}
-                    />
-                  </Card>
-                </Col>
-              ))}
+                  </div>
+                  <Title level={4} style={{ 
+                    color: '#1a1a1a', 
+                    marginBottom: '16px', 
+                    fontWeight: '600',
+                    fontFamily: '"Open Sans", sans-serif'
+                  }}>
+                    React & TypeScript
+                  </Title>
+                  <Paragraph style={{ 
+                    color: '#666', 
+                    margin: '0 0 20px 0', 
+                    lineHeight: '1.6',
+                    fontFamily: '"Open Sans", sans-serif'
+                  }}>
+                    Built with React 18 and TypeScript for type safety, ensuring a robust and maintainable codebase with excellent developer experience.
+                  </Paragraph>
+                  <List
+                    size="small"
+                    dataSource={[
+                      "Modern React hooks and functional components",
+                      "TypeScript for type safety and better DX",
+                      "Component-based architecture",
+                      "Optimized performance with React 18"
+                    ]}
+                    renderItem={(item) => (
+                      <List.Item style={{ padding: '4px 0', border: 'none' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <CheckCircleOutlined style={{ color: '#12715b', marginRight: '8px' }} />
+                          <Text style={{ 
+                            color: '#666', 
+                            fontSize: '14px',
+                            fontFamily: '"Open Sans", sans-serif'
+                          }}>
+                            {item}
+                          </Text>
+                        </div>
+                      </List.Item>
+                    )}
+                  />
+                </Card>
+              </Col>
+              
+              <Col xs={24} sm={12} md={8}>
+                <Card style={{ 
+                  border: 'none',
+                  borderRadius: '16px',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  background: '#ffffff'
+                }}
+                bodyStyle={{ padding: '32px' }}
+                hoverable
+                >
+                  <div style={{ 
+                    width: '56px', 
+                    height: '56px', 
+                    background: '#12715b',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px'
+                  }}>
+                    <div style={{ fontSize: '28px', color: 'white' }}>
+                      <BulbOutlined />
+                    </div>
+                  </div>
+                  <Title level={4} style={{ 
+                    color: '#1a1a1a', 
+                    marginBottom: '16px', 
+                    fontWeight: '600',
+                    fontFamily: '"Open Sans", sans-serif'
+                  }}>
+                    AI-Powered Content
+                  </Title>
+                  <Paragraph style={{ 
+                    color: '#666', 
+                    margin: '0 0 20px 0', 
+                    lineHeight: '1.6',
+                    fontFamily: '"Open Sans", sans-serif'
+                  }}>
+                    Advanced AI integration with OpenAI GPT-4 and Anthropic Claude for generating personalized learning content and interactive stories.
+                  </Paragraph>
+                  <List
+                    size="small"
+                    dataSource={[
+                      "OpenAI GPT-4 for content generation",
+                      "Anthropic Claude 3 Sonnet fallback",
+                      "Personalized learning paths",
+                      "Dynamic content adaptation"
+                    ]}
+                    renderItem={(item) => (
+                      <List.Item style={{ padding: '4px 0', border: 'none' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <CheckCircleOutlined style={{ color: '#12715b', marginRight: '8px' }} />
+                          <Text style={{ 
+                            color: '#666', 
+                            fontSize: '14px',
+                            fontFamily: '"Open Sans", sans-serif'
+                          }}>
+                            {item}
+                          </Text>
+                        </div>
+                      </List.Item>
+                    )}
+                  />
+                </Card>
+              </Col>
+              
+              <Col xs={24} sm={12} md={8}>
+                <Card style={{ 
+                  border: 'none',
+                  borderRadius: '16px',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  background: '#ffffff'
+                }}
+                bodyStyle={{ padding: '32px' }}
+                hoverable
+                >
+                  <div style={{ 
+                    width: '56px', 
+                    height: '56px', 
+                    background: '#12715b',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px'
+                  }}>
+                    <div style={{ fontSize: '28px', color: 'white' }}>
+                      <RocketOutlined />
+                    </div>
+                  </div>
+                  <Title level={4} style={{ 
+                    color: '#1a1a1a', 
+                    marginBottom: '16px', 
+                    fontWeight: '600',
+                    fontFamily: '"Open Sans", sans-serif'
+                  }}>
+                    Modern Backend
+                  </Title>
+                  <Paragraph style={{ 
+                    color: '#666', 
+                    margin: '0 0 20px 0', 
+                    lineHeight: '1.6',
+                    fontFamily: '"Open Sans", sans-serif'
+                  }}>
+                    Node.js backend with Express, MongoDB Atlas for data persistence, and Vercel for seamless deployment and scaling.
+                  </Paragraph>
+                  <List
+                    size="small"
+                    dataSource={[
+                      "Node.js with Express framework",
+                      "MongoDB Atlas cloud database",
+                      "Vercel serverless deployment",
+                      "RESTful API architecture"
+                    ]}
+                    renderItem={(item) => (
+                      <List.Item style={{ padding: '4px 0', border: 'none' }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <CheckCircleOutlined style={{ color: '#12715b', marginRight: '8px' }} />
+                          <Text style={{ 
+                            color: '#666', 
+                            fontSize: '14px',
+                            fontFamily: '"Open Sans", sans-serif'
+                          }}>
+                            {item}
+                          </Text>
+                        </div>
+                      </List.Item>
+                    )}
+                  />
+                </Card>
+              </Col>
             </Row>
           </div>
-        </div>
 
-        {/* Technology Stack */}
-        <div style={{ 
-          padding: '80px 50px', 
-          background: '#ffffff'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <Title level={2} style={{ 
-                color: '#1a1a1a', 
-                marginBottom: '16px',
-                fontSize: '2.5rem',
-                fontWeight: 'bold'
-              }}>
-                Built with Modern Technology
-              </Title>
-              <Paragraph style={{ 
-                fontSize: '18px', 
-                color: '#666',
-                maxWidth: '600px',
-                margin: '0 auto'
-              }}>
-                Our platform leverages cutting-edge technologies for optimal performance and user experience.
-              </Paragraph>
+          {/* Features Grid - Moved to 3rd position */}
+          <div style={{ 
+            background: '#ffffff',
+            padding: '80px 50px',
+            borderTop: '1px solid #f0f0f0'
+          }}>
+            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+              <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+                <Title level={2} style={{ 
+                  color: '#1a1a1a', 
+                  marginBottom: '16px',
+                  fontSize: '2.5rem',
+                  fontWeight: 'bold',
+                  fontFamily: '"Open Sans", sans-serif'
+                }}>
+                  Everything you need to master programming
+                </Title>
+                <Paragraph style={{ 
+                  fontSize: '18px', 
+                  color: '#666',
+                  maxWidth: '600px',
+                  margin: '0 auto',
+                  fontFamily: '"Open Sans", sans-serif'
+                }}>
+                  Our comprehensive feature set is designed to make your programming journey easier and more efficient.
+                </Paragraph>
+              </div>
+              
+              <Row gutter={[32, 32]} justify="center">
+                {features.map((feature, index) => (
+                  <Col xs={24} md={12} lg={8} key={index}>
+                    <Card 
+                      style={{ 
+                        border: 'none',
+                        borderRadius: '16px',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                        height: '100%',
+                        transition: 'all 0.3s ease',
+                        background: '#ffffff'
+                      }}
+                      bodyStyle={{ padding: '32px' }}
+                      hoverable
+                    >
+                      <div style={{ 
+                        width: '56px', 
+                        height: '56px', 
+                        background: '#12715b',
+                        borderRadius: '12px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: '24px'
+                      }}>
+                        <div style={{ fontSize: '28px', color: 'white' }}>
+                          {feature.icon}
+                        </div>
+                      </div>
+                      <Title level={4} style={{ 
+                        color: '#1a1a1a', 
+                        marginBottom: '16px', 
+                        fontWeight: '600',
+                        fontFamily: '"Open Sans", sans-serif'
+                      }}>
+                        {feature.title}
+                      </Title>
+                      <Paragraph style={{ 
+                        color: '#666', 
+                        margin: '0 0 20px 0', 
+                        lineHeight: '1.6',
+                        fontFamily: '"Open Sans", sans-serif'
+                      }}>
+                        {feature.description}
+                      </Paragraph>
+                      <List
+                        size="small"
+                        dataSource={feature.benefits}
+                        renderItem={(item) => (
+                          <List.Item style={{ padding: '4px 0', border: 'none' }}>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                              <CheckCircleOutlined style={{ color: '#12715b', marginRight: '8px' }} />
+                              <Text style={{ 
+                                color: '#666', 
+                                fontSize: '14px',
+                                fontFamily: '"Open Sans", sans-serif'
+                              }}>
+                                {item}
+                              </Text>
+                            </div>
+                          </List.Item>
+                        )}
+                      />
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
             </div>
-            
-            <Row gutter={[32, 32]} justify="center">
-              <Col xs={12} md={6}>
-                <Card style={{ textAlign: 'center', border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-                  <CodeOutlined style={{ fontSize: '48px', color: '#61dafb', marginBottom: '16px' }} />
-                  <Title level={4} style={{ color: '#1a1a1a', marginBottom: '8px' }}>React 18</Title>
-                  <Paragraph style={{ color: '#666', margin: 0 }}>Modern UI with TypeScript</Paragraph>
-                </Card>
-              </Col>
-              <Col xs={12} md={6}>
-                <Card style={{ textAlign: 'center', border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-                  <SettingOutlined style={{ fontSize: '48px', color: '#52c41a', marginBottom: '16px' }} />
-                  <Title level={4} style={{ color: '#1a1a1a', marginBottom: '8px' }}>Express.js</Title>
-                  <Paragraph style={{ color: '#666', margin: 0 }}>Robust backend API</Paragraph>
-                </Card>
-              </Col>
-              <Col xs={12} md={6}>
-                <Card style={{ textAlign: 'center', border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-                  <BookOutlined style={{ fontSize: '48px', color: '#722ed1', marginBottom: '16px' }} />
-                  <Title level={4} style={{ color: '#1a1a1a', marginBottom: '8px' }}>MongoDB</Title>
-                  <Paragraph style={{ color: '#666', margin: 0 }}>Scalable cloud database</Paragraph>
-                </Card>
-              </Col>
-              <Col xs={12} md={6}>
-                <Card style={{ textAlign: 'center', border: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-                  <BulbOutlined style={{ fontSize: '48px', color: '#fa541c', marginBottom: '16px' }} />
-                  <Title level={4} style={{ color: '#1a1a1a', marginBottom: '8px' }}>AI Integration</Title>
-                  <Paragraph style={{ color: '#666', margin: 0 }}>OpenAI & Anthropic APIs</Paragraph>
-                </Card>
-              </Col>
-            </Row>
           </div>
         </div>
       </Content>
       
-      <Footer style={{ 
-        background: '#fafafa',
-        borderTop: '1px solid #f0f0f0',
-        padding: '40px 50px'
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <Row gutter={[32, 32]}>
-            <Col xs={24} md={8}>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
-                <BookOutlined style={{ fontSize: '24px', color: '#1890ff', marginRight: '12px' }} />
-                <Title level={4} style={{ color: '#1a1a1a', margin: 0, fontWeight: 'bold' }}>
-                  Visual Learning
-                </Title>
-              </div>
-              <Paragraph style={{ color: '#666', margin: 0 }}>
-                Making programming concepts accessible through visual metaphors and interactive learning experiences.
-              </Paragraph>
-            </Col>
-          </Row>
-          <Divider style={{ margin: '32px 0 16px 0' }} />
-        </div>
-      </Footer>
+      <UnifiedFooter />
     </Layout>
   );
 };

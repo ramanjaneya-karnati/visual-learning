@@ -1,0 +1,55 @@
+.page-faqs {
+	.faqs {
+		max-width: 830px;
+		margin-left: auto;
+		margin-right: auto;
+
+	}
+
+	.join-us {
+		padding-bottom: 140px;
+
+		.btn {
+			font-size: 16px;
+			font-weight: 700;
+		}
+	}
+}
+
+.accordion-style-02 {
+	.card {
+		background: #f6f6f6;
+		border: 1px solid #cccccc !important;
+		margin: 4px 0;
+	}
+
+	.card-header {
+		padding: 13px 22px;
+		border-bottom: 0;
+		margin-bottom: 0;
+
+		.dynamic-icon {
+			border-left: 0;
+			font-size: 20px;
+			font-weight: 200;
+			min-height: auto;
+
+			&::after {
+				color: $black;
+				right: 0;
+				left: auto;
+			}
+		}
+
+
+		&.collapsed {
+			background: #fff;
+		}
+	}
+
+	.card-body {
+		padding: 5px 22px 20px;
+		color: #262521;
+	}
+
+}

@@ -667,6 +667,44 @@ const InteractiveStory: React.FC<InteractiveStoryProps> = ({ story }) => {
             <Button 
               disabled={currentStep === 0}
               onClick={() => setCurrentStep(currentStep - 1)}
+              style={{
+                height: '48px',
+                padding: '0 24px',
+                borderRadius: '12px',
+                fontFamily: '"Open Sans", sans-serif',
+                fontWeight: '600',
+                fontSize: '14px',
+                border: '2px solid rgba(18, 113, 91, 0.3)',
+                color: currentStep === 0 ? '#ccc' : '#12715b',
+                background: currentStep === 0 
+                  ? 'rgba(245, 245, 245, 0.5)' 
+                  : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 238, 233, 0.8) 100%)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                minWidth: '120px',
+                justifyContent: 'center',
+                boxShadow: currentStep === 0 
+                  ? 'none' 
+                  : '0 4px 12px rgba(18, 113, 91, 0.15)'
+              }}
+              onMouseEnter={(e) => {
+                if (currentStep !== 0) {
+                  e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(18, 113, 91, 0.25)';
+                  e.currentTarget.style.borderColor = '#12715b';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(18, 113, 91, 0.05) 0%, rgba(245, 238, 233, 0.9) 100%)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentStep !== 0) {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(18, 113, 91, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(18, 113, 91, 0.3)';
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 238, 233, 0.8) 100%)';
+                }
+              }}
             >
               Previous
             </Button>
@@ -674,6 +712,45 @@ const InteractiveStory: React.FC<InteractiveStoryProps> = ({ story }) => {
               type="primary"
               disabled={currentStep === steps.length - 1}
               onClick={() => setCurrentStep(currentStep + 1)}
+              style={{
+                height: '48px',
+                padding: '0 24px',
+                borderRadius: '12px',
+                background: currentStep === steps.length - 1
+                  ? 'linear-gradient(135deg, #52c41a 0%, #389e0d 100%)'
+                  : 'linear-gradient(135deg, #12715b 0%, #0f5f4a 100%)',
+                border: 'none',
+                fontFamily: '"Open Sans", sans-serif',
+                fontWeight: '600',
+                fontSize: '14px',
+                boxShadow: currentStep === steps.length - 1
+                  ? '0 6px 16px rgba(82, 196, 26, 0.3)'
+                  : '0 6px 16px rgba(18, 113, 91, 0.3)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                minWidth: '120px',
+                justifyContent: 'center'
+              }}
+              onMouseEnter={(e) => {
+                if (currentStep !== steps.length - 1) {
+                  e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 10px 24px rgba(18, 113, 91, 0.4)';
+                } else {
+                  e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 10px 24px rgba(82, 196, 26, 0.4)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (currentStep !== steps.length - 1) {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(18, 113, 91, 0.3)';
+                } else {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(82, 196, 26, 0.3)';
+                }
+              }}
             >
               {currentStep === steps.length - 1 ? 'Complete Story' : 'Next'}
             </Button>

@@ -1,0 +1,66 @@
+/*--------------------------------------------------------------
+## Site layout style
+--------------------------------------------------------------*/
+#site-wrapper {
+	background-color: $body-bg;
+	position: relative;
+	overflow-x: hidden;
+}
+
+#wrapper-content {
+	padding-top: 117px;
+	padding-bottom: 60px;
+	@include media-breakpoint-down(lg) {
+		padding-top: 83px;
+	}
+}
+
+.full-banner {
+	.content-wrap {
+		margin-top: -85px;
+	}
+}
+
+.container-1720 {
+	@include media-breakpoint-up(lg) {
+		max-width: 1750px;
+	}
+}
+
+.row {
+	&.gutter-tb-19 {
+		margin-top: -19px;
+		margin-bottom: -19px;
+
+		.col-12 {
+			padding-top: 19px;
+			padding-bottom: 19px;
+		}
+	}
+}
+
+.page-two-column {
+	@include media-breakpoint-down(lg) {
+		flex-wrap: wrap;
+	}
+
+	.page-content {
+		flex: 1 1 auto;
+		@include media-breakpoint-down(lg) {
+			flex: 1 1 100%;
+			max-width: 100%;
+			margin-bottom: 50px;
+		}
+	}
+
+	.sidebar {
+		@include flex(0 0 300px);
+		max-width: 300px;
+		margin-left: 70px;
+		@include media-breakpoint-down(lg) {
+			@include flex(1 1 100%);
+			max-width: 100%;
+			margin-left: 0;
+		}
+	}
+}

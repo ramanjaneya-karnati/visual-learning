@@ -29,6 +29,7 @@ import {
 } from '@ant-design/icons';
 import CodeBlock from '../components/CodeBlock';
 import InteractiveStory from '../components/InteractiveStory';
+import Footer from '../components/Footer';
 
 const { Header, Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -863,145 +864,864 @@ console.log('Learning made easy!');`,
       title: 'Overview',
       icon: <EyeOutlined />,
       content: (
-        <Card>
-          <Title level={3}>Understanding {concept?.title}</Title>
+        <div style={{ padding: '0' }}>
+          <Title level={2} style={{ 
+            color: '#1a1a1a', 
+            marginBottom: '32px',
+            fontFamily: '"Open Sans", sans-serif',
+            textAlign: 'center',
+            fontSize: '2.5rem',
+            padding: '0 20px'
+          }}>
+            Understanding {concept?.title}
+          </Title>
           
-          {/* Enhanced Description */}
-          <div style={{ marginBottom: '24px' }}>
-            <Paragraph style={{ fontSize: '16px', lineHeight: '1.8', marginBottom: '16px' }}>
-              {concept?.description}
-            </Paragraph>
-            
-            {/* Detailed Explanation */}
-            <div style={{ 
-              background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)', 
-              padding: '20px', 
-              borderRadius: '8px',
-              marginBottom: '16px'
+          {/* Interactive Learning Journey */}
+          <div style={{ marginBottom: '40px' }}>
+            {/* What You'll Learn - Interactive Cards */}
+            <div className="overview-section" style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              padding: '32px',
+              borderRadius: '0',
+              marginBottom: '32px',
+              color: 'white',
+              position: 'relative',
+              overflow: 'hidden'
             }}>
-              <Title level={4} style={{ color: '#1a1a1a', marginBottom: '12px' }}>
-                📚 What You'll Learn
-              </Title>
-              <Paragraph style={{ fontSize: '15px', lineHeight: '1.7', color: '#4a4a4a' }}>
-                {getDetailedExplanation(frameworkId || '', conceptId || '')}
-              </Paragraph>
+              <div style={{
+                position: 'absolute',
+                top: '-50px',
+                right: '-50px',
+                width: '100px',
+                height: '100px',
+                background: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: '50%'
+              }} />
+              <div style={{
+                position: 'absolute',
+                bottom: '-30px',
+                left: '-30px',
+                width: '60px',
+                height: '60px',
+                background: 'rgba(255, 255, 255, 0.1)',
+                borderRadius: '50%'
+              }} />
+              
+              <div className="overview-content" style={{ position: 'relative', zIndex: 2 }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px',
+                  marginBottom: '24px'
+                }}>
+                  <div style={{
+                    width: '60px',
+                    height: '60px',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '24px'
+                  }}>
+                    📚
+                  </div>
+                  <Title level={3} style={{ 
+                    color: 'white', 
+                    margin: 0,
+                    fontFamily: '"Open Sans", sans-serif'
+                  }}>
+                    What You'll Learn
+                  </Title>
+                </div>
+                
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  padding: '24px',
+                  borderRadius: '16px',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)'
+                }}>
+                  <Paragraph style={{ 
+                    fontSize: '16px', 
+                    lineHeight: '1.8', 
+                    color: 'white',
+                    fontFamily: '"Open Sans", sans-serif',
+                    margin: 0
+                  }}>
+                    {getDetailedExplanation(frameworkId || '', conceptId || '')}
+                  </Paragraph>
+                </div>
+              </div>
             </div>
             
-            {/* Real-time Use Case */}
-            <div style={{ 
-              background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)', 
-              padding: '20px', 
-              borderRadius: '8px',
-              marginBottom: '16px'
+            {/* Real-time Use Case - Story Format */}
+            <div className="overview-section" style={{
+              background: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)',
+              padding: '32px',
+              borderRadius: '0',
+              marginBottom: '32px',
+              position: 'relative',
+              overflow: 'hidden'
             }}>
-              <Title level={4} style={{ color: '#1565c0', marginBottom: '12px' }}>
-                🚀 Real-time Use Case Scenario
-              </Title>
-              <Paragraph style={{ fontSize: '15px', lineHeight: '1.7', color: '#1976d2' }}>
-                {getRealTimeUseCase(frameworkId || '', conceptId || '')}
-              </Paragraph>
+              <div style={{
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                right: '0',
+                height: '4px',
+                background: 'linear-gradient(90deg, #ff6b6b, #ffa500, #ffd93d, #6bcf7f, #4d9de0, #845ec2)'
+              }} />
+              
+              <div className="overview-content" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                marginBottom: '24px'
+              }}>
+                <div style={{
+                  width: '60px',
+                  height: '60px',
+                  background: 'rgba(255, 255, 255, 0.3)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '24px',
+                  animation: 'pulse 2s infinite'
+                }}>
+                  🚀
+                </div>
+                <Title level={3} style={{ 
+                  color: '#d63384', 
+                  margin: 0,
+                  fontFamily: '"Open Sans", sans-serif'
+                }}>
+                  Real-time Use Case Scenario
+                </Title>
+              </div>
+              
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.9)',
+                padding: '24px',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                position: 'relative'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: '12px',
+                  left: '12px',
+                  width: '8px',
+                  height: '8px',
+                  background: '#ff6b6b',
+                  borderRadius: '50%',
+                  animation: 'blink 1.5s infinite'
+                }} />
+                <Paragraph style={{ 
+                  fontSize: '16px', 
+                  lineHeight: '1.8', 
+                  color: '#d63384',
+                  fontFamily: '"Open Sans", sans-serif',
+                  margin: 0,
+                  paddingLeft: '20px'
+                }}>
+                  {getRealTimeUseCase(frameworkId || '', conceptId || '')}
+                </Paragraph>
+              </div>
             </div>
             
-            {/* Benefits Section */}
-            <div style={{ 
-              background: 'linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%)', 
-              padding: '20px', 
-              borderRadius: '8px',
-              marginBottom: '16px'
+            {/* Key Benefits - Interactive Grid */}
+            <div className="overview-section" style={{
+              background: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+              padding: '32px',
+              borderRadius: '0',
+              marginBottom: '32px',
+              position: 'relative'
             }}>
-              <Title level={4} style={{ color: '#7b1fa2', marginBottom: '12px' }}>
-                ✨ Key Benefits
-              </Title>
-              <ul style={{ fontSize: '15px', lineHeight: '1.7', color: '#6a1b9a' }}>
+              <div className="overview-content" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                marginBottom: '24px'
+              }}>
+                <div style={{
+                  width: '60px',
+                  height: '60px',
+                  background: 'rgba(255, 255, 255, 0.4)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '24px',
+                  animation: 'rotate 3s linear infinite'
+                }}>
+                  ✨
+                </div>
+                <Title level={3} style={{ 
+                  color: '#6f42c1', 
+                  margin: 0,
+                  fontFamily: '"Open Sans", sans-serif'
+                }}>
+                  Key Benefits
+                </Title>
+              </div>
+              
+              <div className="key-benefits-grid" style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '20px',
+                alignItems: 'stretch'
+              }}>
                 {getKeyBenefits(frameworkId || '', conceptId || '').map((benefit, index) => (
-                  <li key={index} style={{ marginBottom: '8px' }}>{benefit}</li>
+                  <div key={index} className="key-benefit-card" style={{
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    padding: '24px',
+                    borderRadius: '16px',
+                    border: '2px solid rgba(111, 66, 193, 0.2)',
+                    position: 'relative',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    transform: 'translateY(0)',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    minHeight: '160px'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 12px 24px rgba(111, 66, 193, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                  }}
+                  >
+                    <div style={{
+                      position: 'absolute',
+                      top: '12px',
+                      right: '12px',
+                      width: '28px',
+                      height: '28px',
+                      background: '#6f42c1',
+                      color: 'white',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '14px',
+                      fontWeight: 'bold'
+                    }}>
+                      {index + 1}
+                    </div>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      marginBottom: '16px',
+                      marginTop: '8px'
+                    }}>
+                      <div style={{
+                        width: '12px',
+                        height: '12px',
+                        borderRadius: '50%',
+                        background: '#6f42c1',
+                        animation: 'pulse 2s infinite',
+                        flexShrink: 0
+                      }} />
+                      <Text strong style={{ 
+                        color: '#6f42c1',
+                        fontFamily: '"Open Sans", sans-serif',
+                        fontSize: '16px',
+                        fontWeight: '600'
+                      }}>
+                        Benefit {index + 1}
+                      </Text>
+                    </div>
+                    <Text className="key-benefit-text" style={{ 
+                      color: '#6f42c1',
+                      fontFamily: '"Open Sans", sans-serif',
+                      fontSize: '14px',
+                      lineHeight: '1.6',
+                      flex: 1,
+                      margin: 0
+                    }}>
+                      {benefit}
+                    </Text>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
           
-          <Alert
-            message="Key Takeaway"
-            description="This concept helps you build more efficient and maintainable applications."
-            type="info"
-            showIcon
-            style={{ marginTop: '16px' }}
-          />
-        </Card>
+          {/* Key Takeaway - Highlighted Box */}
+          <div style={{
+            background: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+            padding: '24px',
+            borderRadius: '20px',
+            border: '2px solid #ff8a65',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              right: '0',
+              height: '100%',
+              background: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)',
+              animation: 'shimmer 2s infinite'
+            }} />
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                marginBottom: '12px'
+              }}>
+                <div style={{
+                  width: '40px',
+                  height: '40px',
+                  background: '#ff8a65',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '18px',
+                  color: 'white'
+                }}>
+                  💡
+                </div>
+                <Text strong style={{
+                  color: '#d84315',
+                  fontFamily: '"Open Sans", sans-serif',
+                  fontSize: '18px'
+                }}>
+                  Key Takeaway
+                </Text>
+              </div>
+              <Text style={{
+                color: '#d84315',
+                fontFamily: '"Open Sans", sans-serif',
+                fontSize: '16px',
+                lineHeight: '1.6'
+              }}>
+                This concept helps you build more efficient and maintainable applications.
+              </Text>
+            </div>
+          </div>
+        </div>
       )
     },
     {
       title: 'Visual Metaphor',
       icon: <BulbOutlined />,
       content: (
-        <Card>
-          <Title level={3}>💡 Interactive Story</Title>
+        <div style={{ padding: '40px' }}>
+          <Title level={2} style={{ 
+            color: '#1a1a1a', 
+            marginBottom: '32px',
+            fontFamily: '"Open Sans", sans-serif',
+            textAlign: 'center',
+            fontSize: '2.5rem'
+          }}>
+            💡 Visual Metaphor
+          </Title>
+          
           {concept?.story ? (
             <InteractiveStory story={concept.story} />
           ) : (
-            <>
-              <div style={{ 
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
-                padding: '24px', 
-                borderRadius: '12px',
-                color: 'white',
-                marginBottom: '16px'
-              }}>
-                <Paragraph style={{ fontSize: '18px', color: 'white', margin: 0 }}>
+            <div style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              padding: '40px',
+              borderRadius: '24px',
+              color: 'white',
+              marginBottom: '32px',
+              textAlign: 'center',
+              boxShadow: '0 12px 32px rgba(102, 126, 234, 0.3)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                right: '0',
+                bottom: '0',
+                background: 'radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)',
+                animation: 'float 6s ease-in-out infinite'
+              }} />
+              <div style={{ position: 'relative', zIndex: 2 }}>
+                <div style={{ 
+                  fontSize: '64px', 
+                  marginBottom: '24px',
+                  animation: 'bounce 2s infinite'
+                }}>
+                  💭
+                </div>
+                <Paragraph style={{ 
+                  fontSize: '20px', 
+                  color: 'white', 
+                  margin: 0,
+                  fontFamily: '"Open Sans", sans-serif',
+                  lineHeight: '1.6'
+                }}>
                   {concept?.metaphor}
                 </Paragraph>
               </div>
-              <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
-                This metaphor helps you understand the concept in familiar terms, making it easier to remember and apply.
-              </Paragraph>
-            </>
+            </div>
           )}
-        </Card>
+          
+          {/* Interactive Metaphor Explanation */}
+          <div style={{
+            background: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+            padding: '32px',
+            borderRadius: '20px',
+            border: '2px solid #ff8a65',
+            position: 'relative',
+            overflow: 'hidden',
+            marginBottom: '32px'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              right: '0',
+              height: '100%',
+              background: 'linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%)',
+              animation: 'shimmer 2s infinite'
+            }} />
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                marginBottom: '20px'
+              }}>
+                <div style={{
+                  width: '50px',
+                  height: '50px',
+                  background: '#ff8a65',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '20px',
+                  color: 'white',
+                  animation: 'pulse 2s infinite'
+                }}>
+                  🎯
+                </div>
+                <Title level={3} style={{
+                  color: '#d84315',
+                  margin: 0,
+                  fontFamily: '"Open Sans", sans-serif'
+                }}>
+                  Why This Metaphor Works
+                </Title>
+              </div>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '20px'
+              }}>
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  padding: '20px',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(255, 138, 101, 0.3)'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '12px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#ff8a65'
+                    }} />
+                    <Text strong style={{
+                      color: '#d84315',
+                      fontFamily: '"Open Sans", sans-serif',
+                      fontSize: '14px'
+                    }}>
+                      Familiar Context
+                    </Text>
+                  </div>
+                  <Text style={{
+                    color: '#d84315',
+                    fontFamily: '"Open Sans", sans-serif',
+                    fontSize: '13px',
+                    lineHeight: '1.6'
+                  }}>
+                    Uses everyday situations you already understand, making complex concepts feel familiar.
+                  </Text>
+                </div>
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  padding: '20px',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(255, 138, 101, 0.3)'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '12px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#ff8a65'
+                    }} />
+                    <Text strong style={{
+                      color: '#d84315',
+                      fontFamily: '"Open Sans", sans-serif',
+                      fontSize: '14px'
+                    }}>
+                      Visual Memory
+                    </Text>
+                  </div>
+                  <Text style={{
+                    color: '#d84315',
+                    fontFamily: '"Open Sans", sans-serif',
+                    fontSize: '13px',
+                    lineHeight: '1.6'
+                  }}>
+                    Creates mental images that stick in your memory longer than abstract explanations.
+                  </Text>
+                </div>
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  padding: '20px',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(255, 138, 101, 0.3)'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '12px'
+                  }}>
+                    <div style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: '#ff8a65'
+                    }} />
+                    <Text strong style={{
+                      color: '#d84315',
+                      fontFamily: '"Open Sans", sans-serif',
+                      fontSize: '14px'
+                    }}>
+                      Easy Recall
+                    </Text>
+                  </div>
+                  <Text style={{
+                    color: '#d84315',
+                    fontFamily: '"Open Sans", sans-serif',
+                    fontSize: '13px',
+                    lineHeight: '1.6'
+                  }}>
+                    When you think of the metaphor, you'll instantly remember the programming concept.
+                  </Text>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Interactive Practice Question */}
+          <div style={{
+            background: 'linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)',
+            padding: '32px',
+            borderRadius: '20px',
+            border: '2px solid #2196f3',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              right: '0',
+              height: '4px',
+              background: 'linear-gradient(90deg, #2196f3, #03a9f4, #00bcd4, #009688)'
+            }} />
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                marginBottom: '20px'
+              }}>
+                <div style={{
+                  width: '50px',
+                  height: '50px',
+                  background: '#2196f3',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '20px',
+                  color: 'white'
+                }}>
+                  🤔
+                </div>
+                <Title level={3} style={{
+                  color: '#1565c0',
+                  margin: 0,
+                  fontFamily: '"Open Sans", sans-serif'
+                }}>
+                  Think About It
+                </Title>
+              </div>
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.9)',
+                padding: '24px',
+                borderRadius: '16px',
+                border: '1px solid rgba(33, 150, 243, 0.2)'
+              }}>
+                <Text style={{
+                  color: '#1565c0',
+                  fontFamily: '"Open Sans", sans-serif',
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  margin: 0
+                }}>
+                  Can you think of another real-world example where this concept applies? 
+                  Try to come up with your own metaphor to reinforce your understanding!
+                </Text>
+              </div>
+            </div>
+          </div>
+        </div>
       )
     },
     {
       title: 'Examples',
       icon: <CodeOutlined />,
       content: (
-        <Card>
-          <Title level={3}>Real-World Examples</Title>
-          <Collapse defaultActiveKey={['1']}>
-            <Panel header="Basic Example" key="1">
-              <CodeBlock
-                code={getExamples(frameworkId || '', conceptId || '').basic}
-                language={frameworkId === 'angular' ? 'typescript' : 'jsx'}
-                title="Basic Implementation"
-              />
-            </Panel>
-            <Panel header="Advanced Example" key="2">
-              <CodeBlock
-                code={getExamples(frameworkId || '', conceptId || '').advanced}
-                language={frameworkId === 'angular' ? 'typescript' : 'jsx'}
-                title="Advanced Implementation"
-              />
-            </Panel>
-          </Collapse>
-        </Card>
+        <div style={{ padding: '40px' }}>
+          <Title level={2} style={{ 
+            color: '#1a1a1a', 
+            marginBottom: '32px',
+            fontFamily: '"Open Sans", sans-serif',
+            textAlign: 'center',
+            fontSize: '2.5rem'
+          }}>
+            Real-World Examples
+          </Title>
+          <div style={{
+            background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+            padding: '32px',
+            borderRadius: '20px',
+            border: '1px solid rgba(18, 113, 91, 0.1)'
+          }}>
+            <Collapse 
+              defaultActiveKey={['1']}
+              style={{
+                background: 'transparent',
+                border: 'none'
+              }}
+            >
+              <Panel 
+                header={
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    fontFamily: '"Open Sans", sans-serif',
+                    fontWeight: 'bold',
+                    color: '#1a1a1a'
+                  }}>
+                    <div style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: '#12715b',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '14px',
+                      fontWeight: 'bold'
+                    }}>
+                      1
+                    </div>
+                    Basic Example
+                  </div>
+                } 
+                key="1"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: '12px',
+                  marginBottom: '16px',
+                  border: '1px solid rgba(18, 113, 91, 0.1)'
+                }}
+              >
+                <CodeBlock
+                  code={getExamples(frameworkId || '', conceptId || '').basic}
+                  language={frameworkId === 'angular' ? 'typescript' : 'jsx'}
+                  title="Basic Implementation"
+                />
+              </Panel>
+              <Panel 
+                header={
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    fontFamily: '"Open Sans", sans-serif',
+                    fontWeight: 'bold',
+                    color: '#1a1a1a'
+                  }}>
+                    <div style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      background: '#12715b',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '14px',
+                      fontWeight: 'bold'
+                    }}>
+                      2
+                    </div>
+                    Advanced Example
+                  </div>
+                } 
+                key="2"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(18, 113, 91, 0.1)'
+                }}
+              >
+                <CodeBlock
+                  code={getExamples(frameworkId || '', conceptId || '').advanced}
+                  language={frameworkId === 'angular' ? 'typescript' : 'jsx'}
+                  title="Advanced Implementation"
+                />
+              </Panel>
+            </Collapse>
+          </div>
+        </div>
       )
     },
     {
       title: 'Practice',
       icon: <ExperimentOutlined />,
       content: (
-        <Card>
-          <Title level={3}>Try it yourself!</Title>
-          <Paragraph style={{ fontSize: '16px', lineHeight: '1.8' }}>
-            Now it's your turn to practice this concept. The best way to learn is by doing!
-          </Paragraph>
-          <Space direction="vertical" style={{ width: '100%' }}>
-            <Button type="primary" size="large" icon={<PlayCircleOutlined />}>
-              Start Interactive Exercise
-            </Button>
-            <Button size="large" icon={<BookOutlined />}>
-              View Additional Resources
-            </Button>
-          </Space>
-        </Card>
+        <div style={{ padding: '40px' }}>
+          <Title level={2} style={{ 
+            color: '#1a1a1a', 
+            marginBottom: '32px',
+            fontFamily: '"Open Sans", sans-serif',
+            textAlign: 'center',
+            fontSize: '2.5rem'
+          }}>
+            Try it yourself!
+          </Title>
+          <div style={{
+            background: 'linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%)',
+            padding: '40px',
+            borderRadius: '24px',
+            textAlign: 'center',
+            border: '1px solid rgba(76, 175, 80, 0.1)',
+            boxShadow: '0 8px 24px rgba(76, 175, 80, 0.15)',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              right: '0',
+              height: '4px',
+              background: 'linear-gradient(90deg, #4caf50, #8bc34a, #cddc39, #ffeb3b, #ff9800, #ff5722)',
+              animation: 'rainbow 3s linear infinite'
+            }} />
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <div style={{ 
+                fontSize: '64px', 
+                marginBottom: '24px',
+                animation: 'bounce 2s infinite'
+              }}>
+                🎯
+              </div>
+              <Paragraph style={{ 
+                fontSize: '18px', 
+                lineHeight: '1.8',
+                color: '#2e7d32',
+                fontFamily: '"Open Sans", sans-serif',
+                marginBottom: '32px'
+              }}>
+                Now it's your turn to practice this concept. The best way to learn is by doing!
+              </Paragraph>
+              <Space direction="vertical" size="large" style={{ width: '100%' }}>
+                <Button 
+                  type="primary" 
+                  size="large" 
+                  icon={<PlayCircleOutlined />}
+                  style={{
+                    height: '56px',
+                    padding: '0 48px',
+                    borderRadius: '12px',
+                    background: '#12715b',
+                    border: 'none',
+                    fontFamily: '"Open Sans", sans-serif',
+                    fontWeight: 'bold',
+                    fontSize: '16px',
+                    boxShadow: '0 8px 24px rgba(18, 113, 91, 0.3)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(18, 113, 91, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(18, 113, 91, 0.3)';
+                  }}
+                >
+                  Start Interactive Exercise
+                </Button>
+                <Button 
+                  size="large" 
+                  icon={<BookOutlined />}
+                  style={{
+                    height: '48px',
+                    padding: '0 32px',
+                    borderRadius: '12px',
+                    fontFamily: '"Open Sans", sans-serif',
+                    fontWeight: '600',
+                    fontSize: '14px',
+                    border: '2px solid #12715b',
+                    color: '#12715b',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(18, 113, 91, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  View Additional Resources
+                </Button>
+              </Space>
+            </div>
+          </div>
+        </div>
       )
     }
   ];
@@ -1035,101 +1755,1233 @@ console.log('Learning made easy!');`,
   }
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#f0f2f5' }}>
-      <Header style={{ background: '#001529', padding: '0 50px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          <Button 
-            type="text" 
-            icon={<ArrowLeftOutlined />} 
-            style={{ color: 'white', marginRight: '16px' }}
-            onClick={() => navigate(`/concepts/${frameworkId}`)}
-          >
-            Back to {framework.name}
-          </Button>
-          <BookOutlined style={{ fontSize: '24px', color: '#1890ff', marginRight: '12px' }} />
-          <Title level={3} style={{ color: 'white', margin: 0 }}>
-            {concept.title}
-          </Title>
-        </div>
-      </Header>
+    <Layout style={{ minHeight: '100vh', background: '#ffffff' }}>
+      {/* CSS Animations */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+          }
+          @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+          }
+          @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+          }
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+          @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+          }
+          @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+          }
+        `
+      }} />
       
-      <Content style={{ padding: '50px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <Row gutter={[24, 24]}>
-            <Col xs={24} lg={6}>
-              <Card style={{ position: 'sticky', top: '24px' }}>
-                <Title level={4} style={{ marginBottom: '16px' }}>
-                  Learning Progress
+      {/* Combined Header and Hero Section */}
+      <div style={{
+        background: 'linear-gradient(135deg, rgb(245, 238, 233) 0%, rgba(18, 113, 91, 0.05) 100%)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Header */}
+        <Header className="concept-header" style={{
+          background: 'transparent',
+          padding: '0 20px',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          height: '80px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          fontFamily: '"Open Sans", sans-serif',
+          borderBottom: 'none'
+        }}>
+          <div className="header-left" style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0 }}>
+            <Button 
+              className="back-button"
+              type="text" 
+              icon={<ArrowLeftOutlined />} 
+              style={{ 
+                color: '#12715b', 
+                marginRight: '12px',
+                fontSize: '14px',
+                fontWeight: '600',
+                fontFamily: '"Open Sans", sans-serif',
+                padding: '8px 12px',
+                height: 'auto'
+              }}
+              onClick={() => navigate(`/concepts/${frameworkId}`)}
+            >
+              <span className="back-text">Back to {framework.name}</span>
+            </Button>
+            <div className="header-title-container" style={{ display: 'flex', alignItems: 'center', flex: 1, minWidth: 0 }}>
+              <BookOutlined style={{ fontSize: '24px', color: '#12715b', marginRight: '12px', flexShrink: 0 }} />
+              <Title level={4} className="concept-title" style={{ 
+                color: '#1a1a1a', 
+                margin: 0, 
+                fontWeight: 'bold',
+                fontFamily: '"Open Sans", sans-serif',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap'
+              }}>
+                {concept.title}
+              </Title>
+            </div>
+          </div>
+          
+          <div className="header-tags" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '8px',
+            flexShrink: 0
+          }}>
+            <Tag color={getDifficultyColor(concept.difficulty)} className="difficulty-tag" style={{ 
+              margin: 0, 
+              fontWeight: 'bold', 
+              fontFamily: '"Open Sans", sans-serif',
+              fontSize: '12px',
+              padding: '4px 8px'
+            }}>
+              {getDifficultyText(concept.difficulty)}
+            </Tag>
+            {concept.estimatedTime && (
+              <Tag color="#12715b" className="time-tag" style={{ 
+                margin: 0, 
+                fontWeight: 'bold', 
+                fontFamily: '"Open Sans", sans-serif',
+                fontSize: '12px',
+                padding: '4px 8px'
+              }}>
+                ⏱️ {concept.estimatedTime}
+              </Tag>
+            )}
+          </div>
+        </Header>
+
+        {/* Hero Section */}
+        <div style={{
+          padding: '120px 20px 60px',
+          textAlign: 'center',
+          position: 'relative',
+          zIndex: 2
+        }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            {/* Concept Icon and Badge */}
+            <div style={{ 
+              marginBottom: '30px',
+              animation: 'fadeInDown 1s ease-out'
+            }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '80px',
+                height: '80px',
+                background: 'linear-gradient(135deg, #12715b 0%, #0f5f4a 100%)',
+                borderRadius: '50%',
+                marginBottom: '20px',
+                boxShadow: '0 8px 20px rgba(18, 113, 91, 0.3)',
+                position: 'relative'
+              }}>
+                <div style={{ fontSize: '32px', color: 'white' }}>
+                  <CodeOutlined />
+                </div>
+                <div style={{
+                  position: 'absolute',
+                  top: '-6px',
+                  right: '-6px',
+                  background: '#12715b',
+                  color: 'white',
+                  borderRadius: '50%',
+                  width: '24px',
+                  height: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '10px',
+                  fontWeight: 'bold',
+                  border: '2px solid rgb(245, 238, 233)'
+                }}>
+                  {currentStep + 1}
+                </div>
+              </div>
+            </div>
+
+            {/* Main Title */}
+            <Title level={1} style={{ 
+              color: '#1a1a1a', 
+              marginBottom: '20px',
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              fontFamily: '"Open Sans", sans-serif',
+              animation: 'fadeInUp 1s ease-out 0.2s both',
+              lineHeight: '1.2'
+            }}>
+              Master {concept.title}
+              <br />
+              <span style={{ 
+                fontWeight: 300,
+                display: 'inline-block',
+                padding: '8px 16px',
+                borderRadius: '12px',
+                position: 'relative',
+                background: 'rgba(18, 113, 91, 0.1)',
+                border: '2px solid rgba(18, 113, 91, 0.2)',
+                boxShadow: '0 4px 12px rgba(18, 113, 91, 0.15)',
+                color: '#12715b'
+              }}>
+                with Learnify
+              </span>
+            </Title>
+            
+            {/* Subtitle */}
+            <Paragraph style={{ 
+              fontSize: '16px', 
+              color: '#666', 
+              marginBottom: '32px',
+              animation: 'fadeInUp 1s ease-out 0.4s both',
+              fontFamily: '"Open Sans", sans-serif',
+              maxWidth: '800px',
+              margin: '0 auto 32px',
+              lineHeight: '1.6'
+            }}>
+              {concept.description}
+            </Paragraph>
+
+            {/* Learning Steps Preview */}
+            <div style={{ 
+              maxWidth: '800px', 
+              margin: '0 auto',
+              animation: 'fadeInUp 1s ease-out 0.6s both'
+            }}>
+              <div style={{ 
+                background: 'rgba(255, 255, 255, 0.9)', 
+                padding: '32px', 
+                borderRadius: '20px',
+                border: '1px solid rgba(18, 113, 91, 0.1)',
+                boxShadow: '0 12px 32px rgba(0, 0, 0, 0.08)'
+              }}>
+                <Title level={3} style={{ 
+                  color: '#1a1a1a', 
+                  marginBottom: '24px',
+                  fontFamily: '"Open Sans", sans-serif',
+                  textAlign: 'center'
+                }}>
+                  Your Learning Journey
                 </Title>
-                <Progress 
-                  percent={progress} 
-                  status="active"
-                  style={{ marginBottom: '24px' }}
-                />
-                <Steps
-                  direction="vertical"
-                  current={currentStep}
-                  onChange={handleStepChange}
-                  items={steps.map((step, index) => ({
-                    title: step.title,
-                    icon: step.icon,
-                    description: `Step ${index + 1}`
-                  }))}
-                />
+                <Row gutter={[16, 16]} justify="center">
+                  {steps.map((step, index) => (
+                    <Col xs={12} md={6} key={index}>
+                      <div style={{
+                        background: index === currentStep 
+                          ? 'linear-gradient(135deg, #12715b 0%, #0f5f4a 100%)'
+                          : 'rgba(255, 255, 255, 0.8)',
+                        padding: '20px',
+                        borderRadius: '16px',
+                        border: index === currentStep 
+                          ? '2px solid #12715b'
+                          : '1px solid rgba(18, 113, 91, 0.1)',
+                        boxShadow: index === currentStep 
+                          ? '0 8px 24px rgba(18, 113, 91, 0.25)'
+                          : '0 4px 12px rgba(0, 0, 0, 0.05)',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        textAlign: 'center',
+                        height: '120px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                      }}
+                      onClick={() => handleStepChange(index)}
+                      onMouseEnter={(e) => {
+                        if (index !== currentStep) {
+                          e.currentTarget.style.transform = 'translateY(-4px)';
+                          e.currentTarget.style.boxShadow = '0 8px 20px rgba(18, 113, 91, 0.15)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (index !== currentStep) {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.05)';
+                        }
+                      }}
+                      >
+                        <div style={{
+                          fontSize: '24px',
+                          color: index === currentStep ? 'white' : '#12715b',
+                          marginBottom: '12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}>
+                          {step.icon}
+                        </div>
+                        <div style={{
+                          fontSize: '16px',
+                          fontWeight: 'bold',
+                          color: index === currentStep ? 'white' : '#1a1a1a',
+                          fontFamily: '"Open Sans", sans-serif',
+                          marginBottom: '4px',
+                          lineHeight: '1.2'
+                        }}>
+                          {step.title}
+                        </div>
+                        <div style={{
+                          fontSize: '12px',
+                          color: index === currentStep ? 'rgba(255, 255, 255, 0.8)' : '#666',
+                          fontFamily: '"Open Sans", sans-serif',
+                          lineHeight: '1.2'
+                        }}>
+                          Step {index + 1}
+                        </div>
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <Content style={{ padding: '0', background: '#ffffff' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
+          <Row gutter={[24, 24]}>
+            <Col xs={24} lg={8}>
+              <Card style={{ 
+                position: 'sticky', 
+                top: '24px',
+                borderRadius: '16px',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+                border: '1px solid #f0f0f0',
+                background: 'linear-gradient(135deg, #ffffff 0%, #fafafa 100%)'
+              }}>
+                <Title level={4} style={{ 
+                  marginBottom: '24px',
+                  fontFamily: '"Open Sans", sans-serif',
+                  color: '#1a1a1a',
+                  textAlign: 'center',
+                  fontSize: '20px'
+                }}>
+                  📚 Learning Steps
+                </Title>
+                
+                {/* Progress Overview */}
+                <div style={{
+                  background: 'rgba(18, 113, 91, 0.05)',
+                  padding: '16px',
+                  borderRadius: '12px',
+                  marginBottom: '24px',
+                  border: '1px solid rgba(18, 113, 91, 0.1)'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <Text strong style={{ color: '#1a1a1a', fontFamily: '"Open Sans", sans-serif', fontSize: '14px' }}>
+                      Progress
+                    </Text>
+                    <Text strong style={{ color: '#12715b', fontFamily: '"Open Sans", sans-serif', fontSize: '14px' }}>
+                      {Math.round(progress)}%
+                    </Text>
+                  </div>
+                  <Progress 
+                    percent={progress} 
+                    strokeColor={{
+                      '0%': '#12715b',
+                      '100%': '#0f5f4a',
+                    }}
+                    showInfo={false}
+                    style={{ marginBottom: '0' }}
+                    strokeWidth={8}
+                    trailColor="rgba(18, 113, 91, 0.1)"
+                  />
+                </div>
+
+                {/* Enhanced Steps */}
+                <div style={{ marginBottom: '16px' }}>
+                  {steps.map((step, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        background: index === currentStep 
+                          ? 'linear-gradient(135deg, #12715b 0%, #0f5f4a 100%)'
+                          : index < currentStep
+                          ? 'rgba(18, 113, 91, 0.1)'
+                          : 'rgba(255, 255, 255, 0.8)',
+                        padding: '16px',
+                        borderRadius: '12px',
+                        marginBottom: '12px',
+                        border: index === currentStep 
+                          ? '2px solid #12715b'
+                          : '1px solid rgba(18, 113, 91, 0.1)',
+                        boxShadow: index === currentStep 
+                          ? '0 4px 12px rgba(18, 113, 91, 0.25)'
+                          : '0 2px 8px rgba(0, 0, 0, 0.05)',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        position: 'relative'
+                      }}
+                      onClick={() => handleStepChange(index)}
+                      onMouseEnter={(e) => {
+                        if (index !== currentStep) {
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                          e.currentTarget.style.boxShadow = '0 6px 16px rgba(18, 113, 91, 0.15)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (index !== currentStep) {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
+                        }
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div style={{
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '50%',
+                          background: index === currentStep 
+                            ? 'white'
+                            : index < currentStep
+                            ? '#12715b'
+                            : 'rgba(18, 113, 91, 0.2)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginRight: '12px',
+                          fontSize: '14px',
+                          color: index === currentStep ? '#12715b' : 'white',
+                          fontWeight: 'bold'
+                        }}>
+                          {index < currentStep ? '✓' : index + 1}
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{
+                            fontSize: '14px',
+                            fontWeight: 'bold',
+                            color: index === currentStep ? 'white' : '#1a1a1a',
+                            fontFamily: '"Open Sans", sans-serif',
+                            marginBottom: '2px'
+                          }}>
+                            {step.title}
+                          </div>
+                          <div style={{
+                            fontSize: '12px',
+                            color: index === currentStep ? 'rgba(255, 255, 255, 0.8)' : '#666',
+                            fontFamily: '"Open Sans", sans-serif'
+                          }}>
+                            Step {index + 1}
+                          </div>
+                        </div>
+                        <div style={{
+                          fontSize: '16px',
+                          color: index === currentStep ? 'white' : '#12715b',
+                          opacity: index === currentStep ? 1 : 0.6
+                        }}>
+                          {step.icon}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Quick Stats */}
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  padding: '16px',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(18, 113, 91, 0.1)'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <Text style={{ color: '#666', fontFamily: '"Open Sans", sans-serif', fontSize: '12px' }}>
+                      Difficulty
+                    </Text>
+                    <Text strong style={{ color: '#12715b', fontFamily: '"Open Sans", sans-serif', fontSize: '12px' }}>
+                      {getDifficultyText(concept.difficulty)}
+                    </Text>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Text style={{ color: '#666', fontFamily: '"Open Sans", sans-serif', fontSize: '12px' }}>
+                      Time
+                    </Text>
+                    <Text strong style={{ color: '#12715b', fontFamily: '"Open Sans", sans-serif', fontSize: '12px' }}>
+                      {concept.estimatedTime || '15'} min
+                    </Text>
+                  </div>
+                </div>
               </Card>
             </Col>
             
-            <Col xs={24} lg={18}>
-              <Card style={{ marginBottom: '24px' }}>
-                <Row gutter={[16, 16]} align="middle">
-                  <Col>
-                    <Avatar 
-                      size={64} 
-                      icon={<CodeOutlined />} 
-                      style={{ backgroundColor: '#1890ff' }}
-                    />
-                  </Col>
-                  <Col flex="1">
-                    <Title level={2} style={{ margin: 0 }}>
-                      {concept.title}
-                    </Title>
-                    <Space>
-                      <Tag color={getDifficultyColor(concept.difficulty)}>
-                        {getDifficultyText(concept.difficulty)}
-                      </Tag>
-                      {concept.estimatedTime && (
-                        <Tag color="blue">
-                          ⏱️ {concept.estimatedTime}
-                        </Tag>
-                      )}
-                    </Space>
-                  </Col>
-                </Row>
-              </Card>
+            <Col xs={24} lg={16}>
+              <div style={{ 
+                background: '#ffffff',
+                borderRadius: '16px',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+                border: '1px solid #f0f0f0',
+                overflow: 'hidden'
+              }}>
+                {steps[currentStep]?.content}
+              </div>
               
-              {steps[currentStep]?.content}
-              
-              <div style={{ marginTop: '24px', textAlign: 'center' }}>
-                <Space>
-                  <Button 
-                    disabled={currentStep === 0}
-                    onClick={() => handleStepChange(currentStep - 1)}
-                  >
-                    Previous
-                  </Button>
-                  <Button 
-                    type="primary"
-                    disabled={currentStep === steps.length - 1}
-                    onClick={() => handleStepChange(currentStep + 1)}
-                  >
-                    {currentStep === steps.length - 1 ? 'Complete' : 'Next'}
-                  </Button>
-                </Space>
+              <div style={{ 
+                marginTop: '24px', 
+                textAlign: 'center',
+                padding: '32px',
+                background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+                borderRadius: '20px',
+                border: '1px solid rgba(18, 113, 91, 0.1)',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: '0',
+                  left: '0',
+                  right: '0',
+                  height: '4px',
+                  background: 'linear-gradient(90deg, #12715b, #0f5f4a, #12715b)',
+                  animation: 'rainbow 3s linear infinite'
+                }} />
+                <div style={{ position: 'relative', zIndex: 2 }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '16px',
+                    marginBottom: '24px'
+                  }}>
+                    <div style={{
+                      width: '40px',
+                      height: '40px',
+                      background: '#12715b',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '16px',
+                      color: 'white',
+                      animation: 'pulse 2s infinite'
+                    }}>
+                      📚
+                    </div>
+                    <Text strong style={{
+                      color: '#1a1a1a',
+                      fontFamily: '"Open Sans", sans-serif',
+                      fontSize: '18px'
+                    }}>
+                      Continue Your Learning Journey
+                    </Text>
+                  </div>
+                  
+                  <div className="navigation-buttons" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '16px',
+                    marginTop: '32px',
+                    padding: '24px',
+                    background: 'linear-gradient(135deg, rgba(245, 238, 233, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%)',
+                    borderRadius: '20px',
+                    border: '2px solid rgba(18, 113, 91, 0.1)',
+                    boxShadow: '0 8px 32px rgba(18, 113, 91, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    flexWrap: 'wrap'
+                  }}>
+                    <Button 
+                      className="navigation-button"
+                      disabled={currentStep === 0}
+                      onClick={() => handleStepChange(currentStep - 1)}
+                      style={{
+                        height: '56px',
+                        padding: '0 24px',
+                        borderRadius: '12px',
+                        fontFamily: '"Open Sans", sans-serif',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        border: '2px solid rgba(18, 113, 91, 0.3)',
+                        color: currentStep === 0 ? '#ccc' : '#12715b',
+                        background: currentStep === 0 
+                          ? 'rgba(245, 245, 245, 0.5)' 
+                          : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 238, 233, 0.8) 100%)',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        minWidth: '140px',
+                        justifyContent: 'center',
+                        boxShadow: currentStep === 0 
+                          ? 'none' 
+                          : '0 4px 16px rgba(18, 113, 91, 0.15)'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (currentStep !== 0) {
+                          e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                          e.currentTarget.style.boxShadow = '0 8px 24px rgba(18, 113, 91, 0.25)';
+                          e.currentTarget.style.borderColor = '#12715b';
+                          e.currentTarget.style.background = 'linear-gradient(135deg, rgba(18, 113, 91, 0.05) 0%, rgba(245, 238, 233, 0.9) 100%)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (currentStep !== 0) {
+                          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                          e.currentTarget.style.boxShadow = '0 4px 16px rgba(18, 113, 91, 0.15)';
+                          e.currentTarget.style.borderColor = 'rgba(18, 113, 91, 0.3)';
+                          e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 238, 233, 0.8) 100%)';
+                        }
+                      }}
+                    >
+                      <div style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: currentStep === 0 ? '#f0f0f0' : '#12715b',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '14px',
+                        color: currentStep === 0 ? '#ccc' : 'white',
+                        transition: 'all 0.3s ease',
+                        boxShadow: currentStep === 0 ? 'none' : '0 2px 8px rgba(18, 113, 91, 0.3)'
+                      }}>
+                        ←
+                      </div>
+                      <span style={{ fontWeight: '600' }}>Previous</span>
+                    </Button>
+                    
+                    <div className="progress-indicator" style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '12px 16px',
+                      background: 'linear-gradient(135deg, rgba(18, 113, 91, 0.1) 0%, rgba(18, 113, 91, 0.05) 100%)',
+                      borderRadius: '12px',
+                      border: '2px solid rgba(18, 113, 91, 0.2)',
+                      minWidth: '100px'
+                    }}>
+                      <div style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg, #12715b 0%, #0f5f4a 100%)',
+                        color: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        boxShadow: '0 4px 12px rgba(18, 113, 91, 0.3)'
+                      }}>
+                        {currentStep + 1}
+                      </div>
+                      <Text style={{
+                        color: '#12715b',
+                        fontFamily: '"Open Sans", sans-serif',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        textAlign: 'center'
+                      }}>
+                        Step {currentStep + 1} of {steps.length}
+                      </Text>
+                      <div style={{
+                        width: '50px',
+                        height: '3px',
+                        background: 'rgba(18, 113, 91, 0.2)',
+                        borderRadius: '2px',
+                        overflow: 'hidden'
+                      }}>
+                        <div style={{
+                          width: `${((currentStep + 1) / steps.length) * 100}%`,
+                          height: '100%',
+                          background: 'linear-gradient(90deg, #12715b 0%, #0f5f4a 100%)',
+                          borderRadius: '2px',
+                          transition: 'width 0.3s ease'
+                        }} />
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      className="navigation-button"
+                      type="primary"
+                      disabled={currentStep === steps.length - 1}
+                      onClick={() => handleStepChange(currentStep + 1)}
+                      style={{
+                        height: '56px',
+                        padding: '0 24px',
+                        borderRadius: '12px',
+                        background: currentStep === steps.length - 1
+                          ? 'linear-gradient(135deg, #52c41a 0%, #389e0d 100%)'
+                          : 'linear-gradient(135deg, #12715b 0%, #0f5f4a 100%)',
+                        border: 'none',
+                        fontFamily: '"Open Sans", sans-serif',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        boxShadow: currentStep === steps.length - 1
+                          ? '0 6px 20px rgba(82, 196, 26, 0.3)'
+                          : '0 6px 20px rgba(18, 113, 91, 0.3)',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        minWidth: '140px',
+                        justifyContent: 'center'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (currentStep !== steps.length - 1) {
+                          e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                          e.currentTarget.style.boxShadow = '0 8px 24px rgba(18, 113, 91, 0.25)';
+                        } else {
+                          e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+                          e.currentTarget.style.boxShadow = '0 8px 24px rgba(82, 196, 26, 0.25)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (currentStep !== steps.length - 1) {
+                          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(18, 113, 91, 0.3)';
+                        } else {
+                          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(82, 196, 26, 0.3)';
+                        }
+                      }}
+                    >
+                      <span style={{ fontWeight: '600' }}>
+                        {currentStep === steps.length - 1 ? 'Complete Learning' : 'Next Step'}
+                      </span>
+                      <div style={{
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '14px',
+                        color: 'white',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(255, 255, 255, 0.3)'
+                      }}>
+                        {currentStep === steps.length - 1 ? '✓' : '→'}
+                      </div>
+                    </Button>
+                  </div>
+                  
+                  <div style={{
+                    marginTop: '16px',
+                    padding: '12px 20px',
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(18, 113, 91, 0.1)'
+                  }}>
+                    <Text style={{
+                      color: '#666',
+                      fontFamily: '"Open Sans", sans-serif',
+                      fontSize: '14px',
+                      textAlign: 'center',
+                      margin: 0
+                    }}>
+                      {currentStep === 0 ? 'Start your learning journey!' : 
+                       currentStep === steps.length - 1 ? 'You\'re almost there! Complete the final step.' :
+                       `Great progress! You're on step ${currentStep + 1} of ${steps.length}.`}
+                    </Text>
+                  </div>
+                </div>
               </div>
             </Col>
           </Row>
         </div>
       </Content>
+      <Footer />
+      
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          /* Responsive Design for Concept Detail Page */
+          @media (max-width: 768px) {
+            .ant-layout-header {
+              padding: 0 16px !important;
+              height: 60px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 2rem !important;
+              line-height: 1.1 !important;
+            }
+            
+            .ant-typography h2 {
+              font-size: 1.5rem !important;
+            }
+            
+            .ant-typography h3 {
+              font-size: 1.25rem !important;
+            }
+            
+            .ant-typography h4 {
+              font-size: 1.1rem !important;
+            }
+            
+            .hero-section {
+              padding: 80px 16px 50px !important;
+            }
+            
+            .content-section {
+              padding: 30px 16px !important;
+            }
+            
+            .ant-btn {
+              height: 44px !important;
+              padding: 0 20px !important;
+              font-size: 14px !important;
+            }
+            
+            .ant-card {
+              margin-bottom: 12px !important;
+            }
+            
+            .ant-row {
+              margin: 0 -6px !important;
+            }
+            
+            .ant-col {
+              padding: 0 6px !important;
+            }
+            
+            .ant-tag {
+              font-size: 11px !important;
+              padding: 4px 8px !important;
+            }
+            
+            .concept-icon {
+              width: 60px !important;
+              height: 60px !important;
+            }
+            
+            .concept-icon-badge {
+              width: 20px !important;
+              height: 20px !important;
+              font-size: 9px !important;
+            }
+            
+            /* Header Responsive Styles */
+            .concept-header {
+              padding: 0 16px !important;
+              height: 60px !important;
+            }
+            
+            .header-left {
+              flex: 1 !important;
+              min-width: 0 !important;
+            }
+            
+            .back-button {
+              margin-right: 8px !important;
+              padding: 6px 8px !important;
+              font-size: 12px !important;
+            }
+            
+            .back-text {
+              display: none !important;
+            }
+            
+            .header-title-container {
+              flex: 1 !important;
+              min-width: 0 !important;
+            }
+            
+            .concept-title {
+              font-size: 14px !important;
+              line-height: 1.2 !important;
+            }
+            
+            .header-tags {
+              gap: 6px !important;
+            }
+            
+            .difficulty-tag,
+            .time-tag {
+              font-size: 10px !important;
+              padding: 2px 6px !important;
+            }
+            
+            /* Navigation Buttons */
+            .navigation-buttons {
+              flex-direction: column !important;
+              gap: 12px !important;
+              padding: 16px !important;
+            }
+            
+            .navigation-button {
+              width: 100% !important;
+              min-width: auto !important;
+              height: 48px !important;
+              padding: 0 16px !important;
+              font-size: 14px !important;
+            }
+            
+            .progress-indicator {
+              width: 100% !important;
+              min-width: auto !important;
+              padding: 12px !important;
+            }
+          }
+          
+          @media (max-width: 576px) {
+            .ant-layout-header {
+              padding: 0 12px !important;
+              height: 50px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 1.75rem !important;
+            }
+            
+            .ant-typography h2 {
+              font-size: 1.5rem !important;
+            }
+            
+            .hero-section {
+              padding: 60px 12px 40px !important;
+            }
+            
+            .content-section {
+              padding: 20px 12px !important;
+            }
+            
+            .ant-btn {
+              height: 40px !important;
+              padding: 0 16px !important;
+              font-size: 13px !important;
+            }
+            
+            .ant-tag {
+              font-size: 10px !important;
+              padding: 2px 6px !important;
+            }
+            
+            .concept-icon {
+              width: 50px !important;
+              height: 50px !important;
+            }
+            
+            .concept-icon-badge {
+              width: 18px !important;
+              height: 18px !important;
+              font-size: 8px !important;
+            }
+            
+            .ant-card-body {
+              padding: 16px !important;
+            }
+            
+            /* Header Responsive Styles */
+            .concept-header {
+              padding: 0 12px !important;
+              height: 50px !important;
+            }
+            
+            .back-button {
+              margin-right: 6px !important;
+              padding: 4px 6px !important;
+              font-size: 11px !important;
+            }
+            
+            .concept-title {
+              font-size: 13px !important;
+            }
+            
+            .header-tags {
+              gap: 4px !important;
+            }
+            
+            .difficulty-tag,
+            .time-tag {
+              font-size: 9px !important;
+              padding: 1px 4px !important;
+            }
+            
+            /* Navigation Buttons */
+            .navigation-buttons {
+              padding: 12px !important;
+            }
+            
+            .navigation-button {
+              height: 44px !important;
+              padding: 0 12px !important;
+              font-size: 13px !important;
+            }
+            
+            .progress-indicator {
+              padding: 8px !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .ant-layout-header {
+              padding: 0 8px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 1.5rem !important;
+            }
+            
+            .hero-section {
+              padding: 50px 8px 30px !important;
+            }
+            
+            .content-section {
+              padding: 15px 8px !important;
+            }
+            
+            .ant-btn {
+              height: 36px !important;
+              padding: 0 12px !important;
+              font-size: 12px !important;
+            }
+            
+            .ant-card-body {
+              padding: 12px !important;
+            }
+            
+            .ant-tag {
+              font-size: 9px !important;
+              padding: 1px 4px !important;
+            }
+            
+            /* Header Responsive Styles */
+            .concept-header {
+              padding: 0 8px !important;
+              height: 45px !important;
+            }
+            
+            .back-button {
+              margin-right: 4px !important;
+              padding: 3px 4px !important;
+              font-size: 10px !important;
+            }
+            
+            .concept-title {
+              font-size: 12px !important;
+            }
+            
+            .header-tags {
+              gap: 3px !important;
+            }
+            
+            .difficulty-tag,
+            .time-tag {
+              font-size: 8px !important;
+              padding: 1px 3px !important;
+            }
+            
+            /* Navigation Buttons */
+            .navigation-buttons {
+              padding: 8px !important;
+            }
+            
+            .navigation-button {
+              height: 40px !important;
+              padding: 0 8px !important;
+              font-size: 12px !important;
+            }
+            
+            .progress-indicator {
+              padding: 6px !important;
+            }
+          }
+          
+          /* Tablet Styles */
+          @media (min-width: 769px) and (max-width: 1024px) {
+            .concept-header {
+              padding: 0 16px !important;
+            }
+            
+            .back-button {
+              font-size: 13px !important;
+            }
+            
+            .concept-title {
+              font-size: 15px !important;
+            }
+            
+            .header-tags {
+              gap: 10px !important;
+            }
+            
+            .difficulty-tag,
+            .time-tag {
+              font-size: 11px !important;
+              padding: 3px 7px !important;
+            }
+          }
+          
+          /* Large Desktop Styles */
+          @media (min-width: 1200px) {
+            .concept-header {
+              padding: 0 24px !important;
+            }
+            
+            .back-button {
+              font-size: 15px !important;
+            }
+            
+            .concept-title {
+              font-size: 16px !important;
+            }
+            
+            .header-tags {
+              gap: 12px !important;
+            }
+            
+            .difficulty-tag,
+            .time-tag {
+              font-size: 13px !important;
+              padding: 5px 10px !important;
+            }
+          }
+          
+          /* Hover Effects */
+          .ant-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12) !important;
+          }
+          
+          /* Smooth Transitions */
+          .ant-card,
+          .ant-btn,
+          .ant-tag {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          }
+          
+          /* Key Benefits Responsive Styles */
+          .key-benefits-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+            gap: 20px !important;
+            align-items: stretch !important;
+          }
+          
+          .key-benefit-card {
+            display: flex !important;
+            flex-direction: column !important;
+            height: 100% !important;
+            min-height: 160px !important;
+            padding: 24px !important;
+          }
+          
+          .key-benefit-content {
+            flex: 1 !important;
+            display: flex !important;
+            flex-direction: column !important;
+          }
+          
+          .key-benefit-text {
+            flex: 1 !important;
+            margin: 0 !important;
+          }
+          
+          @media (max-width: 768px) {
+            .key-benefits-grid {
+              grid-template-columns: 1fr !important;
+              gap: 16px !important;
+            }
+            
+            .key-benefit-card {
+              min-height: 140px !important;
+              padding: 20px !important;
+            }
+          }
+          
+          @media (max-width: 576px) {
+            .key-benefits-grid {
+              gap: 12px !important;
+            }
+            
+            .key-benefit-card {
+              min-height: 120px !important;
+              padding: 16px !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .key-benefits-grid {
+              gap: 10px !important;
+            }
+            
+            .key-benefit-card {
+              min-height: 100px !important;
+              padding: 12px !important;
+            }
+          }
+          
+          /* Overview Section Responsive Styles */
+          .overview-container {
+            padding: 0 !important;
+          }
+          
+          .overview-title {
+            padding: 0 20px !important;
+          }
+          
+          .overview-section {
+            border-radius: 0 !important;
+            margin-bottom: 32px !important;
+          }
+          
+          .overview-content {
+            padding: 32px !important;
+          }
+          
+          @media (max-width: 768px) {
+            .overview-title {
+              padding: 0 16px !important;
+              font-size: 2rem !important;
+            }
+            
+            .overview-content {
+              padding: 24px !important;
+            }
+          }
+          
+          @media (max-width: 576px) {
+            .overview-title {
+              padding: 0 12px !important;
+              font-size: 1.75rem !important;
+            }
+            
+            .overview-content {
+              padding: 20px !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .overview-title {
+              padding: 0 8px !important;
+              font-size: 1.5rem !important;
+            }
+            
+            .overview-content {
+              padding: 16px !important;
+            }
+          }
+        `
+      }} />
     </Layout>
   );
 };

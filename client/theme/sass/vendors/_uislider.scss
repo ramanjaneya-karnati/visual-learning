@@ -1,0 +1,39 @@
+.ui-slider-horizontal {
+	height: 4px;
+	margin-left: 8px;
+}
+
+.ui-widget.ui-widget-content {
+	border: none;
+}
+
+.ui-widget-content {
+	background: #cccccc;
+
+	.ui-widget-header {
+		background: $primary;
+	}
+}
+
+.ui-slider .ui-slider-handle {
+	width: 14px;
+	height: 14px;
+	background-color: $primary;
+	border: none;
+	border-radius: 50%;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+	top: -6px;
+}
+
+.price-range {
+	.amount {
+		background: transparent;
+		border: none;
+	}
+}

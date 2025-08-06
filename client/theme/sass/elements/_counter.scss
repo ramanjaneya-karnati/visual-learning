@@ -1,0 +1,15 @@
+.counter {
+	@include d-flex();
+	@include flex-column();
+	width: 170px;
+	padding: 10px 0;
+
+	&:not(:last-child) {
+		margin-right: 120px;
+	}
+
+
+	.counterup {
+		color: #020202;
+	}
+}

@@ -10,7 +10,6 @@ import {
   Space, 
   Avatar,
   Divider,
-  Timeline,
   Statistic,
   Tag
 } from 'antd';
@@ -34,8 +33,9 @@ import {
   GlobalOutlined,
   AimOutlined
 } from '@ant-design/icons';
+import UnifiedFooter from '../components/Footer';
 
-const { Header, Content, Footer } = Layout;
+const { Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
 
 const About: React.FC = () => {
@@ -85,248 +85,290 @@ const About: React.FC = () => {
     }
   ];
 
-  const milestones = [
-    {
-      year: "2024",
-      title: "Platform Launch",
-      description: "Visual Learning platform goes live with comprehensive React, Angular, and Advanced Patterns content."
-    },
-    {
-      year: "2024",
-      title: "AI Integration",
-      description: "Successfully integrated OpenAI GPT-4 and Anthropic Claude 3 for dynamic content generation."
-    },
-    {
-      year: "2024",
-      title: "Framework Expansion",
-      description: "Added Next.js framework and expanded to 16+ interactive concepts with visual metaphors."
-    },
-    {
-      year: "2024",
-      title: "Security Enhancement",
-      description: "Implemented enterprise-grade security with JWT authentication and comprehensive data protection."
-    }
-  ];
-
   return (
     <Layout style={{ minHeight: '100vh', background: '#ffffff' }}>
-      <Header style={{ 
+      <Layout.Header style={{ 
         background: '#ffffff', 
-        padding: '0 50px',
+        padding: '0 20px',
         position: 'sticky',
         top: 0,
         zIndex: 1000,
         borderBottom: '1px solid #f0f0f0',
         height: '80px',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'space-between'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <Button 
             type="text" 
             icon={<ArrowLeftOutlined />} 
             style={{ 
-              color: '#666', 
+              color: '#12715b', 
               marginRight: '16px',
-              fontSize: '16px',
-              fontWeight: '500'
+              fontFamily: '"Open Sans", sans-serif',
+              fontWeight: '600'
             }}
             onClick={() => navigate('/')}
           >
             Back to Home
           </Button>
-          <BookOutlined style={{ fontSize: '28px', color: '#1890ff', marginRight: '12px' }} />
-          <Title level={3} style={{ color: '#1a1a1a', margin: 0, fontWeight: 'bold' }}>
-            Visual Learning
+          <BookOutlined style={{ fontSize: '24px', color: '#12715b', marginRight: '12px' }} />
+          <Title level={4} style={{ 
+            color: '#1a1a1a', 
+            margin: 0, 
+            fontWeight: 'bold',
+            fontFamily: '"Open Sans", sans-serif'
+          }}>
+            About Us
           </Title>
-          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <Button 
-              type="text" 
-              style={{ color: '#666', fontWeight: '500' }}
-              onClick={() => navigate('/features')}
-            >
-              Features
-            </Button>
-            <Button 
-              type="text" 
-              style={{ color: '#666', fontWeight: '500' }}
-              onClick={() => navigate('/about')}
-            >
-              About
-            </Button>
-          </div>
         </div>
-      </Header>
-      
+      </Layout.Header>
+        
       <Content style={{ padding: '0', background: '#ffffff' }}>
-        {/* Hero Section */}
-        <div style={{ 
-          background: '#ffffff',
-          padding: '120px 50px 80px',
-          textAlign: 'center',
-          position: 'relative'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '50px 20px' }}>
+          {/* Hero Section */}
+          <div style={{ 
+            textAlign: 'center',
+            marginBottom: '80px'
+          }}>
             <Title level={1} style={{ 
               color: '#1a1a1a', 
               marginBottom: '24px',
-              fontSize: '4rem',
+              fontSize: '3rem',
               fontWeight: 'bold',
-              lineHeight: '1.1'
+              fontFamily: '"Open Sans", sans-serif'
             }}>
-              About Visual Learning
+              About Learnify
             </Title>
-            
             <Paragraph style={{ 
-              fontSize: '20px', 
-              color: '#666', 
-              marginBottom: '48px',
-              maxWidth: '800px',
-              margin: '0 auto 48px',
-              lineHeight: '1.6'
+              fontSize: '18px', 
+              color: '#666',
+              maxWidth: '600px',
+              margin: '0 auto',
+              lineHeight: '1.6',
+              fontFamily: '"Open Sans", sans-serif'
             }}>
-              We're on a mission to transform how people learn programming. By combining visual metaphors, 
-              interactive stories, and AI-powered content generation, we make complex programming concepts 
-              accessible to everyone.
+              We're revolutionizing programming education through visual metaphors and interactive learning experiences. 
+              Our mission is to make complex programming concepts accessible to everyone.
             </Paragraph>
+          </div>
 
-            {/* Stats Row */}
-            <Row gutter={[48, 24]} justify="center" style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <Col xs={12} md={6}>
+          {/* Mission Section */}
+          <div style={{ 
+            marginBottom: '80px',
+            textAlign: 'center'
+          }}>
+            <Title level={2} style={{ 
+              color: '#1a1a1a', 
+              marginBottom: '16px',
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              Our Mission
+            </Title>
+            <Paragraph style={{ 
+              fontSize: '18px', 
+              color: '#666',
+              maxWidth: '600px',
+              margin: '0 auto 60px',
+              lineHeight: '1.6',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              To transform the way people learn programming by making complex concepts accessible through visual metaphors and interactive experiences.
+            </Paragraph>
+            
+            <Row gutter={[24, 24]} justify="center">
+              <Col xs={24} sm={12} md={6}>
                 <Statistic
                   title="Interactive Concepts"
-                  value={16}
+                  value={50}
                   suffix="+"
-                  valueStyle={{ color: '#1890ff', fontSize: '2.5rem' }}
+                  valueStyle={{ 
+                    color: '#12715b', 
+                    fontSize: '2.5rem',
+                    fontWeight: 'bold'
+                  }}
                   style={{ textAlign: 'center' }}
                 />
               </Col>
-              <Col xs={12} md={6}>
+              <Col xs={24} sm={12} md={6}>
                 <Statistic
-                  title="Programming Frameworks"
-                  value={4}
-                  valueStyle={{ color: '#52c41a', fontSize: '2.5rem' }}
-                  style={{ textAlign: 'center' }}
-                />
-              </Col>
-              <Col xs={12} md={6}>
-                <Statistic
-                  title="AI Models"
-                  value={2}
-                  suffix=""
-                  valueStyle={{ color: '#722ed1', fontSize: '2.5rem' }}
-                  style={{ textAlign: 'center' }}
-                />
-              </Col>
-              <Col xs={12} md={6}>
-                <Statistic
-                  title="Learning Satisfaction"
+                  title="Visual Stories"
                   value={100}
+                  suffix="+"
+                  valueStyle={{ 
+                    color: '#12715b', 
+                    fontSize: '2.5rem',
+                    fontWeight: 'bold'
+                  }}
+                  style={{ textAlign: 'center' }}
+                />
+              </Col>
+              <Col xs={24} sm={12} md={6}>
+                <Statistic
+                  title="Learning Hours"
+                  value={200}
+                  suffix="+"
+                  valueStyle={{ 
+                    color: '#12715b', 
+                    fontSize: '2.5rem',
+                    fontWeight: 'bold'
+                  }}
+                  style={{ textAlign: 'center' }}
+                />
+              </Col>
+              <Col xs={24} sm={12} md={6}>
+                <Statistic
+                  title="Success Rate"
+                  value={95}
                   suffix="%"
-                  valueStyle={{ color: '#fa541c', fontSize: '2.5rem' }}
+                  valueStyle={{ 
+                    color: '#12715b', 
+                    fontSize: '2.5rem',
+                    fontWeight: 'bold'
+                  }}
                   style={{ textAlign: 'center' }}
                 />
               </Col>
             </Row>
           </div>
-        </div>
 
-        {/* Mission Section */}
-        <div style={{ 
-          background: '#fafafa',
-          padding: '80px 50px',
-          borderTop: '1px solid #f0f0f0'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <Row gutter={[48, 32]} align="middle">
-              <Col xs={24} md={12}>
-                <Title level={2} style={{ 
-                  color: '#1a1a1a', 
-                  marginBottom: '24px',
-                  fontSize: '2.5rem',
-                  fontWeight: 'bold'
-                }}>
-                  Our Mission
-                </Title>
-                <Paragraph style={{ 
-                  fontSize: '18px', 
-                  color: '#666',
-                  lineHeight: '1.8',
-                  marginBottom: '24px'
-                }}>
-                  To democratize programming education by making complex concepts accessible through 
-                  intuitive visual metaphors and interactive learning experiences.
-                </Paragraph>
-                <Paragraph style={{ 
-                  fontSize: '16px', 
-                  color: '#666',
-                  lineHeight: '1.6'
-                }}>
-                  We believe that everyone deserves access to high-quality programming education, 
-                  regardless of their background or experience level. Our platform combines the power 
-                  of AI with human creativity to create engaging, memorable learning experiences.
-                </Paragraph>
-              </Col>
-              <Col xs={24} md={12}>
-                <Card style={{ 
-                  border: 'none',
-                  borderRadius: '12px',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-                  background: 'linear-gradient(135deg, #1890ff 0%, #722ed1 100%)',
-                  color: 'white'
-                }}>
-                  <div style={{ padding: '32px', textAlign: 'center' }}>
-                    <AimOutlined style={{ fontSize: '64px', color: 'white', marginBottom: '24px' }} />
-                    <Title level={3} style={{ color: 'white', marginBottom: '16px' }}>
-                      Vision Statement
-                    </Title>
-                    <Paragraph style={{ color: 'rgba(255,255,255,0.9)', fontSize: '16px', lineHeight: '1.6' }}>
-                      To become the world's leading platform for visual programming education, 
-                      empowering millions of learners to master programming through intuitive, 
-                      engaging, and effective learning experiences.
-                    </Paragraph>
-                  </div>
-                </Card>
-              </Col>
-            </Row>
-          </div>
-        </div>
-
-        {/* Values Section */}
-        <div style={{ 
-          padding: '80px 50px', 
-          background: '#ffffff'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <Title level={2} style={{ 
-                color: '#1a1a1a', 
-                marginBottom: '16px',
-                fontSize: '2.5rem',
-                fontWeight: 'bold'
-              }}>
-                Our Values
-              </Title>
-              <Paragraph style={{ 
-                fontSize: '18px', 
-                color: '#666',
-                maxWidth: '600px',
-                margin: '0 auto'
-              }}>
-                The principles that guide everything we do at Visual Learning.
-              </Paragraph>
-            </div>
+          {/* Team Section */}
+          <div style={{ 
+            marginBottom: '80px',
+            textAlign: 'center'
+          }}>
+            <Title level={2} style={{ 
+              color: '#1a1a1a', 
+              marginBottom: '16px',
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              Meet Our Team
+            </Title>
+            <Paragraph style={{ 
+              fontSize: '18px', 
+              color: '#666',
+              maxWidth: '600px',
+              margin: '0 auto 60px',
+              lineHeight: '1.6',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              The passionate individuals behind Learnify's mission to transform programming education.
+            </Paragraph>
             
             <Row gutter={[32, 32]} justify="center">
-              {values.map((value, index) => (
+              {team.map((member, index) => (
                 <Col xs={24} md={12} key={index}>
                   <Card 
                     style={{ 
                       border: 'none',
-                      borderRadius: '12px',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                      borderRadius: '16px',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
                       height: '100%',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      background: '#ffffff'
+                    }}
+                    bodyStyle={{ padding: '32px' }}
+                    hoverable
+                  >
+                    <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                      <Avatar 
+                        size={80} 
+                        icon={member.avatar}
+                        style={{ 
+                          background: 'linear-gradient(135deg, #12715b 0%, #0f5f4a 100%)',
+                          fontSize: '32px'
+                        }}
+                      />
+                    </div>
+                    <Title level={4} style={{ 
+                      color: '#1a1a1a', 
+                      textAlign: 'center',
+                      marginBottom: '8px',
+                      fontWeight: '600',
+                      fontFamily: '"Open Sans", sans-serif'
+                    }}>
+                      {member.name}
+                    </Title>
+                    <Paragraph style={{ 
+                      color: '#12715b', 
+                      textAlign: 'center',
+                      marginBottom: '16px',
+                      fontWeight: '500',
+                      fontFamily: '"Open Sans", sans-serif'
+                    }}>
+                      {member.role}
+                    </Paragraph>
+                    <Paragraph style={{ 
+                      color: '#666', 
+                      textAlign: 'center',
+                      marginBottom: '20px',
+                      lineHeight: '1.6',
+                      fontFamily: '"Open Sans", sans-serif'
+                    }}>
+                      {member.bio}
+                    </Paragraph>
+                    <div style={{ textAlign: 'center' }}>
+                      {member.expertise.map((skill, skillIndex) => (
+                        <Tag 
+                          key={skillIndex}
+                          color="blue" 
+                          style={{ 
+                            margin: '4px', 
+                            fontWeight: '500',
+                            fontFamily: '"Open Sans", sans-serif'
+                          }}
+                        >
+                          {skill}
+                        </Tag>
+                      ))}
+                    </div>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </div>
+
+          {/* Values Section */}
+          <div style={{ 
+            marginBottom: '80px',
+            textAlign: 'center'
+          }}>
+            <Title level={2} style={{ 
+              color: '#1a1a1a', 
+              marginBottom: '16px',
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              Our Values
+            </Title>
+            <Paragraph style={{ 
+              fontSize: '18px', 
+              color: '#666',
+              maxWidth: '600px',
+              margin: '0 auto 60px',
+              lineHeight: '1.6',
+              fontFamily: '"Open Sans", sans-serif'
+            }}>
+              The principles that guide everything we do at Learnify.
+            </Paragraph>
+            
+            <Row gutter={[24, 24]} justify="center">
+              {values.map((value, index) => (
+                <Col xs={24} sm={12} md={6} key={index}>
+                  <Card 
+                    style={{ 
+                      border: 'none',
+                      borderRadius: '16px',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
+                      height: '100%',
+                      transition: 'all 0.3s ease',
+                      background: '#ffffff'
                     }}
                     bodyStyle={{ padding: '32px' }}
                     hoverable
@@ -339,16 +381,29 @@ const About: React.FC = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      marginBottom: '24px'
+                      marginBottom: '24px',
+                      margin: '0 auto 24px'
                     }}>
                       <div style={{ fontSize: '28px', color: 'white' }}>
                         {value.icon}
                       </div>
                     </div>
-                    <Title level={4} style={{ color: '#1a1a1a', marginBottom: '16px', fontWeight: '600' }}>
+                    <Title level={4} style={{ 
+                      color: '#1a1a1a', 
+                      marginBottom: '16px', 
+                      fontWeight: '600',
+                      fontFamily: '"Open Sans", sans-serif',
+                      textAlign: 'center'
+                    }}>
                       {value.title}
                     </Title>
-                    <Paragraph style={{ color: '#666', margin: 0, lineHeight: '1.6' }}>
+                    <Paragraph style={{ 
+                      color: '#666', 
+                      margin: 0, 
+                      lineHeight: '1.6',
+                      fontFamily: '"Open Sans", sans-serif',
+                      textAlign: 'center'
+                    }}>
                       {value.description}
                     </Paragraph>
                   </Card>
@@ -357,178 +412,164 @@ const About: React.FC = () => {
             </Row>
           </div>
         </div>
-
-        {/* Team Section */}
-        <div style={{ 
-          background: '#fafafa',
-          padding: '80px 50px',
-          borderTop: '1px solid #f0f0f0'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <Title level={2} style={{ 
-                color: '#1a1a1a', 
-                marginBottom: '16px',
-                fontSize: '2.5rem',
-                fontWeight: 'bold'
-              }}>
-                Meet Our Team
-              </Title>
-              <Paragraph style={{ 
-                fontSize: '18px', 
-                color: '#666',
-                maxWidth: '600px',
-                margin: '0 auto'
-              }}>
-                The passionate individuals behind Visual Learning's mission to transform programming education.
-              </Paragraph>
-            </div>
-            
-            <Row gutter={[32, 32]} justify="center">
-              {team.map((member, index) => (
-                <Col xs={24} md={12} key={index}>
-                  <Card 
-                    style={{ 
-                      border: 'none',
-                      borderRadius: '12px',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                      height: '100%'
-                    }}
-                    bodyStyle={{ padding: '32px' }}
-                  >
-                    <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-                      <Avatar 
-                        size={80} 
-                        icon={member.avatar}
-                        style={{ 
-                          background: 'linear-gradient(135deg, #1890ff 0%, #722ed1 100%)',
-                          fontSize: '32px'
-                        }}
-                      />
-                    </div>
-                    <Title level={4} style={{ 
-                      color: '#1a1a1a', 
-                      textAlign: 'center',
-                      marginBottom: '8px',
-                      fontWeight: '600'
-                    }}>
-                      {member.name}
-                    </Title>
-                    <Paragraph style={{ 
-                      color: '#1890ff', 
-                      textAlign: 'center',
-                      marginBottom: '16px',
-                      fontWeight: '500'
-                    }}>
-                      {member.role}
-                    </Paragraph>
-                    <Paragraph style={{ 
-                      color: '#666', 
-                      textAlign: 'center',
-                      marginBottom: '20px',
-                      lineHeight: '1.6'
-                    }}>
-                      {member.bio}
-                    </Paragraph>
-                    <div style={{ textAlign: 'center' }}>
-                      {member.expertise.map((skill, skillIndex) => (
-                        <Tag 
-                          key={skillIndex}
-                          color="blue" 
-                          style={{ margin: '4px', fontWeight: '500' }}
-                        >
-                          {skill}
-                        </Tag>
-                      ))}
-                    </div>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </div>
-        </div>
-
-        {/* Timeline Section */}
-        <div style={{ 
-          padding: '80px 50px', 
-          background: '#ffffff'
-        }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-              <Title level={2} style={{ 
-                color: '#1a1a1a', 
-                marginBottom: '16px',
-                fontSize: '2.5rem',
-                fontWeight: 'bold'
-              }}>
-                Our Journey
-              </Title>
-              <Paragraph style={{ 
-                fontSize: '18px', 
-                color: '#666',
-                maxWidth: '600px',
-                margin: '0 auto'
-              }}>
-                Key milestones in Visual Learning's development and growth.
-              </Paragraph>
-            </div>
-            
-            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-              <Timeline
-                mode="left"
-                items={milestones.map((milestone, index) => ({
-                  children: (
-                    <Card 
-                      style={{ 
-                        border: 'none',
-                        borderRadius: '8px',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-                        marginBottom: '16px'
-                      }}
-                      bodyStyle={{ padding: '20px' }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '12px' }}>
-                        <Tag color="blue" style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                          {milestone.year}
-                        </Tag>
-                      </div>
-                      <Title level={4} style={{ color: '#1a1a1a', marginBottom: '8px', fontWeight: '600' }}>
-                        {milestone.title}
-                      </Title>
-                      <Paragraph style={{ color: '#666', margin: 0, lineHeight: '1.6' }}>
-                        {milestone.description}
-                      </Paragraph>
-                    </Card>
-                  )
-                }))}
-              />
-            </div>
-          </div>
-        </div>
       </Content>
       
-      <Footer style={{ 
-        background: '#fafafa',
-        borderTop: '1px solid #f0f0f0',
-        padding: '40px 50px'
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <Row gutter={[32, 32]}>
-            <Col xs={24} md={8}>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
-                <BookOutlined style={{ fontSize: '24px', color: '#1890ff', marginRight: '12px' }} />
-                <Title level={4} style={{ color: '#1a1a1a', margin: 0, fontWeight: 'bold' }}>
-                  Visual Learning
-                </Title>
-              </div>
-              <Paragraph style={{ color: '#666', margin: 0 }}>
-                Making programming concepts accessible through visual metaphors and interactive learning experiences.
-              </Paragraph>
-            </Col>
-          </Row>
-          <Divider style={{ margin: '32px 0 16px 0' }} />
-        </div>
-      </Footer>
+      <UnifiedFooter />
+      
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          /* Responsive Design for About Page */
+          @media (max-width: 768px) {
+            .ant-layout-header {
+              padding: 0 16px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 2.5rem !important;
+              line-height: 1.1 !important;
+            }
+            
+            .ant-typography h2 {
+              font-size: 2rem !important;
+            }
+            
+            .ant-typography h3 {
+              font-size: 1.5rem !important;
+            }
+            
+            .ant-typography h4 {
+              font-size: 1.25rem !important;
+            }
+            
+            .content-section {
+              padding: 40px 16px !important;
+            }
+            
+            .ant-btn {
+              height: 48px !important;
+              padding: 0 24px !important;
+              font-size: 16px !important;
+            }
+            
+            .ant-card {
+              margin-bottom: 16px !important;
+            }
+            
+            .ant-row {
+              margin: 0 -8px !important;
+            }
+            
+            .ant-col {
+              padding: 0 8px !important;
+            }
+            
+            .ant-statistic-title {
+              font-size: 14px !important;
+            }
+            
+            .ant-statistic-content {
+              font-size: 2rem !important;
+            }
+          }
+          
+          @media (max-width: 576px) {
+            .ant-layout-header {
+              padding: 0 12px !important;
+              height: 60px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 2rem !important;
+            }
+            
+            .ant-typography h2 {
+              font-size: 1.75rem !important;
+            }
+            
+            .content-section {
+              padding: 30px 12px !important;
+            }
+            
+            .ant-btn {
+              height: 44px !important;
+              padding: 0 20px !important;
+              font-size: 14px !important;
+            }
+            
+            .ant-statistic-title {
+              font-size: 12px !important;
+            }
+            
+            .ant-statistic-content {
+              font-size: 1.5rem !important;
+            }
+            
+            .ant-avatar {
+              width: 60px !important;
+              height: 60px !important;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .ant-layout-header {
+              padding: 0 8px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 1.75rem !important;
+            }
+            
+            .content-section {
+              padding: 20px 8px !important;
+            }
+            
+            .ant-btn {
+              height: 40px !important;
+              padding: 0 16px !important;
+              font-size: 13px !important;
+            }
+            
+            .ant-card-body {
+              padding: 20px !important;
+            }
+          }
+          
+          /* Tablet Styles */
+          @media (min-width: 769px) and (max-width: 1024px) {
+            .content-section {
+              padding: 60px 40px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 3rem !important;
+            }
+          }
+          
+          /* Large Desktop Styles */
+          @media (min-width: 1200px) {
+            .content-section {
+              padding: 80px 60px !important;
+            }
+            
+            .ant-typography h1 {
+              font-size: 4rem !important;
+            }
+          }
+          
+          /* Hover Effects */
+          .ant-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12) !important;
+          }
+          
+          /* Smooth Transitions */
+          .ant-card,
+          .ant-btn,
+          .ant-statistic {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          }
+        `
+      }} />
     </Layout>
   );
 };

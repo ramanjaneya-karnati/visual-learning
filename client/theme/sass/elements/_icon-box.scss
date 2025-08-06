@@ -1,0 +1,298 @@
+
+.icon-box {
+	@include transition(all 0.2s);
+
+	&.icon-box-style-03 {
+		font-size: $font-size-sm;
+		.icon-box-icon {
+			margin-right: 15px;
+		}
+
+	}
+
+	&.background-icon {
+		&.color-primary {
+			.icon-box-icon {
+				background-color: $primary;
+
+				&::after {
+					opacity: 0;
+					@include transform(scale(0.8));
+					@include transition(background 0.5s, color 0.5s, opacity 0.3s, transform 0.3s);
+				}
+
+				&:hover {
+					background-color: $primary;
+
+					&::after {
+						opacity: 1;
+						@include transform(scale(1));
+						box-shadow: 0 0 0 2px $primary;
+
+					}
+				}
+
+			}
+
+			.icon {
+				fill: #fff;
+				stroke: #fff;
+			}
+
+			i {
+				color: #fff;
+			}
+		}
+
+	}
+
+	&.shape-icon {
+		.icon-box-icon {
+			position: relative;
+		}
+
+		.icon-box-icon::after {
+			width: 100%;
+			height: 100%;
+			content: "";
+			top: -3px;
+			left: -3px;
+			padding: 3px;
+			position: absolute;
+			-webkit-box-sizing: content-box;
+			-moz-box-sizing: content-box;
+			box-sizing: content-box;
+		}
+
+		.icon-box-icon {
+			display: inline-block;
+			width: 34px;
+			height: 34px;
+			line-height: 34px;
+			text-align: center;
+			flex: 0 0 33px;
+
+		}
+
+		.icon {
+			width: 16px;
+			height: 16px;
+		}
+
+		i {
+			font-size: 16px;
+		}
+
+		&.icon-box-size-lg {
+			.icon-box-icon {
+				width: 96px;
+				height: 96px;
+				line-height: 96px;
+			}
+
+			.icon {
+				width: 42px;
+				height: 42px;
+			}
+
+			i {
+				font-size: 42px;
+			}
+
+			.title {
+				font-size: 24px;
+			}
+
+			.description {
+				font-size: 18px;
+			}
+		}
+	}
+
+	&.shape-circle {
+		.icon-box-icon {
+			border-radius: 50%;
+
+			&:after {
+				border-radius: 50%;
+			}
+		}
+	}
+
+	&.icon-outline {
+		&.color-primary {
+			.icon-box-icon {
+				box-shadow: 0 0 0 2px $primary;
+
+				.icon {
+					fill: $primary;
+					stroke: $primary;
+				}
+
+				i {
+					color: $primary;
+				}
+
+				&::after {
+					opacity: 0;
+					@include transform(scale(1.3));
+					@include transition(background 0.5s, color 0.5s, opacity 0.3s, transform 0.3s);
+				}
+
+				&:hover {
+					background-color: $primary;
+					box-shadow: 0 0 0 0 $primary;
+
+					&::after {
+						opacity: 1;
+						@include transform(scale(1));
+						box-shadow: 0 0 0 2px $primary;
+					}
+
+					.icon {
+						fill: #fff;
+						stroke: #fff;
+					}
+
+					i {
+						color: #fff;
+					}
+
+				}
+			}
+
+		}
+
+		&.color-gray {
+			.icon-box-icon {
+				box-shadow: 0 0 0 2px $secondary;
+
+				.icon {
+					fill: $secondary;
+					stroke: $secondary;
+				}
+
+				i {
+					color: $secondary;
+				}
+
+				&::after {
+					opacity: 0;
+					@include transform(scale(1.3));
+					@include transition(background 0.5s, color 0.5s, opacity 0.3s, transform 0.3s);
+				}
+
+				&:hover {
+					background-color: $secondary;
+					box-shadow: 0 0 0 0 $secondary;
+
+					&::after {
+						opacity: 1;
+						@include transform(scale(1));
+						box-shadow: 0 0 0 2px $secondary;
+					}
+
+					.icon {
+						fill: #fff;
+						stroke: #fff;
+					}
+
+					i {
+						color: #fff;
+					}
+				}
+			}
+
+		}
+
+	}
+
+	&.no-shape {
+		.icon {
+			width: 16px;
+			height: 16px;
+		}
+
+		i {
+			font-size: 16px;
+		}
+
+		.title {
+			font-weight: 600;
+		}
+
+		&.icon-box-size-lg {
+			.icon {
+				width: 72px;
+				height: 72px;
+			}
+
+			i {
+				font-size: 72px;
+			}
+
+			.title {
+				font-size: 24px;
+			}
+
+			.description {
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+.icon-box-style-01 {
+	width: 120px;
+	height: 120px;
+	text-align: center;
+	padding: 24px 0;
+
+	.icon {
+		width: 40px;
+		height: 40px;
+		stroke: $black;
+		fill: $black;
+	}
+
+	&:hover {
+		background: $primary;
+		color: #fff !important;
+
+		.icon {
+			stroke: #fff;
+			fill: #fff;
+		}
+	}
+
+}
+
+.icon-box-style-02 {
+	.icon {
+		width: 50px;
+		height: 50px;
+		fill: #87bc15;
+		stroke: #87bc15;
+	}
+
+	.number {
+		color: #e7e7e7;
+		line-height: 1;
+		margin-top: 10px;
+	}
+
+	.text-muted {
+		line-height: 1.5;
+	}
+
+	.color-primary {
+		i {
+			color: $primary;
+		}
+
+		.icon {
+			fill: $primary;
+			stroke: $primary;
+		}
+	}
+}
